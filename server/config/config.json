@@ -1,7 +1,7 @@
 {
   "development": {
     "database": {
-      "url": "mongodb://localhost/mongoose_dev",
+      "url": "https://localhost:5000",
       "options": {
         "useNewUrlParser": true
       }

@@ -1,25 +1,27 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
-const PORT = 5000;
-
-require('dotenv').config();
-
 const app = express();
+const cors = require('cors');
+const dotenv = require('dotenv').config()
+const PORT = process.env.PORT || 5000
+const ATLAS_URI = process.env.ATLAS_URI;
 
-app.use(cors());
+// This is to allow our api to receive data from a client app
+app.use(express.urlencoded({extended: true}));
+
+// This is to allow our api for parsing json
 app.use(express.json());
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true,  useUnifiedTopology: true}, err => {
-    if (err) throw err;
-});
+// This is to allow our api for cross-origin resource sharing
+app.use(cors());
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-})
+// Connect to MongoDB Atlas database
+mongoose.connect(ATLAS_URI, {
+    useNewUrlParser: true
+}).then(() => console.log('*** MongoDB connection established! ***'))
+.catch(err => console.log(err));
 
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+// Check what PORT the app is listening to
+app.listen(PORT, () => {
+    console.log(`*** Server is listening on port ${PORT} ***`);
 });
