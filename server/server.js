@@ -16,10 +16,10 @@ app.use(express.json());
 app.use(cors());
 
 // Import Routes and create router
-
+const loginRouter = require ( './Routes/loginRoute' );
 
 // Route Middlewares
-
+app.use ( '/Login', loginRouter );
 
 // Connect to MongoDB Atlas database
 mongoose.connect(ATLAS_URI, {
