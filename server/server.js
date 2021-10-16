@@ -17,9 +17,11 @@ app.use(cors());
 
 // Import Routes and create router
 const loginRouter = require('./Routes/LoginRoute');
+const signUpRouter = require('./Routes/SignUpRoute');
 
 // Route Middlewares
 app.use('/Login', loginRouter);
+app.use('/Register', signUpRouter);
 
 // Connect to MongoDB Atlas database
 mongoose.connect(ATLAS_URI, {
