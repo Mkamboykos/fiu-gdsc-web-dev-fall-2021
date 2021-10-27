@@ -3,31 +3,27 @@ const mongoose = require("mongoose")
 const UsersSchema = mongoose.Schema({
 	email: {
 		type: String,
-		required: [true, 'Email']
+		required: true
 	},
 	username: {
 		type: String,
-		required: [true, 'User']
+		required: true
 	},
 	password: {
 		type: String,
-		required: [true, 'Password']
+		required: true
 	},
-	Gender: {
+	gender: {
 		type: String,
-		required: [true, 'Gender']
+		required: true
 	},
-	Age: {
-		type: Number,
-		required: [true, 'Age']
-	},
-	City: {
+	city: {
 		type: String,
-		required: [true, 'City']
+		required: true
 	},
-	State: {
+	state: {
 		type: String,
-		required: [true, 'City']
+		required: true
 	}
 })
 

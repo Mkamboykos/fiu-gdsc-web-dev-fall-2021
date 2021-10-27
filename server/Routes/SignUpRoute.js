@@ -1,25 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../Models/Users');
+const bcrypt = require('bcrypt');
 
-router.post('/basicInfo', async (req, res) =>{
-  const newUser = new User({
-        email:    req.body.email,
-		username: req.body.username,
-		password: req.body.password,
-        Gender:  req.body.Gender,
-        Age:      req.body.Age,
-        City:     req.body.City,
-        State:    req.body.State
-	});
+router.post('/basicInfo', async (req, res, next) =>{
+	const {email, username, password, gender, city, state} = req.body;
 
-	newUser
-		.save()
-		.then(result => {
-			console.log(result);
+	const hashedPassword = await bcrypt.hash(password, 10);
+
+	try{
+		const newUser = await User.create({
+			email:     email,
+			username:  username,
+			password:  hashedPassword,
+			gender:    gender,
+			city:      city,
+			state:     state
 		})
-		.catch(err => {
-			console.log(err);
-		});
+	} catch (error){
+		console.log(error)
+		return res.json({status: 422})
+	}
 });
 
 module.exports = router;
