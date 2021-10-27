@@ -12,6 +12,14 @@ function App() {
       <Route exact path="/" component={Home}/>
       <Route exact path="/Dashboard" component={Dashboard}/>
 
+
+
+      <p>hello world</p>
+      <div class = "box1">hello</div>
+
+
+
+
     </div>
   )
 }
