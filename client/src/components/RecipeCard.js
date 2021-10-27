@@ -8,7 +8,7 @@ import './RecipeCard.css'
 
 function RecipeCard() {
   return (
-    <Card >
+    <Card className = "margin">
       <Card.Img variant="top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/210302-vegan-spiral-cover-cauliflower-pizza-086-eb-1626711437.jpg" />
       <div class= "heart-container">
         <div class="like-amount">2.1M</div>
