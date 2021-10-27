@@ -9,7 +9,8 @@ import ReactDOM from 'react-dom';
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-
+require('typeface-montserrat')
+require('typeface-pt-serif-caption')
 ReactDOM.render(
   <BrowserRouter>
     <App />

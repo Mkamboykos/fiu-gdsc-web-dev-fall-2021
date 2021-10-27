@@ -1,8 +1,10 @@
 import './index.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@material/react-icon-button/dist/icon-button.css';
 import {Route} from 'react-router-dom'
 import Home from './components/Home'
 import Dashboard from './components/Dashboard'
+import RecipeCard from './components/RecipeCard'
 
 function App() {
   return (
@@ -13,12 +15,7 @@ function App() {
       <Route exact path="/Dashboard" component={Dashboard}/>
 
 
-
-      <p>hello world</p>
-      <div class = "box1">hello</div>
-
-
-
+      <Route exact path="/test" component={RecipeCard}/>
 
     </div>
   )

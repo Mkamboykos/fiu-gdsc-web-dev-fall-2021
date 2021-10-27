@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -16,16 +18,15 @@ code {
     monospace;
 }
 
-h1 {
-  color:green;
-}
 
-p{
-  color: red;
-}
 
-.box1{
-  background-color: blue;
-  height: 100px;
-  width: 150px;
+.card-container {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 5;
+  flex-wrap:wrap;
+
+
 }
