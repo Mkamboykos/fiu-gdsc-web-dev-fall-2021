@@ -1,36 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const User = require("../Models/Users");
+const express = require ( 'express' );
+const router = express.Router ();
+const login = require ('../Models/loginModels');
 
-router.post('/UserLogin', async (req, res) =>{ 
-	const newUser = new User({
-		username: req.body.username,
-		password: req.body.password
-	});
+//Create user and password
+router.post ('./User', async (req, res) => {
+    const data = req.body;
 
-	newUser
-		.save()
-		.then(result => {
-			console.log(result);
-		})
-		.catch(err => {
-			console.log(err);
-		});
-});
-
-
-router.get('/checkIfExistUser', async (req, res) =>{ 
-	const {username, password} = req.body;
-
-	const checkUser = await User.find({username:username});
-	const checkPassword = await User.find({password:password})
-
-	try {
-		// res.send(checkUser, checkPassword).body;
-		res.status(200).send(checkUser +  checkPassword)
-	  } catch (error) {
-		response.status(500).send(error);
-	  }
+    login.insertMany (data)
+    .then (data => { res.send(data); })
+    .catch (err => { res.status(500).send( { message: err.message }); })
 });
 
 module.exports = router;

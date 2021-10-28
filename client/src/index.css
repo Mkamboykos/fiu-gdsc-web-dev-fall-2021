@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -14,4 +16,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+
+.card-container {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 5;
+  flex-wrap:wrap;
+
+
 }
