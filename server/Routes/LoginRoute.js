@@ -2,35 +2,19 @@ const express = require('express');
 const router = express.Router();
 const User = require("../Models/Users");
 
-router.post('/UserLogin', async (req, res) =>{ 
-	const newUser = new User({
-		username: req.body.username,
-		password: req.body.password
-	});
+router.post('/User', async (req, res) =>{ 
 
-	newUser
-		.save()
-		.then(result => {
-			console.log(result);
-		})
-		.catch(err => {
-			console.log(err);
-		});
-});
+	// Input from Home page in client
+    const {username, password} = req.body;
 
+	// Check if user exists in the database
+	const userExist = await User.findOne({where: {username: username}});
 
-router.get('/checkIfExistUser', async (req, res) =>{ 
-	const {username, password} = req.body;
+	if(userExist){
+		// encrypt password given
 
-	const checkUser = await User.find({username:username});
-	const checkPassword = await User.find({password:password})
-
-	try {
-		// res.send(checkUser, checkPassword).body;
-		res.status(200).send(checkUser +  checkPassword)
-	  } catch (error) {
-		response.status(500).send(error);
-	  }
+		//check if encrypted password matches the password in the database
+	}
 });
 
 module.exports = router;
