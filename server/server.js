@@ -5,6 +5,11 @@ const cors = require('cors');
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 5000
 const ATLAS_URI = process.env.ATLAS_URI;
+const ErrorHandler = require('./error/ErrorHandler');
+const cookieParser = require('cookie-parser');
+
+// Enable cookie dependency
+app.use(cookieParser());
 
 // This is to allow our api to receive data from a client app.
 app.use(express.urlencoded({extended: true}));
@@ -22,6 +27,9 @@ const signUpRouter = require('./Routes/SignUpRoute');
 // Route Middlewares
 app.use('/Login', loginRouter);
 app.use('/Register', signUpRouter);
+
+// Apply error handler to every call
+app.use(ErrorHandler);
 
 // Connect to MongoDB Atlas database
 mongoose.connect(ATLAS_URI, {

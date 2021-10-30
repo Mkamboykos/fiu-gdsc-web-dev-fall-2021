@@ -2,13 +2,19 @@ const express = require ( 'express' );
 const router = express.Router ();
 const login = require ('../Models/loginModels');
 
-//Create user and password
-router.post ('./User', async (req, res) => {
-    const data = req.body;
+router.post('/User', async (req, res) =>{ 
 
-    login.insertMany (data)
-    .then (data => { res.send(data); })
-    .catch (err => { res.status(500).send( { message: err.message }); })
+	// Input from Home page in client
+    const {username, password} = req.body;
+
+	// Check if user exists in the database
+	const userExist = await User.findOne({where: {username: username}});
+
+	if(userExist){
+		// encrypt password given
+
+		//check if encrypted password matches the password in the database
+	}
 });
 
 module.exports = router;
