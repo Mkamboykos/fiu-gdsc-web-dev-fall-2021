@@ -7,34 +7,51 @@ router.post ('/Email', async (req, res) => {
     const {email} = req.body;
     const checkEmail = await forget.findOne ({ where: { email:email }});
 
-    if (checkEmail && email === checkEmail.email)
+    if (email === checkEmail.email)
     {
-        const num = Math.floor( Math.random() * 10000 );    //Random code of 4 whole digits
+        try {
+            //Reusable transporter object
+            let transporter = nodemailer.createTransport({
+                host: process.env.MAIL_HOST,
+                port: process.env.MAIL_PORT,
+                secure: false,
+                auth: {
+                    user: process.env.MAIL_USER,    //Unique user found in env
+                    pass: process.env.MAIL_PASS,    //Unique password found in env
+                },
+            });
 
-        //Reusable transporter object
-        let transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
-            port: 587,
-            secure: false,
-            auth: {
-                user: 'francesca.ruecker48@ethereal.email',
-                pass: 'SJ5Znv1nyqqYu3mumX',
-            },
-        });
+            //Verify that the transporter connection is established
+            transporter.verify(function(error, success) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Server is ready to take our messages');
+                }
+            });
 
-        //Mail sent using transporter object
-        let info = await transporter.sendMail({
-            from: '"The Express App" <theExpressApp@example.com>', // sender address
-            to: "test1@gmail.com", // list of receivers
-            subject: "Hello", // Subject line
-            text: "This is your code: " + num, 
-        });
+            var num = Math.floor( Math.random() * 10000 );    //Random code of 4 whole digits
+            code = num;                                       //Pass num into 'code: code'
 
-        console.log("Message sent: %s", info.messageId);
+            //Create message that will be sent to user email
+            const msg = {
+                from: `"GDSC Team" <${process.env.MAIL_FROM}>`, // sender address
+                to: email, // list of receivers
+                subject: "Hello",
+                text: "This is your code: " + code,
+                html: `<b>Hey there!</b> <br/>Here is your code ${code}`, 
+            }
 
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            const info = await transporter.sendMail(msg);       //Verify that message gets sent
 
-        res.json (num);
+            console.log("Message sent: %s", info.messageId);    //Display mail Id
+            //console.log ("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+            res.json ({code: code});
+        }
+        catch (err){
+            console.log (err);
+        }
     }
     else
     {
