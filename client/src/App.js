@@ -1,28 +1,30 @@
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@material/react-icon-button/dist/icon-button.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Dashboard from "./components/Dashboard";
-import RecipeCard from "./components/RecipeCard";
-import About from "./components/About";
-import Nav from "./components/Nav";
+
+import React, {lazy, Suspense} from 'react'
+import { BrowserRouter as Route, Link, Routes, Router} from 'react-router-dom'
+
+const Home = lazy(() => import('./components/Home'))
+const Dashboard = lazy(() => import('./components/Dashboard'))
+const About = lazy(() => import('./components/About'))
+const Forgot = lazy(() => import('./components/Forgot'))
  
 function App() {
+
   return (
+  <Suspense fallback={"LOADING"}>
     <Router>
-      <div className="App">
-        <Nav />
-        <Switch>
-          {/* The Router is used to create different links for each class */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/Dashboard" component={Dashboard} />
-          <Route exact path="/About" component={About} />
- 
-          <Route exact path="/test" component={RecipeCard} />
-        </Switch>
-      </div>
+      <nav>
+        <Link to="/"> Home </Link>
+        <Link to="about"> About </Link>
+      </nav>
     </Router>
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/Dashboard" element={<Dashboard/>}/>
+        <Route exact path="/About" element={<About/>}/>
+        <Route exact path="/Forgot" element={<Forgot/>}/>
+      </Routes>
+  </Suspense>
   );
 }
  
