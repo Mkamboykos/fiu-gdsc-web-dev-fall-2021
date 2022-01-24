@@ -1,21 +1,34 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 function Home(){
 
+  const onClickLogin = (e) => {
+    try{
 
+    }catch(e){
 
+    }
+  }
 
+  const onClickSignup = (e) => {
+    try{
 
+    }catch(e){
 
+    }
+  }
 
     return (
       <div>
-      <h1>asd</h1>
-
-
-
-    
+        <nav>
+          <Link to={`/`}>Home Icon</Link>
+        </nav>
+          <button className="" onClick={onClickLogin()}>Login</button>
+          <button className="" onClick={onClickSignup()}>Sign up</button>
+          <Link to={`/Forgot`} className="" >Forgot Password?</Link>
       </div>
+      
     )
 }
 

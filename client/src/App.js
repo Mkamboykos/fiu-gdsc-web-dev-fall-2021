@@ -11,6 +11,7 @@ const Forgot = lazy(() => import('./components/Forgot'))
 function App() {
 
   return (
+  <div className="App">
   <Suspense fallback={"LOADING"}>
       <Routes>
         <Route exact path="/" element={<Home/>}/>
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/Forgot" element={<Forgot/>}/>
       </Routes>
   </Suspense>
+  </div>
   );
 }
  
