@@ -30,7 +30,7 @@ router.post ('/Email', async (req, res) => {
                 }
             });
 
-            var num = Math.floor( Math.random() * 10000 );    //Random code of 4 whole digits
+            var num = Math.floor( Math.random() * 9999 );    //Random code of 4 whole digits
             code = num;                                       //Pass num into 'code: code'
 
             //Create message that will be sent to user email

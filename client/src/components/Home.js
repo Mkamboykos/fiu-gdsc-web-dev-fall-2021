@@ -44,6 +44,7 @@ function Home(){
     return (
       <div className='loginPanel'>
         <div className='loginContainer'>
+          
           <Link to={`/Forgot`} className="">Forgot Password?</Link>
         </div>
       </div>
