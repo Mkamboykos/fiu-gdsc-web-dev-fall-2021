@@ -43,3 +43,8 @@ mongoose.connect(ATLAS_URI, {
 app.listen(PORT, () => {
     console.log(`*** Server is listening on port ${PORT} ***`);
 });
+
+// testing
+app.get('/', (req, res) => {
+    res.send("hello world")
+})
