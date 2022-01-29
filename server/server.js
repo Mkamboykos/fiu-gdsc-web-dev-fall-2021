@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv').config()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 const ATLAS_URI = process.env.ATLAS_URI;
 const ErrorHandler = require('./Error/ErrorHandler');
 const cookieParser = require('cookie-parser');
@@ -44,7 +44,7 @@ app.listen(PORT, () => {
     console.log(`*** Server is listening on port ${PORT} ***`);
 });
 
-// testing
+// testing connection
 app.get('/', (req, res) => {
     res.send("hello world")
 })
