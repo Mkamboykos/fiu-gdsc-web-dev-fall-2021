@@ -11,7 +11,9 @@ function About(){
     return (
         <div>
 
-
+        <div > 
+            Hello what 
+        </div>
 
 
 
