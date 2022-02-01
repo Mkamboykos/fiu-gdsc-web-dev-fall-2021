@@ -12,7 +12,7 @@ function Home(){
   const HomeScreenView = () =>{
     return(
       <div>
-        {showStart ? <StartHereView/> & setShowHome(false): ""}
+        {showStart ? <StartHereView/>: ""}
         {showLogin ? <LoginView/> : ""}
 
         <nav>
@@ -33,7 +33,7 @@ function Home(){
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
-
+          <button onClick={() => setShowStart(false)}> X </button>
         </div>
       </div>
     )
@@ -44,7 +44,12 @@ function Home(){
     return (
       <div className='loginPanel'>
         <div className='loginContainer'>
-          
+          <button onClick={() => setShowLogin(false)}> X </button>
+
+          {/* https://www.youtube.com/watch?v=7K9kDrtc4S8  59:00*/}
+
+
+
           <Link to={`/Forgot`} className="">Forgot Password?</Link>
         </div>
       </div>
@@ -53,13 +58,13 @@ function Home(){
 
   // conditional rendering
   const renderCondition = () => {
-    if(showHome === true){
+    if(showHome){
       return(
         <div>
           <HomeScreenView/>
         </div>
       )
-    }else if (showStart === true){
+    }else if (showStart){
       return(
         <div>
           <StartHereView/>
