@@ -16,7 +16,6 @@ app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Enable cookie dependency
 app.use(cookieParser());
 
@@ -27,11 +26,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // This is to allow our api for cross-origin resource sharing.
-app.use(cors(
-    origin: "http://localhost:3000",
-    methods: " GET, POST, PUT, DELETE",
-    Credentials: true
-));
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST, GET, PUT, DELETE"],
+    credentials: true
+}));
 
 // Import Routes and create router
 const loginRouter = require('./Routes/LoginRoute');
@@ -43,7 +42,7 @@ const authRouter = require('./Routes/AuthRoute');
 app.use('/Login', loginRouter);
 app.use('/Register', signUpRouter);
 app.use('/Forget', forgetRouter);
-app.use('./auth', authRouter);
+app.use('/auth', authRouter);
 
 // Apply error handler to every call
 app.use(ErrorHandler);
