@@ -1,6 +1,6 @@
 import "./index.css";
 
-import React, {lazy, Suspense, useState} from 'react'
+import React, {lazy, Suspense} from 'react'
 import { Route, Routes} from 'react-router-dom'
 
 const Home = lazy(() => import('./components/Home'))
