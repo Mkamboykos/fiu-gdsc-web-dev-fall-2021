@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
-
+import {Link} from 'react-router-dom';
+import {Form, InputGroup} from 'react-bootstrap'
+import {TextField, createTheme, MuiThemeProvider,InputAdornment, IconButton, FormHelperText, MenuItem, FormControl, InputLabel, withStyles, Select, FormControlLabel, Checkbox} from '@material-ui/core'
+import {FaRegUser, FaKey} from 'react-icons/fa';
 
 function Home(){
 
-  const [showHome, setShowHome] = useState(true)
   const [showStart, setShowStart] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-  // function for initial home screen view
-  const HomeScreenView = () =>{
-    return(
-      <div>
-        {showStart ? <StartHereView/>: ""}
-        {showLogin ? <LoginView/> : ""}
 
-        <nav>
-          <Link to={`/`}>Home Icon</Link>
-          <Link to={`/About`}>About</Link>
-          <button onClick={() => setShowLogin(true)}>Login</button>
-        </nav>
-        
-        <div className='startHereButtonPlacement'>
-          <button className="" onClick={() => setShowStart(true)}> Start Here </button>
-        </div>
-      </div>
-    )
-  }
+  const submitLoginForm = () => {
+    const loginFormDetails = {
+        'Username' : username,
+        'Password' : password
+    }
+    console.log(loginFormDetails);
+}
+
 
   // function for sign up pop-up view
   const StartHereView = () =>{
@@ -34,57 +27,74 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <button onClick={() => setShowStart(false)}> X </button>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
         </div>
       </div>
     )
   }
 
-  // function for login pop-up view
+  const showSignUp = () =>{
+    setShowStart(true)
+    setShowLogin(false)
+  }
+
+
+  // function for login form pop-up view
   const LoginView = () =>{
     return (
+      
       <div className='loginPanel'>
         <div className='loginContainer'>
-          <button onClick={() => setShowLogin(false)}> X </button>
 
-          {/* https://www.youtube.com/watch?v=7K9kDrtc4S8  59:00*/}
-          
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowLogin(false)}> X </button>
+          </div>
 
+          <div className='loginTitleContainer'>
+            <h1>Title</h1>
+          </div>
 
-          <Link to={`/Forgot`} className="">Forgot Password?</Link>
+          <div className='loginLogoContainer'>
+            <p>Logo</p>
+          </div>
+
+          <div className='loginLabelsContainer'>
+            {/* The input stops after a letter is typed, make it so that it can be continuously typed and it does not stop */}
+            <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
+
+          <div className='loginButtonsContainers'>
+            <button className='loginButtons' onClick={() => showSignUp()}>SIGN UP</button>
+            <button className='loginButtons' type="submit" onClick={submitLoginForm}>LOGIN</button>
+          </div>
+
+          <div>
+            <Link to={`/Forgot`} className="">Forgot Password?</Link>
+          </div>
         </div>
       </div>
     )
   }
 
-  // conditional rendering
-  const renderCondition = () => {
-    if(showHome){
-      return(
-        <div>
-          <HomeScreenView/>
-        </div>
-      )
-    }else if (showStart){
-      return(
-        <div>
-          <StartHereView/>
-        </div>
-      )
-    }else if(showLogin){
-      return(
-        <div>
-          <LoginView/>
-        </div>
-      )
-    }
-  }
 
+  // everything starts here
   return (
     <div>
-      {renderCondition()}
+      {showStart ? <StartHereView/>: ""}
+      {showLogin ? <LoginView/> : ""}
+      <nav>
+        <Link to={`/`}>Home Icon</Link>
+        <Link to={`/About`}>About</Link>
+        <button onClick={() => setShowLogin(true)}>Login</button>
+      </nav>
+      
+      <div className='startHereButtonPlacement'>
+        <button className="" onClick={() => setShowStart(true)}> Start Here </button>
+      </div>
     </div>
   )
-
 }
 
 export default Home;

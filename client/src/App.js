@@ -10,15 +10,7 @@ const Forgot = lazy(() => import('./components/Forgot'))
 const Preferences = lazy(() => import('./components/Preferences'))
  
 
-  
-
 function App() {
-
-  // const [token, setToken] = useState();
-
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
 
   return (
   <div className="App">
