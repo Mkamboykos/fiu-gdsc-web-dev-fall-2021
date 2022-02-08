@@ -13,12 +13,7 @@ const Preferences = lazy(() => import('./components/Preferences'))
   
 
 function App() {
-
-  // const [token, setToken] = useState();
-
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
+  const user = false;
 
   return (
   <div className="App">

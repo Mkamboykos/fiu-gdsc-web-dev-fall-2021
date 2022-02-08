@@ -8,6 +8,24 @@ function Home(){
   const [showStart, setShowStart] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
 
+
+  const oAuthAuthenticator = () =>{
+    const google = () => {
+      window.open("http://localhost:8000/auth/google", "_self")
+    }
+
+    return(
+      <div>
+        <div onClick={google()}>
+          <button>google</button>
+        </div>
+      </div>
+    )
+  }
+  
+
+
+
   // function for initial home screen view
   const HomeScreenView = () =>{
     return(
@@ -39,6 +57,7 @@ function Home(){
     )
   }
 
+
   // function for login pop-up view
   const LoginView = () =>{
     return (
@@ -46,8 +65,8 @@ function Home(){
         <div className='loginContainer'>
           <button onClick={() => setShowLogin(false)}> X </button>
 
-          {/* https://www.youtube.com/watch?v=7K9kDrtc4S8  59:00*/}
-          
+            
+          {oAuthAuthenticator()}
 
 
           <Link to={`/Forgot`} className="">Forgot Password?</Link>

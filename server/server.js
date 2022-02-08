@@ -11,7 +11,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 //Enable cookie session
-app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100}));
+app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 1000}));
 
 app.use(passport.initialize());
 app.use(passport.session());
