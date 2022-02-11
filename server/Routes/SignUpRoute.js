@@ -26,6 +26,7 @@ router.post('/basicInfo',[
 			city:      city,
 			state:     state
 		})
+		res.json("User Successfully Created")
 	} catch (error){
 		console.log(error)
 		return res.json({status: 422})

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
+import Axios from 'axios';
+
+Axios.defaults.withCredentials = true;
 
 function Home(){
 
@@ -36,7 +39,17 @@ function Home(){
   const loginFormSubmit = (data) => {
     if (data){
       //make api call here
-      console.log(data);
+      //console.log(data.Username);
+
+      Axios.post('localhost:5000/Login/User', {
+            username: data.Username,
+            password: data.Password,
+        }).then(res => {
+          console.log(res);
+        }).catch(error => {
+          console.log(error)
+        })
+
     }
   }
 
