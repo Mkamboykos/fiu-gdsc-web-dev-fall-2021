@@ -8,7 +8,7 @@ const ATLAS_URI = process.env.ATLAS_URI;
 const ErrorHandler = require('./Error/ErrorHandler');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const passport = require('passport');
+//const passport = require('passport');
 
 //Enable cookie session
 app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100}));
@@ -36,13 +36,13 @@ app.use(cors({
 const loginRouter = require('./Routes/LoginRoute');
 const signUpRouter = require('./Routes/SignUpRoute');
 const forgetRouter = require('./Routes/ForgetRoute');
-const authRouter = require('./Routes/AuthRoute');
+//const authRouter = require('./Routes/AuthRoute');
 
 // Route Middlewares
 app.use('/Login', loginRouter);
 app.use('/Register', signUpRouter);
 app.use('/Forget', forgetRouter);
-app.use('/auth', authRouter);
+//app.use('/auth', authRouter);
 
 // Apply error handler to every call
 app.use(ErrorHandler);
