@@ -137,7 +137,6 @@ function Home(){
           </div>
           <br/>
           <div>
-            {/* <Link to={`/Forgot`} className="">Forgot Password?</Link> */}
             <span onClick={() => setShowForgot(true)} style={{cursor: "pointer"}}>Forgot Password?</span>
           </div>
           <hr/>
