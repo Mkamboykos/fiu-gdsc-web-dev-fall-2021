@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {appendErrors, useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
@@ -13,7 +13,8 @@ function Home(){
   const [showLogin, setShowLogin] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
   const [errMsg, setErrMsg] = useState("")
-  const {register, handleSubmit, watch, setError, formState: { errors }} = useForm();
+  // eslint-disable-next-line no-unused-vars
+  const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
 
 
@@ -99,6 +100,7 @@ function Home(){
     if(errors?.Password?.type === "required" || errors?.Username?.type === "required"){
       var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field(s) Cannot be Empty!</p>
     }else if(errMsg !== ""){
+      // eslint-disable-next-line no-redeclare
       var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsg}</p>
     }
 
