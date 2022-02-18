@@ -16,7 +16,7 @@ function App() {
     <Suspense fallback={"LOADING"}>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/Dashboard" element={<Dashboard/>}/>
+          <Route exact path="/Dashboard/:username" element={<Dashboard/>}/>
           <Route exact path="/About" element={<About/>}/>
           <Route exact path="/Forgot" element={<Forgot/>}/>
         </Routes>

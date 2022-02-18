@@ -34,4 +34,4 @@ function Forgot(){
     </div>
   )
 }
-  export default Forgot;
+export default Forgot;

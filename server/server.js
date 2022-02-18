@@ -7,14 +7,14 @@ const PORT = process.env.PORT || 8000
 const ATLAS_URI = process.env.ATLAS_URI;
 const ErrorHandler = require('./Error/ErrorHandler');
 const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 //const passport = require('passport');
 
 //Enable cookie session
-app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100}));
+//app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100}));
 
-//app.use(passport.initialize());
-//app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Enable cookie dependency
 app.use(cookieParser());

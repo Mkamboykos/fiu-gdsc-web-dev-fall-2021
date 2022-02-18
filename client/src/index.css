@@ -78,6 +78,15 @@ nav{
   color: white;
 }
 
+p {
+  color: #bf1650;
+}
+
+p::before {
+  display: inline;
+  content: "⚠ ";
+}
+
 /*  Home Page */
 
 .startHereButtonPlacement{
@@ -157,16 +166,6 @@ nav{
   justify-content: space-evenly;
   width: 27vh;
 }
-
-p {
-  color: #bf1650;
-}
-
-p::before {
-  display: inline;
-  content: "⚠ ";
-}
-
 
 /* Forgot Section */
 
