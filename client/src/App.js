@@ -7,7 +7,6 @@ const Home = lazy(() => import('./components/Home'))
 const Dashboard = lazy(() => import('./components/Dashboard'))
 const About = lazy(() => import('./components/About'))
 const Forgot = lazy(() => import('./components/Forgot'))
-const Preferences = lazy(() => import('./components/Preferences'))
  
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
           <Route exact path="/Dashboard" element={<Dashboard/>}/>
           <Route exact path="/About" element={<About/>}/>
           <Route exact path="/Forgot" element={<Forgot/>}/>
-          <Route exact path="/Preferences" element={<Preferences/>}/>
         </Routes>
     </Suspense>
   </div>

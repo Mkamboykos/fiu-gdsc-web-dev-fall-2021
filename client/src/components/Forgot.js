@@ -1,9 +1,8 @@
 import React from 'react';
-// import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 
 // Set up forgot password page that takes in an email input after clicking 
 // a "continue" button. For now, only do the label and button.
-
 // TODO: 
 /*
     1. Create label for email
@@ -12,35 +11,27 @@ import React from 'react';
     4. (optional) validate input for email
 */ 
 
-// const Button = style.button`
-//   background-color: blue;
-//   color: white;
-//   padding: 5px 15px;
-//   border-radius: 5px;
-//   outline: 0;
-//   text-transform: uppercase;
-//   cursor: pointer;
-//   box-shadow: 0px 2px lightgray;
-//   &:hover {
-//     background-color: #283593;
-//   }
-//   `
-
-
-function clickMe(){
-  alert('You clicked me')
-}
-
 function Forgot(){
 
+  const {register, handleSubmit, watch, formState: { errors }} = useForm();
 
-    return (
-      <div>
-        <button onClick={clickMe}>
-          Button
-        </button>
-      </div>
-    )
+  const onSubmitEmail = (data) => {
+    if (data){
+      //make api call here
+      console.log(data);
+    }
   }
-  
+
+  //console.log(watch("Email")); // watch input value by passing the name of it
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(onSubmitEmail)}>
+        <input type="email" placeholder="Email" {...register("Email", {required: true, min: 1, pattern: /^\S+@\S+$/i})} />
+        {errors?.Email?.type === "required" && <p>Field cannot be empty</p>}
+        <button className='fogotButton' type="submit">CONTINUE</button>
+      </form>
+    </div>
+  )
+}
   export default Forgot;

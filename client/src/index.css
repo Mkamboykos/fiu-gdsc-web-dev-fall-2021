@@ -166,3 +166,15 @@ p::before {
   display: inline;
   content: "⚠ ";
 }
+
+
+/* Forgot Section */
+
+.fogotButton{
+  background-color: #3949ab;
+  color: white;
+  padding: 5px 15 px;
+  border-radius: 5px;
+  outline: 0;
+  box-shadow: 0px 2px 2px lightgray;
+}
