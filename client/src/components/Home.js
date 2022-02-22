@@ -12,6 +12,8 @@ function Home(){
   const [showStart, setShowStart] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
+  const [showEnter, setShowEnter] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
   const [errMsg, setErrMsg] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
@@ -44,10 +46,53 @@ function Home(){
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
+
+
+          <button onClick={() => setShowEnter(true)}>Continue</button>
+
         </div>
       </div>
     )
   }
+
+  // enter code pop-up view
+  const EnterCodeView = () =>{
+    return (
+      <div className='startHerePanel'style={{background: "transparent"}}>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false)}> X </button>
+          </div>
+          
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+
+          <button onClick={() => setShowNewPassword(true)}>Continue 2</button>
+
+        </div>
+      </div>
+    )
+  }
+
+  // new password pop-up view
+  const NewPasswordView = () =>{
+    return (
+      <div className='startHerePanel'style={{background: "transparent"}}>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false) & setShowNewPassword(false)}> X </button>
+          </div>
+          
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+
+          <button type='submit' onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false) & setShowNewPassword(false)}>Submit</button>
+
+        </div>
+      </div>
+    )
+  }
+
 
 
   // refresh page
@@ -82,7 +127,7 @@ function Home(){
     Axios.get('http://localhost:8000/Login/User')
     .then(res => {
       if (res.data.LoggedIn === true){
-        let stringUser = JSON.stringify(res.data.username)
+        let stringUser = res.data.username
         redirectUser(stringUser)
       }else if (res.data.message === "Tokens not present"){
         refreshPage()
@@ -160,6 +205,8 @@ function Home(){
       {showStart ? <StartHereView/>: ""}
       {showLogin ? <LoginView/> : ""}
       {showForgot ? <ForgotPasswordView/> : ""}
+      {showEnter ? <EnterCodeView/> : ""}
+      {showNewPassword ? <NewPasswordView/> : ""}
 
       <nav>
         <Link to={`/`}>Home Icon</Link>

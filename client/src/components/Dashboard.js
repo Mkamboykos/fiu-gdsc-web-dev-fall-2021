@@ -1,8 +1,9 @@
 import React from 'react';
+import {UserAuthenticator} from '../Helpers/UserAuthenticator'
 
 function Dashboard(){
 
-
+  const user = UserAuthenticator();
 
 
 
@@ -10,17 +11,39 @@ function Dashboard(){
 
   return (
     <div>
-      <h2>Dashboard</h2>
-
-
-
-    
+      {user.renderPage === true ? 
+          <div>
+            <h1>Dashboard</h1>
+          </div>
+      : ''}
     </div>
   )
 }
 
 export default Dashboard;
 
+
+
+// function Dashboard(){
+
+//   const user = UserAuthenticator();
+
+
+
+
+
+//   return (
+//     <div>
+//       {user.renderPage === true ? 
+//           <div>
+//             <h1>Dashboard</h1>
+//           </div>
+//       : ''}
+//     </div>
+//   )
+// }
+
+// export default Dashboard;
 
 
 

@@ -7,6 +7,7 @@ const Home = lazy(() => import('./components/Home'))
 const Dashboard = lazy(() => import('./components/Dashboard'))
 const About = lazy(() => import('./components/About'))
 const Forgot = lazy(() => import('./components/Forgot'))
+const NotFound = lazy(() => import('./components/StatusCodes/404'))
  
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/Dashboard/:username" element={<Dashboard/>}/>
           <Route exact path="/About" element={<About/>}/>
           <Route exact path="/Forgot" element={<Forgot/>}/>
+          <Route exact path="/404" element={<NotFound/>}/>
         </Routes>
     </Suspense>
   </div>
