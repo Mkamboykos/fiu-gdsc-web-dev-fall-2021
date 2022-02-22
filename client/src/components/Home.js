@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
+import homeBackground from '../Images/homeBackground.png'
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
@@ -202,6 +203,7 @@ function Home(){
   // everything starts here
   return (
     <div>
+    
       {showStart ? <StartHereView/>: ""}
       {showLogin ? <LoginView/> : ""}
       {showForgot ? <ForgotPasswordView/> : ""}
@@ -217,6 +219,8 @@ function Home(){
       <div className='startHereButtonPlacement'>
         <button className="" onClick={() => setShowStart(true)}> Start Here </button>
       </div>
+
+      <img src={homeBackground} className='homeBackground' alt="" loading="lazy"/>
     </div>
   )
 }

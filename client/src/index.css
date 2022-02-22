@@ -94,9 +94,10 @@ p::before {
   justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
-  height: 94vh;
   align-content: center;
-  padding-left: calc(48px);
+  padding-left: calc(7rem);
+  position: absolute;
+  top: 40rem;
 }
 
 .startHerePanel{
@@ -176,4 +177,11 @@ p::before {
   border-radius: 5px;
   outline: 0;
   box-shadow: 0px 2px 2px lightgray;
+}
+
+.homeBackground{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 94vh;
 }
