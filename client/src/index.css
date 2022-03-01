@@ -74,7 +74,7 @@ nav{
   justify-content: space-around;
   align-items: center;
   min-height: 6vh;
-  background: rgb(73, 79, 82);
+  background: #FEFAF5;
   color: white;
 }
 
@@ -114,8 +114,14 @@ p::before {
   background-color: white;
   border-radius: 25px;
   width: 36vh;
-  height: 80vh;
+  height: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 .loginPanel{
@@ -132,8 +138,13 @@ p::before {
   background-color: white;
   border-radius: 25px;
   width: 36vh;
-  height: 80vh;
+  height: auto;
+  padding-top: 2rem;
+  padding-bottom:2rem;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;;
+  flex-direction: column;
 }
 
 .loginButtonsContainers{
@@ -147,7 +158,6 @@ p::before {
   width: 100%;
   justify-content: flex-end;
   padding-right: 17px;
-  padding-top: 17px;
 }
 
 .loginButtons{
@@ -184,4 +194,15 @@ p::before {
   bottom: 0;
   width: 100%;
   height: 94vh;
+}
+
+.loginFlexContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo{
+  height: 5rem;
+  padding: 0.5rem;
 }
