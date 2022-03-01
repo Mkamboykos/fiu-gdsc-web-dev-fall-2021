@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import homeBackground from '../Images/homeBackground.png'
+import logo from '../Images/logo.svg'
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
@@ -114,7 +115,7 @@ function Home(){
   // forgot password pop-up view
   const ForgotPasswordView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowForgot(false)}> X </button>
@@ -133,7 +134,7 @@ function Home(){
   // enter code pop-up view
   const EnterCodeView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowEnter(false)}> X </button>
@@ -152,7 +153,7 @@ function Home(){
   // new password pop-up view
   const NewPasswordView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowNewPassword(false)}> X </button>
@@ -227,39 +228,46 @@ function Home(){
     return (
       <div className='loginPanel'>
         <div className='loginContainer'>
-          <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowLogin(false)}> X </button>
-          </div>
-          <div className='loginTitleContainer'>
-            <h1>Title</h1>
-          </div>
-          <br/>
-          <div className='loginLogoContainer'>
-            <span>Logo</span>
-          </div>
-          <br/>
-          <div className='loginLabelsContainer'>
-            <form onSubmit={handleSubmit(loginFormSubmit)}>
-              <div className='loginInputsContainer'>
-                <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, pattern: /^[A-Za-z]+$/i})}/>
-                {errors?.Username?.type === "pattern" && (<p>Alphabetical characters only</p>)}
+          <div className='loginFlexContainer'>
+            <div className='loginExitButtonContainer'>
+              <button onClick={() => setShowLogin(false)}> X </button>
+            </div>
+            <div className='loginLogoContainer'>
+              <img src={logo} alt="logo" className='logoLogin' loading="lazy"/>
+            </div>
+            <br/>
+            <div className='loginTitleContainer'>
+              <h1><b>Welcome</b></h1>
+            </div>
+            <br/>
+            <div className='loginLabelsContainer'>
+              <form onSubmit={handleSubmit(loginFormSubmit)}>
+                <div className='loginInputsContainer'>
+                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, pattern: /^[A-Za-z]+$/i})}/>
+                  {errors?.Username?.type === "pattern" && (<p>Alphabetical characters only</p>)}
+                  <br/>
+                  <input type="password" placeholder="Password" {...register("Password", {required: true, min: 1, message: errMsg})}/>
+                  {validationMsg}    
+                  {/* See more examples at https://react-hook-form.com/ */}
+                </div>
                 <br/>
-                <input type="password" placeholder="Password" {...register("Password", {required: true, min: 1, message: errMsg})}/>
-                {validationMsg}    
-                {/* See more examples at https://react-hook-form.com/ */}
-              </div>
-              <br/>
-              <div className='loginButtonsContainers'>
-                <button className='loginButtons' onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
-                <button className='loginButtons' type="submit">LOGIN</button> 
-              </div>
-            </form>
-          </div>
-          <br/>
-          <div>
-            <span onClick={() => setShowForgot(true) & setShowLogin(false)} style={{cursor: "pointer"}}>Forgot Password?</span>
+                <div className='loginButtonsContainers'>
+                  <button className='loginButtons' onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
+                  <button className='loginButtons' type="submit">LOGIN</button> 
+                </div>
+              </form>
+            </div>
+            <br/>
+            <div>
+              <span onClick={() => setShowForgot(true) & setShowLogin(false)} style={{cursor: "pointer"}}>Forgot Password?</span>
+            </div>
           </div>
           <hr/>
+          <div>
+            <button>
+              Google
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -289,7 +297,7 @@ function Home(){
       {showSignUp5 ? <SignUp5View/> : ""}
 
       <nav>
-        <Link to={`/`}>Home Icon</Link>
+        <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
         <Link to={`/About`} style={{textDecoration: "none"}}><button>About</button></Link>
         <button onClick={() => setShowLogin(true)}>Login</button>
       </nav>
