@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import homeBackground from '../Images/homeBackground.png'
+
 
 function About(){
 
@@ -13,13 +15,10 @@ function About(){
         <div>
             <nav>
                 <Link to={`/`}>Home Icon</Link>
+                <Link to={`/`} style={{textDecoration: "none"}}><button>Home</button></Link>
                 <Link to={`/`} style={{textDecoration: "none"}}><button>Login</button></Link>
             </nav>
-            <h2>About</h2>
-
-
-
-
+            <img src={homeBackground} className='homeBackground' alt="" loading="lazy"/>
         </div>
     )
   }
