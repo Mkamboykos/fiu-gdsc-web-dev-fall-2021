@@ -14,6 +14,10 @@ function Home(){
   const [showLogin, setShowLogin] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
   const [showEnter, setShowEnter] = useState(false)
+  const [showSignUp2, setShowSignUp2] = useState(false)
+  const [showSignUp3, setShowSignUp3] = useState(false)
+  const [showSignUp4, setShowSignUp4] = useState(false)
+  const [showSignUp5, setShowSignUp5] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [errMsg, setErrMsg] = useState("")
   // eslint-disable-next-line no-unused-vars
@@ -31,6 +35,76 @@ function Home(){
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
+
+          <button onClick={() => setShowSignUp2(true) & setShowStart(false)}>Continues</button>
+        </div>
+      </div>
+    )
+  }
+
+  // sign up 2 view
+  const SignUp2View = () =>{
+    return (
+      <div className='startHerePanel'>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowStart(false) & setShowSignUp2(false)}> X </button>
+          </div>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+          <button onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continuess</button>
+        </div>
+      </div>
+    )
+  }
+
+  // sign up 3 view
+  const SignUp3View = () =>{
+    return (
+      <div className='startHerePanel'>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowSignUp3(false)}> X </button>
+          </div>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+          <button onClick={() => setShowSignUp4(true) & setShowSignUp3(false)}>Continuesss</button>
+        </div>
+      </div>
+    )
+  }
+
+  // sign up 4 view
+  const SignUp4View = () =>{
+    return (
+      <div className='startHerePanel'>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowSignUp4(false)}> X </button>
+          </div>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+          <button onClick={() => setShowSignUp5(true) & setShowSignUp4(false)}>Continuessss</button>
+        </div>
+      </div>
+    )
+  }
+
+  // sign up 5 view
+  const SignUp5View = () =>{
+    return (
+      <div className='startHerePanel'>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <button onClick={() => setShowSignUp5(false)}> X </button>
+          </div>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
+
+          <button onClick={() => setShowSignUp5(false)}>Submit</button>
         </div>
       </div>
     )
@@ -43,13 +117,13 @@ function Home(){
       <div className='startHerePanel'style={{background: "transparent"}}>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowForgot(false) & setShowLogin(false)}> X </button>
+            <button onClick={() => setShowForgot(false)}> X </button>
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button onClick={() => setShowEnter(true)}>Continue</button>
+          <button onClick={() => setShowEnter(true) & setShowForgot(false)}>Continue</button>
 
         </div>
       </div>
@@ -62,13 +136,13 @@ function Home(){
       <div className='startHerePanel'style={{background: "transparent"}}>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false)}> X </button>
+            <button onClick={() => setShowEnter(false)}> X </button>
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button onClick={() => setShowNewPassword(true)}>Continue 2</button>
+          <button onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
 
         </div>
       </div>
@@ -81,13 +155,13 @@ function Home(){
       <div className='startHerePanel'style={{background: "transparent"}}>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false) & setShowNewPassword(false)}> X </button>
+            <button onClick={() => setShowNewPassword(false)}> X </button>
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button type='submit' onClick={() => setShowEnter(false) & setShowForgot(false) & setShowLogin(false) & setShowNewPassword(false)}>Submit</button>
+          <button type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
 
         </div>
       </div>
@@ -183,7 +257,7 @@ function Home(){
           </div>
           <br/>
           <div>
-            <span onClick={() => setShowForgot(true)} style={{cursor: "pointer"}}>Forgot Password?</span>
+            <span onClick={() => setShowForgot(true) & setShowLogin(false)} style={{cursor: "pointer"}}>Forgot Password?</span>
           </div>
           <hr/>
         </div>
@@ -209,6 +283,10 @@ function Home(){
       {showForgot ? <ForgotPasswordView/> : ""}
       {showEnter ? <EnterCodeView/> : ""}
       {showNewPassword ? <NewPasswordView/> : ""}
+      {showSignUp2 ? <SignUp2View/> : ""}
+      {showSignUp3 ? <SignUp3View/> : ""}
+      {showSignUp4 ? <SignUp4View/> : ""}
+      {showSignUp5 ? <SignUp5View/> : ""}
 
       <nav>
         <Link to={`/`}>Home Icon</Link>

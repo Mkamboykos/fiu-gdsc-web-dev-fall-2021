@@ -9,7 +9,6 @@ export const UserAuthenticator = () => {
     let navigate = useNavigate();
     const user = useRef();
 
-
     const [renderPage, setRenderPage] = useState(false);
     const [info, setInfo] = useState({
         username: "",
