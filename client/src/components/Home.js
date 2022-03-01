@@ -37,7 +37,7 @@ function Home(){
 
           {/* Use the logic from LoginView to create the Sign up form here */}
 
-          <button onClick={() => setShowSignUp2(true) & setShowStart(false)}>Continues</button>
+          <button className="yellowButton" onClick={() => setShowSignUp2(true) & setShowStart(false)}>Continues</button>
         </div>
       </div>
     )
@@ -54,7 +54,7 @@ function Home(){
 
           {/* Use the logic from LoginView to create the Sign up form here */}
 
-          <button onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continuess</button>
+          <button className="yellowButton" onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continuess</button>
         </div>
       </div>
     )
@@ -71,7 +71,7 @@ function Home(){
 
           {/* Use the logic from LoginView to create the Sign up form here */}
 
-          <button onClick={() => setShowSignUp4(true) & setShowSignUp3(false)}>Continuesss</button>
+          <button className="yellowButton" onClick={() => setShowSignUp4(true) & setShowSignUp3(false)}>Continuesss</button>
         </div>
       </div>
     )
@@ -88,7 +88,7 @@ function Home(){
 
           {/* Use the logic from LoginView to create the Sign up form here */}
 
-          <button onClick={() => setShowSignUp5(true) & setShowSignUp4(false)}>Continuessss</button>
+          <button className="yellowButton" onClick={() => setShowSignUp5(true) & setShowSignUp4(false)}>Continuessss</button>
         </div>
       </div>
     )
@@ -105,7 +105,7 @@ function Home(){
 
           {/* Use the logic from LoginView to create the Sign up form here */}
 
-          <button onClick={() => setShowSignUp5(false)}>Submit</button>
+          <button className="yellowButton" onClick={() => setShowSignUp5(false)}>Submit</button>
         </div>
       </div>
     )
@@ -124,7 +124,7 @@ function Home(){
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button onClick={() => setShowEnter(true) & setShowForgot(false)}>Continue</button>
+          <button className="yellowButton" onClick={() => setShowEnter(true) & setShowForgot(false)}>Continue</button>
 
         </div>
       </div>
@@ -143,7 +143,7 @@ function Home(){
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
+          <button className="yellowButton" onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
 
         </div>
       </div>
@@ -162,7 +162,7 @@ function Home(){
           {/* Use the logic from LoginView to create the Sign up form here */}
 
 
-          <button type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
+          <button className="yellowButton" type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
 
         </div>
       </div>
@@ -252,8 +252,8 @@ function Home(){
                 </div>
                 <br/>
                 <div className='loginButtonsContainers'>
-                  <button className='loginButtons' onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
-                  <button className='loginButtons' type="submit">LOGIN</button> 
+                  <button className="yellowButton" className='loginButtons' onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
+                  <button className="yellowButton" className='loginButtons' type="submit">LOGIN</button> 
                 </div>
               </form>
             </div>
@@ -297,13 +297,19 @@ function Home(){
       {showSignUp5 ? <SignUp5View/> : ""}
 
       <nav>
-        <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
-        <Link to={`/About`} style={{textDecoration: "none"}}><button>About</button></Link>
-        <button onClick={() => setShowLogin(true)}>Login</button>
+        <div>
+          <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
+        </div>
+        <div className='navButtons'>
+          <Link to={`/About`} style={{textDecoration: "none"}}><button className="yellowButton">About</button></Link>
+          <div className="navButtonRight">
+            <button onClick={() => setShowLogin(true)} className="yellowButton navButtonRight">Login</button>
+          </div> 
+        </div>
       </nav>
 
       <div className='startHereButtonPlacement'>
-        <button className="" onClick={() => setShowStart(true)}> Start Here </button>
+        <button className="yellowButton" onClick={() => setShowStart(true)}> Start Here </button>
       </div>
 
       <img src={homeBackground} className='homeBackground' alt="" loading="lazy"/>
