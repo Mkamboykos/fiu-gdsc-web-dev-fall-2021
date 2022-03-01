@@ -232,12 +232,12 @@ function Home(){
             <div className='loginExitButtonContainer'>
               <button onClick={() => setShowLogin(false)}> X </button>
             </div>
-            <div className='loginTitleContainer'>
-              <h1>Title</h1>
+            <div className='loginLogoContainer'>
+              <img src={logo} alt="logo" className='logoLogin' loading="lazy"/>
             </div>
             <br/>
-            <div className='loginLogoContainer'>
-              <span>Logo</span>
+            <div className='loginTitleContainer'>
+              <h1><b>Welcome</b></h1>
             </div>
             <br/>
             <div className='loginLabelsContainer'>
@@ -297,7 +297,7 @@ function Home(){
       {showSignUp5 ? <SignUp5View/> : ""}
 
       <nav>
-        <img src={logo} alt="logo" className='logo' loading="lazy"/>
+        <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
         <Link to={`/About`} style={{textDecoration: "none"}}><button>About</button></Link>
         <button onClick={() => setShowLogin(true)}>Login</button>
       </nav>

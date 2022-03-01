@@ -74,7 +74,7 @@ nav{
   justify-content: space-around;
   align-items: center;
   min-height: 6vh;
-  background: #FEFAF5;
+  background: #FFFAF0;
   color: white;
 }
 
@@ -111,7 +111,7 @@ p::before {
 }
 
 .startHereContainer{
-  background-color: white;
+  background-color: #FFFAF0;
   border-radius: 25px;
   width: 36vh;
   height: auto;
@@ -135,7 +135,7 @@ p::before {
 }
 
 .loginContainer{
-  background-color: white;
+  background-color: #FFFAF0;
   border-radius: 25px;
   width: 36vh;
   height: auto;
@@ -202,7 +202,11 @@ p::before {
   align-items: center;
 }
 
-.logo{
+.logoHome{
   height: 5rem;
   padding: 0.5rem;
+}
+
+.logoLogin{
+  height: 15rem;
 }
