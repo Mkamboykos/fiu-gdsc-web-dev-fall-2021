@@ -114,7 +114,7 @@ function Home(){
   // forgot password pop-up view
   const ForgotPasswordView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowForgot(false)}> X </button>
@@ -133,7 +133,7 @@ function Home(){
   // enter code pop-up view
   const EnterCodeView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowEnter(false)}> X </button>
@@ -152,7 +152,7 @@ function Home(){
   // new password pop-up view
   const NewPasswordView = () =>{
     return (
-      <div className='startHerePanel'style={{background: "transparent"}}>
+      <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <button onClick={() => setShowNewPassword(false)}> X </button>
