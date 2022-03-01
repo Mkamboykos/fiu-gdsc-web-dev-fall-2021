@@ -5,10 +5,9 @@ const router = express.Router();
 
 router.post ('/Email', async (req, res) => {
     const {email} = req.body;
-    const checkEmail = await forget.findOne ({ where: { email:email }});
+    const checkEmail = await forget.findOne ({ email:email });
 
-    if (email === checkEmail.email)
-    {
+    if (checkEmail){
         try {
             //Reusable transporter object
             let transporter = nodemailer.createTransport({
@@ -30,8 +29,9 @@ router.post ('/Email', async (req, res) => {
                 }
             });
 
-            var num = Math.floor( Math.random() * 9999 );    //Random code of 4 whole digits
-            code = num;                                       //Pass num into 'code: code'
+            var num = Math.floor(1000 + Math.random() * 9000);    //Random code of 4 whole digits
+            code = num;                             //Pass num into 'code: code'
+            console.log(code)          
 
             //Create message that will be sent to user email
             const msg = {

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import homeBackground from '../Images/homeBackground.png'
 import logo from '../Images/logo.svg'
+import exitButton from '../Images/exitButton.svg'
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
@@ -11,6 +12,7 @@ function Home(){
 
   let navigate = useNavigate();
 
+  const [code, setCode] = useState()
   const [showStart, setShowStart] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
@@ -21,10 +23,13 @@ function Home(){
   const [showSignUp5, setShowSignUp5] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [errMsg, setErrMsg] = useState("")
+  const [errMsgEmail, setErrMsgEmail] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
 
+
+ 
 
   // sign up pop-up view
   const StartHereView = () =>{
@@ -32,7 +37,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowStart(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false)}/>
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -49,7 +54,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowStart(false) & setShowSignUp2(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false) & setShowSignUp2(false)}/>
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -66,7 +71,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowSignUp3(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp3(false)}/>
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -83,7 +88,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowSignUp4(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp4(false)}/>
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -100,7 +105,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowSignUp5(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp5(false)}/>
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -111,21 +116,83 @@ function Home(){
     )
   }
 
+  // used when forgot password email form gets submitted with Email data
+  const forgotEmailSubmit = async (data) => {
+    if (data){
+      await Axios.post('http://localhost:8000/Forget/Email', {
+            email: data.Email,
+      }).then(res => {
+        if (res.data.code){
+          setCode(res.data.code)
+        }
+      }).catch(function (error) {
+        if (error.response) {
+          setErrMsgEmail(error.response.data.error)
+          // console.log(error.response.data.error);
+          // console.log(error.response.status);
+          // console.log(error.response.headers);
+        }
+      })
+    }
+  }
+
+  const forgotContinueClick = () => {
+    if(code !== undefined){
+      setShowEnter(true)
+      setShowForgot(false)
+    }else{
+      return
+    }
+    console.log(code)
+  }
+
+  // keeps on checking for code
+  useEffect(() => {
+    forgotContinueClick()
+  });
 
   // forgot password pop-up view
   const ForgotPasswordView = () =>{
+
+    // validation conditional message
+    if(errors?.Email?.type === "required"){
+      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errMsgEmail !== ""){
+      // eslint-disable-next-line no-redeclare
+      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgEmail}</p>
+    }
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowForgot(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowForgot(false)}/> 
           </div>
-          
-          {/* Use the logic from LoginView to create the Sign up form here */}
-
-
-          <button className="yellowButton" onClick={() => setShowEnter(true) & setShowForgot(false)}>Continue</button>
-
+          <br/>
+          <div className='loginTitleContainer'>
+            <h1><b>Forgot</b></h1>
+            <h1><b>Password?</b></h1>
+          </div>
+          <br/>
+          <div className='forgotParagraph'>
+            <h5>
+              Don’t worry! Just fill in your email and we’ll send you a link to reset your password.
+            </h5>
+          </div>
+          <br/>
+          <div className='loginLabelsContainer'>
+              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+                <div className='loginInputsContainer'>
+                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsg})}/>
+                  {validationMsg}    
+                  {/* See more examples at https://react-hook-form.com/ */}
+                </div>
+                <br/>
+                <div className='loginButtonsContainers'>
+                <button className="yellowButton" type='submit'>Continue</button>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
     )
@@ -137,7 +204,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowEnter(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowEnter(false)}/>
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -156,7 +223,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <button onClick={() => setShowNewPassword(false)}> X </button>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowNewPassword(false)}/>
           </div>
           
           {/* Use the logic from LoginView to create the Sign up form here */}
@@ -198,6 +265,7 @@ function Home(){
   }
 
 
+
   // authenticate the token provided when the login form gets submitted
   const authenticateUser = () =>{
     Axios.get('http://localhost:8000/Login/User')
@@ -230,7 +298,7 @@ function Home(){
         <div className='loginContainer'>
           <div className='loginFlexContainer'>
             <div className='loginExitButtonContainer'>
-              <button onClick={() => setShowLogin(false)}> X </button>
+              <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowLogin(false)}/>
             </div>
             <div className='loginLogoContainer'>
               <img src={logo} alt="logo" className='logoLogin' loading="lazy"/>
@@ -252,8 +320,8 @@ function Home(){
                 </div>
                 <br/>
                 <div className='loginButtonsContainers'>
-                  <button className="yellowButton" className='loginButtons' onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
-                  <button className="yellowButton" className='loginButtons' type="submit">LOGIN</button> 
+                  <button className="yellowButton loginButtons" onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
+                  <button className="yellowButton loginButtons" type="submit">LOGIN</button> 
                 </div>
               </form>
             </div>
@@ -297,9 +365,9 @@ function Home(){
       {showSignUp5 ? <SignUp5View/> : ""}
 
       <nav>
-        <div>
+        <Link to={`/`}>
           <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
-        </div>
+        </Link>
         <div className='navButtons'>
           <Link to={`/About`} style={{textDecoration: "none"}}><button className="yellowButton">About</button></Link>
           <div className="navButtonRight">
