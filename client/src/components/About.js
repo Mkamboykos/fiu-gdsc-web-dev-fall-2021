@@ -10,11 +10,9 @@ function About(){
         return (
           <div className='aboutPageContainer'>
             <div className='aboutRowContainer'>
-              
                 <div className='aboutLeftPanel'>
 
                 </div>
-
                 <div className='aboutRightPanel'>
                     <div className='aboutRightTextContainer'>
                         <div className='aboutRightTitle'>
@@ -24,22 +22,17 @@ function About(){
                         </div>
                         <div className='aboutRightText'>
                             <h5 className='font-inherit'>
-                            We are the Google Developer Student Club Web Development Team at Florida International University!
-                            <br/>
-                            <br/>
-                            Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application.
-                            <br/>
-                            <br/>
-                            College Budgeter is a passion project that 
-                            is built for college students by college students. 
-
-
+                                We are the Google Developer Student Club Web Development Team at Florida International University!
+                                <br/>
+                                <br/>
+                                Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application.
+                                <br/>
+                                <br/>
+                                College Budgeter is a passion project that 
+                                is built for college students by college students. 
                             </h5>
                         </div>
-                        
-                        
                     </div>
-                    
                 </div>
             </div>
           </div>

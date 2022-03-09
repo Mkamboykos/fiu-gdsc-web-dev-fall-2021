@@ -327,6 +327,7 @@ p::before {
   background-color: silver;
   justify-content: center;
   text-align: initial;
+  padding-top: 1rem;
 }
 
 .textBold{
@@ -368,6 +369,16 @@ p::before {
   .aboutRightPanel{
     align-items: center;
     height: auto;
+  }
+  
+  .aboutRightText{
+    padding-top: 0rem;
+    font-size: 18px;
+  }
+
+  .aboutPageContainer{
+    height: 80vh;
+    width: 90%;
   }
 }
 
