@@ -201,7 +201,16 @@ function Home(){
 
   const enterCodeSubmit = async (data) => {
     if (data){
-      var combinedCode = data.Code1 + data.Code2 + data.Code3 + data.Code4
+      let combinedCode = parseInt(data.Code1 + data.Code2 + data.Code3 + data.Code4)
+      let codeProvided = code
+
+      if (combinedCode === codeProvided) {
+        setCode(undefined)
+        setShowNewPassword(true)
+        setShowEnter(false)
+      }else{
+        setErrMsgCode("incorrect code")
+      }
       console.log(combinedCode)
     }
   }
@@ -209,6 +218,24 @@ function Home(){
 
   // enter code pop-up view
   const EnterCodeView = () =>{
+
+    // var container = document.getElementsByClassName("forgotCodeRow")[0];
+    // container.onkeyup = function(e) {
+    //   var target = e.srcElement;
+    //   var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    //   var myLength = target.value.length;
+    //   if (myLength >= maxLength) {
+    //     var next = target;
+    //     while (next = next.nextElementSibling) {
+    //       if (next == null)
+    //           break;
+    //       if (next.tagName.toLowerCase() == "input") {
+    //           next.focus();
+    //           break;
+    //       }
+    //     }
+    //   }
+    // }
 
      // validation conditional message
      if(errors?.Code1?.type === "required"){
@@ -220,7 +247,7 @@ function Home(){
     }else if(errors?.Code4?.type === "required"){
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
     }
-    else if(errMsgEmail !== ""){
+    else if(errMsgCode !== ""){
       // eslint-disable-next-line no-redeclare
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgCode}</p>
     }
@@ -229,7 +256,7 @@ function Home(){
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowEnter(false)}/>
+            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setCode(undefined) & setShowEnter(false)}/>
           </div>
           <br/>
           <div className='loginTitleContainer'>
@@ -238,17 +265,19 @@ function Home(){
           <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
               <form onSubmit={handleSubmit(enterCodeSubmit)}>
                 <div className='forgotCodeContainer'>
-                  <input type="text" className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
-                  <input type="text" className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
-                  <input type="text" className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
-                  <input type="text" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>
+                  <div className='forgotCodeRow'>
+                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
+                  </div>
                   {validationMsgCode}    
                   {/* See more examples at https://react-hook-form.com/ */}
                 </div>
 
                 <br/>
-                <div className='loginButtonsContainers'>
-                  <button className="yellowButton" onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
+                <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
+                  <button className="yellowButton">Continue 2</button>
                 </div>
               </form>
             </div>

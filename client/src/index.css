@@ -350,8 +350,15 @@ p::before {
 .forgotCodeContainer{
   display: inline-flex;
   justify-content: space-evenly;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.forgotCodeRow{
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: row;
   width: 100%;
 }
 
@@ -366,6 +373,7 @@ p::before {
   font-weight: bold;
   border-color: #00000045;
 }
+
 
 @media (min-width: 640px){
   .homeBackground{
