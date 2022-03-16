@@ -215,27 +215,17 @@ function Home(){
     }
   }
 
+  const handleEnter = (event) => {
+    if (event.key.toLowerCase()) {
+      const form = event.target.form;
+      const index = [...form].indexOf(event.target);
+      form.elements[index + 1].focus();
+    }
+  }
+  
 
   // enter code pop-up view
   const EnterCodeView = () =>{
-
-    // var container = document.getElementsByClassName("forgotCodeRow")[0];
-    // container.onkeyup = function(e) {
-    //   var target = e.srcElement;
-    //   var maxLength = parseInt(target.attributes["maxlength"].value, 10);
-    //   var myLength = target.value.length;
-    //   if (myLength >= maxLength) {
-    //     var next = target;
-    //     while (next = next.nextElementSibling) {
-    //       if (next == null)
-    //           break;
-    //       if (next.tagName.toLowerCase() == "input") {
-    //           next.focus();
-    //           break;
-    //       }
-    //     }
-    //   }
-    // }
 
      // validation conditional message
      if(errors?.Code1?.type === "required"){
@@ -266,10 +256,10 @@ function Home(){
               <form onSubmit={handleSubmit(enterCodeSubmit)}>
                 <div className='forgotCodeContainer'>
                   <div className='forgotCodeRow'>
-                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} autofocus className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
                   </div>
                   {validationMsgCode}    
                   {/* See more examples at https://react-hook-form.com/ */}
