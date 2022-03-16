@@ -347,6 +347,26 @@ p::before {
   font-size: inherit;
 }
 
+.forgotCodeContainer{
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.codeButton{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  border-color: #00000045;
+}
+
 @media (min-width: 640px){
   .homeBackground{
     left: 0;

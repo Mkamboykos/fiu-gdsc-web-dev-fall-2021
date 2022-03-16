@@ -24,6 +24,7 @@ function Home(){
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [errMsg, setErrMsg] = useState("")
   const [errMsgEmail, setErrMsgEmail] = useState("")
+  const [errMsgCode, setErrMsgCode] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
@@ -183,7 +184,7 @@ function Home(){
           <div className='loginLabelsContainer'>
               <form onSubmit={handleSubmit(forgotEmailSubmit)}>
                 <div className='loginInputsContainer'>
-                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsg})}/>
+                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsgEmail})}/>
                   {validationMsg}    
                   {/* See more examples at https://react-hook-form.com/ */}
                 </div>
@@ -198,20 +199,59 @@ function Home(){
     )
   }
 
+  const enterCodeSubmit = async (data) => {
+    if (data){
+      var combinedCode = data.Code1 + data.Code2 + data.Code3 + data.Code4
+      console.log(combinedCode)
+    }
+  }
+
+
   // enter code pop-up view
   const EnterCodeView = () =>{
+
+     // validation conditional message
+     if(errors?.Code1?.type === "required"){
+      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errors?.Code2?.type === "required"){
+      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errors?.Code3?.type === "required"){
+      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errors?.Code4?.type === "required"){
+      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }
+    else if(errMsgEmail !== ""){
+      // eslint-disable-next-line no-redeclare
+      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgCode}</p>
+    }
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowEnter(false)}/>
           </div>
-          
-          {/* Use the logic from LoginView to create the Sign up form here */}
+          <br/>
+          <div className='loginTitleContainer'>
+            <h1><b>Enter Code</b></h1>
+          </div>
+          <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
+              <form onSubmit={handleSubmit(enterCodeSubmit)}>
+                <div className='forgotCodeContainer'>
+                  <input type="text" className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
+                  <input type="text" className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
+                  <input type="text" className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
+                  <input type="text" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>
+                  {validationMsgCode}    
+                  {/* See more examples at https://react-hook-form.com/ */}
+                </div>
 
-
-          <button className="yellowButton" onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
-
+                <br/>
+                <div className='loginButtonsContainers'>
+                  <button className="yellowButton" onClick={() => setShowNewPassword(true) & setShowEnter(false)}>Continue 2</button>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
     )
