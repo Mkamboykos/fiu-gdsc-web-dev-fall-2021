@@ -285,9 +285,22 @@ p::before {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: blue;
   justify-content: center;
   align-items: center;
+}
+
+.aboutLeftCirclePanel1{
+  width: 100%;
+  height: 25%;
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.aboutPicture{
+  width: 22%;
+  border-radius: 100px;
+  height: 90%;
 }
 
 .aboutRightPanel{
@@ -295,7 +308,6 @@ p::before {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: green;
   justify-content: flex-start;
   align-items: flex-end;
 }
@@ -305,7 +317,6 @@ p::before {
   flex-direction: column;
   width: 95%;
   height: 100%;
-  background-color: purple;
   justify-content: flex-start;
   align-items: center;
 }
@@ -314,7 +325,6 @@ p::before {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: yellow;
   justify-content: center;
   align-items: flex-start;
   padding-bottom: 5px;
@@ -324,7 +334,6 @@ p::before {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: silver;
   justify-content: center;
   text-align: initial;
   padding-top: 1rem;
@@ -397,6 +406,20 @@ p::before {
 @media (min-width: 796px){
   .aboutRightText{
     font-size: 24px;
+  }
+}
+
+@media (min-width: 475px) and (max-width: 918px){
+  .aboutPicture{
+    height: 50%;
+    width: 28%;
+  }
+}
+
+@media (min-width: 918px) and (max-width: 1024px){
+  .aboutPicture{
+    height: 60%;
+    width: 28%;
   }
 }
 

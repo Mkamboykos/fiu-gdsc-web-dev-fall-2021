@@ -11,7 +11,50 @@ function About(){
           <div className='aboutPageContainer'>
             <div className='aboutRowContainer'>
                 <div className='aboutLeftPanel'>
+                    <div className='aboutLeftCirclePanel1'>
+                        <button className="aboutPicture">
 
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                    </div>
+                    <div className='aboutLeftCirclePanel1'>
+                        <button className="aboutPicture">
+
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                    </div>
+                    <div className='aboutLeftCirclePanel1'>
+                        <button className="aboutPicture">
+
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                    </div>
+                    <div className='aboutLeftCirclePanel1'>
+                        <button className="aboutPicture">
+
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                        <button className="aboutPicture">
+                            
+                        </button>
+                    </div>
                 </div>
                 <div className='aboutRightPanel'>
                     <div className='aboutRightTextContainer'>
