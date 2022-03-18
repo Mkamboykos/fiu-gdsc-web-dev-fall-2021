@@ -3,7 +3,43 @@ const forget = require('../Models/Users');
 const nodemailer = require ('nodemailer'); 
 const router = express.Router();
 
-router.post ('/Email', async (req, res) => {
+
+router.post (`/reset`, async (req, res) => {
+    const email = req.query.email;
+    const {resetPassword, confirmPassword} = req.body;
+
+    
+
+    if (resetPassword === confirmPassword){
+        // encrypt submitted password
+        const hashedPassword = await bcrypt.hash(confirmPassword, 10);
+
+        const emailExist = await User.findOne({email: email});
+        
+        if(!emailExist){
+            res.status("422").json({error:'No record found'});
+        }else if(emailExist){
+            let values = {
+                password: hashedPassword
+            }
+
+
+        }
+
+
+    }
+
+    
+    
+
+    // if(!userEmail){
+    //     res.status("422").json({error:'Wrong Username or Password combination!'});
+    // }
+// res.status("422").json({error:'Wrong Username or Password combination!'});
+})
+
+
+router.post ('/email', async (req, res) => {
     const {email} = req.body;
     const checkEmail = await forget.findOne ({ email:email });
 

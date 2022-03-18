@@ -12,6 +12,7 @@ function Home(){
 
   let navigate = useNavigate();
 
+  const [email, setEmail] = useState()
   const [code, setCode] = useState()
   const [showStart, setShowStart] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
@@ -25,6 +26,7 @@ function Home(){
   const [errMsg, setErrMsg] = useState("")
   const [errMsgEmail, setErrMsgEmail] = useState("")
   const [errMsgCode, setErrMsgCode] = useState("")
+  const [errMsgReset, setErrMsgReset] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
@@ -120,10 +122,11 @@ function Home(){
   // used when forgot password email form gets submitted with Email data
   const forgotEmailSubmit = async (data) => {
     if (data){
-      await Axios.post('http://localhost:8000/Forget/Email', {
+      await Axios.post('http://localhost:8000/forget/email', {
             email: data.Email,
       }).then(res => {
         if (res.data.code){
+          setEmail(data.Email)
           setCode(res.data.code)
         }
       }).catch(function (error) {
@@ -215,15 +218,19 @@ function Home(){
     }
   }
 
-  const handleEnter = (event) => {
+  const handleKeyPressCode = (event) => {
+    const form = event.target.form;
+    let index = [...form].indexOf(event.target);
     if (event.key.toLowerCase()) {
-      const form = event.target.form;
-      const index = [...form].indexOf(event.target);
       form.elements[index + 1].focus();
     }
   }
-  
 
+  // const handleAutoKeyPressCode = (event) => {
+  //   const form = event.target.form;
+  //   let index = [...form].indexOf(event.target);
+  // }
+  
   // enter code pop-up view
   const EnterCodeView = () =>{
 
@@ -252,14 +259,21 @@ function Home(){
           <div className='loginTitleContainer'>
             <h1><b>Enter Code</b></h1>
           </div>
+          <br/>
+          <div className='forgotParagraph'>
+            <h5>
+              We’ve sent a four-digit code to the email provided. Please enter the code to reset your password.
+            </h5>
+          </div>
+          <br/>
           <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
               <form onSubmit={handleSubmit(enterCodeSubmit)}>
                 <div className='forgotCodeContainer'>
                   <div className='forgotCodeRow'>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} autofocus className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyDown={handleEnter} className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
                   </div>
                   {validationMsgCode}    
                   {/* See more examples at https://react-hook-form.com/ */}
@@ -267,7 +281,7 @@ function Home(){
 
                 <br/>
                 <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
-                  <button className="yellowButton">Continue 2</button>
+                  <button className="yellowButton">Continue</button>
                 </div>
               </form>
             </div>
@@ -276,19 +290,73 @@ function Home(){
     )
   }
 
+
+  const resetFormSubmit = async (data) => {
+    if (data){
+      var params = new URLSearchParams();
+      params.append("email", email);
+      var request = {
+        params: params
+      };
+      await Axios.put(`http://localhost:8000/forget/reset`, request, {
+            resetPassword: data.PasswordReset,
+            confirmPassword: data.PasswordConfirm,
+      }).then(res => {
+        setShowNewPassword(false)
+      }).catch(function (error) {
+        if (error.response) {
+          setErrMsgReset(error.response.data.error)
+          // console.log(error.response.data.error);
+          // console.log(error.response.status);
+          // console.log(error.response.headers);
+        }
+      })
+    }
+  }
+
   // new password pop-up view
   const NewPasswordView = () =>{
+
+    if(errors?.PasswordReset?.type === "required" || errors?.PasswordConfirm?.type === "required"){
+      var validationMsgReset = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field(s) Cannot be Empty!</p>
+    }else if(errMsgReset !== ""){
+      // eslint-disable-next-line no-redeclare
+      var validationMsgReset = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgReset}</p>
+    }
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowNewPassword(false)}/>
           </div>
-          
+          <br/>
+          <div className='loginTitleContainer'>
+            <h1><b>New Password</b></h1>
+          </div>
+          <br/>
+          <div className='forgotParagraph'>
+            <h5>
+              Enter your new password make sure to meet the password requirements.
+            </h5>
+          </div>
+          <br/>
+          <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
+              <form onSubmit={handleSubmit(resetFormSubmit)}>
+                <div className='loginInputsContainer'>
+                    <input type="text" placeholder="New Password" {...register("PasswordReset", {required: true, min: 1})}/>
+                    <br/>
+                    <input type="text" placeholder="Confirm Password" {...register("PasswordConfirm", {required: true, min: 1, message: errMsgReset})}/>                  
+                  </div>
+                  {validationMsgReset}    
+                <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
+                  <button className="yellowButton" type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
+                </div>
+              </form>
+            </div>
+
+
           {/* Use the logic from LoginView to create the Sign up form here */}
-
-
-          <button className="yellowButton" type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
 
         </div>
       </div>

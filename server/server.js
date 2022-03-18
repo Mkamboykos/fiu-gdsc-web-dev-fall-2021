@@ -41,7 +41,7 @@ const forgetRouter = require('./Routes/ForgetRoute');
 // Route Middlewares
 app.use('/Login', loginRouter);
 app.use('/Register', signUpRouter);
-app.use('/Forget', forgetRouter);
+app.use('/forget', forgetRouter);
 //app.use('/auth', authRouter);
 
 // Apply error handler to every call
