@@ -238,10 +238,13 @@ function Home(){
      if(errors?.Code1?.type === "required"){
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
     }else if(errors?.Code2?.type === "required"){
+      // eslint-disable-next-line no-redeclare
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
     }else if(errors?.Code3?.type === "required"){
+      // eslint-disable-next-line no-redeclare
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
     }else if(errors?.Code4?.type === "required"){
+      // eslint-disable-next-line no-redeclare
       var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
     }
     else if(errMsgCode !== ""){
@@ -270,10 +273,10 @@ function Home(){
               <form onSubmit={handleSubmit(enterCodeSubmit)}>
                 <div className='forgotCodeContainer'>
                   <div className='forgotCodeRow'>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxlength="1" onInput="this.value=this.value.replace(/[^0-9]/g,'');" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
+                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
+                    <input type="text" maxLength="1" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
                   </div>
                   {validationMsgCode}    
                   {/* See more examples at https://react-hook-form.com/ */}
@@ -293,16 +296,14 @@ function Home(){
 
   const resetFormSubmit = async (data) => {
     if (data){
-      var params = new URLSearchParams();
-      params.append("email", email);
-      var request = {
-        params: params
-      };
-      await Axios.put(`http://localhost:8000/forget/reset`, request, {
-            resetPassword: data.PasswordReset,
-            confirmPassword: data.PasswordConfirm,
+      await Axios.put(`http://localhost:8000/forget/reset`, {
+        email: email,
+        resetPassword: data.PasswordReset,
+        confirmPassword: data.PasswordConfirm,
       }).then(res => {
-        setShowNewPassword(false)
+        if (res.data.code === 200){
+          setShowNewPassword(false)
+        }
       }).catch(function (error) {
         if (error.response) {
           setErrMsgReset(error.response.data.error)
@@ -342,7 +343,7 @@ function Home(){
           </div>
           <br/>
           <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
-              <form onSubmit={handleSubmit(resetFormSubmit)}>
+              <form >
                 <div className='loginInputsContainer'>
                     <input type="text" placeholder="New Password" {...register("PasswordReset", {required: true, min: 1})}/>
                     <br/>
@@ -350,7 +351,7 @@ function Home(){
                   </div>
                   {validationMsgReset}    
                 <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
-                  <button className="yellowButton" type='submit' onClick={() => setShowNewPassword(false)}>Submit</button>
+                  <button className="yellowButton" type='button' onClick={handleSubmit(resetFormSubmit)}>Submit</button>
                 </div>
               </form>
             </div>
@@ -438,7 +439,7 @@ function Home(){
             <div className='loginLabelsContainer'>
               <form onSubmit={handleSubmit(loginFormSubmit)}>
                 <div className='loginInputsContainer'>
-                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, pattern: /^[A-Za-z]+$/i})}/>
+                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, pattern: /^([a-zA-Z0-9\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9 _.-]+)$/})}/>
                   {errors?.Username?.type === "pattern" && (<p>Alphabetical characters only</p>)}
                   <br/>
                   <input type="password" placeholder="Password" {...register("Password", {required: true, min: 1, message: errMsg})}/>

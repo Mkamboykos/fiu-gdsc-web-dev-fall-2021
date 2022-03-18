@@ -2,31 +2,62 @@ const express = require('express');
 const forget = require('../Models/Users');
 const nodemailer = require ('nodemailer'); 
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const User = require ('../Models/Users');
 
+router.put(`/reset`, async (req, res, next) => {
 
-router.post (`/reset`, async (req, res) => {
-    const email = req.query.email;
-    const {resetPassword, confirmPassword} = req.body;
+    // obtain body passed
+    const {email, resetPassword, confirmPassword} = req.body;
 
+    // validate the passwords
+    let pass = false
     
+    if (resetPassword !== confirmPassword){
+        res.status("422").json({error:'Passwords do not match!'});
+    }
 
+    // if validation passed make pass true
     if (resetPassword === confirmPassword){
+        pass = true
+    }
+    
+    if (pass === true){
+
         // encrypt submitted password
         const hashedPassword = await bcrypt.hash(confirmPassword, 10);
 
-        const emailExist = await User.findOne({email: email});
-        
-        if(!emailExist){
-            res.status("422").json({error:'No record found'});
-        }else if(emailExist){
-            let values = {
-                password: hashedPassword
+        // find one user with the email provided
+        await User.findOne({email: email})
+        .then(user => {
+            console.log(resetPassword)
+            console.log(hashedPassword)
+            //if user with that email does not exist
+            if(!user){
+                res.status("422").json({error:'No record found'});
+            }else if(user){
+
+                let values = {
+                    password: hashedPassword
+                }
+
+                user.updateOne(values).then( updatedRecord => {
+                    if(!updatedRecord){
+                        res.status("422").json({error:'Could not update password'});
+                    }else{
+                        console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
+                        // login into your DB and confirm update
+                        res.status(200).json({code: 200})
+                    }
+                    
+                }).catch(err =>{
+                    console.log(err)
+                })
             }
-
-
-        }
-
-
+        }).catch(e =>{
+			console.log(e)
+		});
+        
     }
 
     
@@ -39,7 +70,7 @@ router.post (`/reset`, async (req, res) => {
 })
 
 
-router.post ('/email', async (req, res) => {
+router.post ('/email', async (req, res, next) => {
     const {email} = req.body;
     const checkEmail = await forget.findOne ({ email:email });
 
@@ -84,6 +115,7 @@ router.post ('/email', async (req, res) => {
             //console.log ("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
             res.json ({code: code});
+            next()
         }
         catch (err){
             console.log (err);
