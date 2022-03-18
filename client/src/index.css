@@ -121,6 +121,7 @@ p::before {
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
+  z-index: 5;
 }
 
 .loginPanel{
@@ -148,6 +149,7 @@ p::before {
   display: flex;
   justify-content: space-around;;
   flex-direction: column;
+  z-index: 5;
 }
 
 .loginButtonsContainers{
@@ -198,6 +200,7 @@ p::before {
   width: 100%;
   height: 90.5vh;
   object-fit: cover;
+  z-index: -5;
 }
 
 .loginFlexContainer{
@@ -229,6 +232,7 @@ p::before {
   padding: 16px;
   padding-top: 4px;
   padding-bottom: 5px;
+  z-index: 0;
 }
 
 .navButtons{
