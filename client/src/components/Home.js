@@ -27,6 +27,7 @@ function Home(){
   const [errMsgEmail, setErrMsgEmail] = useState("")
   const [errMsgCode, setErrMsgCode] = useState("")
   const [errMsgReset, setErrMsgReset] = useState("")
+  const [errMsgSignUp1, setErrMsgSignUp1] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
@@ -36,6 +37,19 @@ function Home(){
 
   // sign up pop-up view
   const StartHereView = () =>{
+
+    // validation conditional message
+    if(errors?.FullName?.type === "required"){
+      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errors?.Email?.type === "required"){
+      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errors?.Username?.type === "required"){
+      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errMsgSignUp1 !== ""){
+      // eslint-disable-next-line no-redeclare
+      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgSignUp1}</p>
+    }
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
@@ -43,9 +57,31 @@ function Home(){
             <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false)}/>
           </div>
 
-          {/* Use the logic from LoginView to create the Sign up form here */}
-
-          <button className="yellowButton" onClick={() => setShowSignUp2(true) & setShowStart(false)}>Continues</button>
+          <div className='loginTitleContainer'>
+            <h1><b>Sign Up</b></h1>
+          </div>
+          <br/>
+          <div className='forgotParagraph'>
+            <h5>
+              Let’s get to know you!
+            </h5>
+          </div>
+          <br/>
+          <div className='loginLabelsContainer'>
+              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+                <div className='loginInputsContainer'>
+                  <input type="text" placeholder="Full Name" {...register("FullName", {required: true, min: 1, message: errMsgSignUp1})}/>
+                  <input type="text" placeholder="Email" {...register("Email", {required: true, min: 1, pattern: /^\S+@\S+$/i, message: errMsgSignUp1})}/>
+                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, message: errMsgSignUp1})}/>
+                  {validationMsgSignUp1}
+                  {/* See more examples at https://react-hook-form.com/ */}
+                </div>
+                <br/>
+                <div className='loginButtonsContainers'>
+                <button className="yellowButton" type='submit' onClick={() => setShowSignUp2(true) & setShowStart(false)} >Continue</button>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
     )
@@ -53,14 +89,44 @@ function Home(){
 
   // sign up 2 view
   const SignUp2View = () =>{
+
+    // validation conditional message
+    if(errors?.Email?.type === "required"){
+      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
+    }else if(errMsgEmail !== ""){
+      // eslint-disable-next-line no-redeclare
+      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgEmail}</p>
+    }
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
             <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false) & setShowSignUp2(false)}/>
           </div>
-
-          {/* Use the logic from LoginView to create the Sign up form here */}
+          <div className='loginTitleContainer'>
+            <h1><b>Sign Up</b></h1>
+          </div>
+          <br/>
+          <div className='forgotParagraph'>
+            <h5>
+              Don’t worry! Just fill in your email and we’ll send you a link to reset your password.
+            </h5>
+          </div>
+          <br/>
+          <div className='loginLabelsContainer'>
+              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+                <div className='loginInputsContainer'>
+                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsgEmail})}/>
+                  {validationMsg}
+                  {/* See more examples at https://react-hook-form.com/ */}
+                </div>
+                <br/>
+                <div className='loginButtonsContainers'>
+                <button className="yellowButton" type='submit' onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continue</button>
+                </div>
+              </form>
+            </div>
 
           <button className="yellowButton" onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continuess</button>
         </div>
