@@ -7,6 +7,34 @@
   flex-direction: column;
 }
 
+.signupFlex {
+  width: 100%;
+  background-color: green;
+  display:flex;
+  flex-direction: column;
+}
+
+.signupFlexRow1 {
+  width: 100%;
+  background-color: yellow;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.signup3buttonRow {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+.signup3buttonCol {
+  width: 95%;
+}
+
+.widthstuff {
+  width: 90%;
+}
+
 *,::after,::before {
   box-sizing: border-box
 }

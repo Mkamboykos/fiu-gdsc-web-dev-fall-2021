@@ -78,7 +78,40 @@ function Home(){
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1><b>Sign Up</b></h1>
+          <br/>
+          <h6><i>Any allergies or dietary restrictions?</i></h6>
+          <div className='signupFlex'>
+            <div className='signupFlexRow1'>
+              <div className='widthstuff'>
+                <button className='signup3buttonRow' onClick={""}>Peanuts</button>
+                <button className='signup3buttonRow' onClick={""}>Shellfish</button>
+                <button className='signup3buttonRow' onClick={""}>Nuts</button>
+                <button className='signup3buttonRow' onClick={""}>Wheat</button>
 
+              </div>
+              <div className='widthstuff'>
+                <button className='signup3buttonRow' onClick={""}>Eggs</button>
+                <button className='signup3buttonRow' onClick={""}>Dairy</button>
+                <button className='signup3buttonRow' onClick={""}>Fish</button>
+                <button className='signup3buttonRow' onClick={""}>Soy</button>
+              </div>
+            </div>
+            <div>
+              <button className='signup3buttonCol'>Lactose Intolerant</button>
+              <button className='signup3buttonCol'>Vegetarian</button>
+              <button className='signup3buttonCol'>Gluten Free</button>
+              <button className='signup3buttonCol'>Vegan</button>
+              <button className='signup3buttonCol'>Diabetic</button>
+
+            </div>
+
+            
+            
+
+            
+
+          </div>
           <button className="yellowButton" onClick={() => setShowSignUp4(true) & setShowSignUp3(false)}>Continuesss</button>
         </div>
       </div>
