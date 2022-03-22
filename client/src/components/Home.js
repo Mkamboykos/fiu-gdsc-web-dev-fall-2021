@@ -28,12 +28,36 @@ function Home(){
   const [errMsgCode, setErrMsgCode] = useState("")
   const [errMsgReset, setErrMsgReset] = useState("")
   const [errMsgSignUp1, setErrMsgSignUp1] = useState("")
+  const [errMsgSignUp2, setErrMsgSignUp2] = useState("")
   // eslint-disable-next-line no-unused-vars
   const {register, handleSubmit, watch, formState: { errors }} = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
 
 
- 
+   const [peanuts, setPeanuts] = useState(false);
+  const [shellfish, setShellfish] = useState(false);
+  const [nuts, setNuts] = useState(false);
+
+  const [wheat, setWheat] = useState(false);
+  const [eggs, setEggs] = useState(false);
+  const [dairy, setDairy] = useState(false);
+  const [fish, setFish] = useState(false);
+  const [soy, setSoy] = useState(false);
+  const [lactoseIntolerant, setLactoseIntolerant] = useState(false);
+  const [vegetarian, setVegetarian] = useState(false);
+  const [glutenFree, setGlutenFree] = useState(false);
+  const [vegan, setVegan] = useState(false);
+  const [diabetic, setDiabetic] = useState(false);
+
+
+  const signUp1Submit = async (data) => {
+    if (data){
+      console.log(data)
+    }
+      setShowSignUp2(true)
+      setShowStart(false)
+    
+  }
 
   // sign up pop-up view
   const StartHereView = () =>{
@@ -68,7 +92,7 @@ function Home(){
           </div>
           <br/>
           <div className='loginLabelsContainer'>
-              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+              <form onSubmit={handleSubmit(signUp1Submit)}>
                 <div className='loginInputsContainer'>
                   <input type="text" placeholder="Full Name" {...register("FullName", {required: true, min: 1, message: errMsgSignUp1})}/>
                   <input type="text" placeholder="Email" {...register("Email", {required: true, min: 1, pattern: /^\S+@\S+$/i, message: errMsgSignUp1})}/>
@@ -78,7 +102,7 @@ function Home(){
                 </div>
                 <br/>
                 <div className='loginButtonsContainers'>
-                <button className="yellowButton" type='submit' onClick={() => setShowSignUp2(true) & setShowStart(false)} >Continue</button>
+                <button className="yellowButton" type='submit' >Continue</button>
                 </div>
               </form>
             </div>
@@ -87,15 +111,26 @@ function Home(){
     )
   }
 
+
+  const signUp2Submit = async (data) => {
+    if (data){
+      console.log(data)
+    }
+
+      setShowSignUp3(true)
+      setShowSignUp2(false)
+    
+  }
+
   // sign up 2 view
   const SignUp2View = () =>{
 
     // validation conditional message
-    if(errors?.Email?.type === "required"){
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errMsgEmail !== ""){
+    if(errors?.Gender?.type === "required"){
+      var validationMsgSignUp2 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>You must pick an option!</p>
+    }else if(errMsgSignUp2 !== ""){
       // eslint-disable-next-line no-redeclare
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgEmail}</p>
+      var validationMsgSignUp2 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgSignUp2}</p>
     }
 
     return (
@@ -110,32 +145,41 @@ function Home(){
           <br/>
           <div className='forgotParagraph'>
             <h5>
-              Don’t worry! Just fill in your email and we’ll send you a link to reset your password.
+              Let’s personalize your experience!
             </h5>
           </div>
           <br/>
           <div className='loginLabelsContainer'>
-              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+              <form onSubmit={handleSubmit(signUp2Submit)}>
                 <div className='loginInputsContainer'>
-                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsgEmail})}/>
-                  {validationMsg}
+                  <input type="text" placeholder="Gender" {...register("Gender", {required: true, message: errMsgSignUp2})}/>
+                  {validationMsgSignUp2}
                   {/* See more examples at https://react-hook-form.com/ */}
                 </div>
                 <br/>
                 <div className='loginButtonsContainers'>
-                <button className="yellowButton" type='submit' onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continue</button>
+                <button className="yellowButton" type="submit">Continue</button>
                 </div>
               </form>
             </div>
-
-          <button className="yellowButton" onClick={() => setShowSignUp3(true) & setShowSignUp2(false) & setShowStart(false)}>Continuess</button>
         </div>
       </div>
     )
   }
 
+  const signUp3Submit = () => {
+    console.log(peanuts)
+
+    setShowSignUp4(true)
+    setShowSignUp3(false)
+
+  }
+
   // sign up 3 view
   const SignUp3View = () =>{
+
+
+
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
@@ -147,38 +191,35 @@ function Home(){
           <h1><b>Sign Up</b></h1>
           <br/>
           <h6><i>Any allergies or dietary restrictions?</i></h6>
+
           <div className='signupFlex'>
+
             <div className='signupFlexRow1'>
               <div className='widthstuff'>
-                <button className='signup3buttonRow' onClick={""}>Peanuts</button>
-                <button className='signup3buttonRow' onClick={""}>Shellfish</button>
-                <button className='signup3buttonRow' onClick={""}>Nuts</button>
-                <button className='signup3buttonRow' onClick={""}>Wheat</button>
+                <input type="button" label="Peanuts" value="Peanuts" className='signup3buttonRow signup3button' onClick={() => setPeanuts(!peanuts)}/>
+                <input type="button" label="Shellfish" value="Shellfish" className='signup3buttonRow signup3button' onClick={() => setShellfish(!shellfish)}/>
+                <input type="button" label="Nuts" value="Nuts" className='signup3buttonRow signup3button' onClick={() => setNuts(!nuts)}/>
+                <input type="button" label="Wheat" value="Wheat" className='signup3buttonRow signup3button' onClick={() => setWheat(!wheat)}/>
 
               </div>
               <div className='widthstuff'>
-                <button className='signup3buttonRow' onClick={""}>Eggs</button>
-                <button className='signup3buttonRow' onClick={""}>Dairy</button>
-                <button className='signup3buttonRow' onClick={""}>Fish</button>
-                <button className='signup3buttonRow' onClick={""}>Soy</button>
+                <input type="button" label="Eggs" value="Eggs" className='signup3buttonRow signup3button' onClick={() => setEggs(!eggs)}/>
+                <input type="button" label="Dairy" value="Dairy" className='signup3buttonRow signup3button' onClick={() => setDairy(!dairy)}/>
+                <input type="button" label="Fish" value="Fish" className='signup3buttonRow signup3button' onClick={() => setFish(!fish)}/>
+                <input type="button" label="Soy" value="Soy" className='signup3buttonRow signup3button' onClick={() => setSoy(!soy)}/>
               </div>
             </div>
+
             <div>
-              <button className='signup3buttonCol'>Lactose Intolerant</button>
-              <button className='signup3buttonCol'>Vegetarian</button>
-              <button className='signup3buttonCol'>Gluten Free</button>
-              <button className='signup3buttonCol'>Vegan</button>
-              <button className='signup3buttonCol'>Diabetic</button>
-
+              <input type="button" label="Lactose Intolerant" value="Lactose Intolerant" className='signup3buttonCol signup3button' onClick={() => setLactoseIntolerant(!lactoseIntolerant)}/>
+              <input type="button" label="Vegetarian" value="Vegetarian" className='signup3buttonCol signup3button' onClick={() => setVegetarian(!vegetarian)}/>
+              <input type="button" label="Gluten Free" value="Gluten Free" className='signup3buttonCol signup3button' onClick={() => setGlutenFree(!glutenFree)}/>
+              <input type="button" label="Vegan" value="Vegan" className='signup3buttonCol signup3button' onClick={() => setVegan(!vegan)}/>
+              <input type="button" label="Diabetic" value="Diabetic" className='signup3buttonCol signup3button' onClick={() => setDiabetic(!diabetic)}/>
             </div>
-
             
-            
-
-            
-
           </div>
-          <button className="yellowButton" onClick={() => setShowSignUp4(true) & setShowSignUp3(false)}>Continuesss</button>
+          <button className="yellowButton"  onClick={() => signUp3Submit()}>Continue</button>
         </div>
       </div>
     )

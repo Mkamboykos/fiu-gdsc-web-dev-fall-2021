@@ -9,15 +9,13 @@
 
 /**********************************/
 .signupFlex {
-  width: 100%;
-  background-color: green;
+  width: 95%;
   display:flex;
   flex-direction: column;
 }
 
 .signupFlexRow1 {
   width: 100%;
-  background-color: yellow;
   display:flex;
   flex-direction: row;
   justify-content: space-around;
@@ -28,12 +26,32 @@
   display: flex;
   justify-content: center;
 }
+
 .signup3buttonCol {
   width: 95%;
 }
 
 .widthstuff {
   width: 90%;
+}
+
+.signup3button{
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 25px;
+}
+
+.signup3button:hover{
+  background-color: #FCBF49;
+}
+
+.signup3button:factive{
+  background-color: #FCBF49;
+}
+
+.signup3button:focus{
+  background-color: #FCBF49;
 }
 /*********************************/
 
@@ -137,6 +155,7 @@ p::before {
   flex-direction: column;
   justify-content: center;
   position: absolute;
+  z-index: 5;
 }
 
 .startHereContainer{
@@ -166,6 +185,7 @@ p::before {
   align-content: stretch;
   overflow-y: hidden;
   overflow-x: hidden;
+  z-index: 5;
 }
 
 .loginContainer{
