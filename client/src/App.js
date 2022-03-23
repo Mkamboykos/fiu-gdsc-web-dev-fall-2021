@@ -1,19 +1,31 @@
-import './index.css'
+import "./index.css";
 
-import {Route} from 'react-router-dom'
-import Home from './components/Home'
-import Dashboard from './components/Dashboard'
+import React, {lazy, Suspense} from 'react'
+import { Route, Routes} from 'react-router-dom'
+
+const Home = lazy(() => import('./components/Home'))
+const Dashboard = lazy(() => import('./components/Dashboard'))
+const About = lazy(() => import('./components/About'))
+const Forgot = lazy(() => import('./components/Forgot'))
+const NotFound = lazy(() => import('./components/StatusCodes/404'))
+ 
 
 function App() {
+
   return (
-    <div className="App">
-
-       {/* The Router is used to create different links for each class */}
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/Dashboard" component={Dashboard}/>
-
-    </div>
+  <div className="App">
+    <Suspense fallback={"LOADING"}>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/Dashboard/:username" element={<Dashboard/>}/>
+          <Route exact path="/About" element={<About/>}/>
+          <Route exact path="/Forgot" element={<Forgot/>}/>
+          <Route exact path="/404" element={<NotFound/>}/>
+        </Routes>
+    </Suspense>
+  </div>
   )
 }
-
+ 
 export default App;
+ 

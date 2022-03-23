@@ -1,17 +1,518 @@
 .App {
-  text-align: center;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  text-align: -webkit-center;
+  flex-direction: column;
+}
+
+/**********************************/
+.signupFlex {
+  width: 95%;
+  display:flex;
+  flex-direction: column;
+}
+
+.signupFlexRow1 {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.signup3buttonRow {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.signup3buttonCol {
+  width: 95%;
+}
+
+.widthstuff {
+  width: 90%;
+}
+
+.signup3button{
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 25px;
+}
+
+.signup3button:hover{
+  background-color: #FCBF49;
+}
+
+.signup3button:factive{
+  background-color: #FCBF49;
+}
+
+.signup3button:focus{
+  background-color: #FCBF49;
+}
+/*********************************/
+
+*,::after,::before {
+  box-sizing: border-box
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
+  background: linear-gradient(to top left, #fad38b, #f8b044) fixed;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  /* text-align: left; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0;
+  margin-bottom: .5rem
+}
+
+b,strong {
+  font-weight: bolder
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent
+}
+
+img {
+  vertical-align: middle;
+  border-style: none
+}
+
+button {
+  margin: 0 auto;
+  display: block;
+}
+
+button,input,optgroup,select,textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit
+}
+
+button,input {
+  overflow: visible
+}
+
+button,select {
+  text-transform: none
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 6vh;
+  background: #FFFAF0;
+  color: white;
+}
+
+p {
+  color: #bf1650;
+}
+
+p::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+/*  Home Page */
+
+.startHereButtonPlacement{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  padding-left: calc(7rem);
+  position: absolute;
+  top: 40rem;
+}
+
+.startHerePanel{
+  background: rgba(0,0,0,0.5);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  z-index: 5;
+}
+
+.startHereContainer{
+  background-color: #FFFAF0;
+  border-radius: 25px;
+  width: 36vh;
+  height: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.loginPanel{
+  background: rgba(0,0,0,0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: 5;
+}
+
+.loginContainer{
+  background-color: #FFFAF0;
+  border-radius: 25px;
+  width: 36vh;
+  height: auto;
+  padding-top: 2rem;
+  padding-bottom:2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.loginButtonsContainers{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.loginExitButtonContainer{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 24px;
+}
+
+.loginButtons{
+  width: calc(6rem);
+  height: calc(2.4rem);
+}
+
+.loginLabelsContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginInputsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 27vh;
+}
+
+/* Forgot Section */
+
+.fogotButton{
+  background-color: #3949ab;
+  color: white;
+  padding: 5px 15 px;
+  border-radius: 5px;
+  outline: 0;
+  box-shadow: 0px 2px 2px lightgray;
+}
+
+.homeBackground{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90.5vh;
+  object-fit: cover;
+  z-index: -5;
+}
+
+.loginFlexContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoHome{
+  height: 5rem;
+  padding: 0.5rem;
+}
+
+.logoLogin{
+  height: 15rem;
+}
+
+.yellowButton{
+  width: auto;
+  display: flex;
+  border-radius: 37px;
+  background-color: #FCBF49;
+  border: none;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  padding-top: 4px;
+  padding-bottom: 5px;
+  z-index: 0;
+}
+
+.navButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navButtonRight{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.exitButton{
+  cursor: pointer;
+  width: 2rem;
+}
+
+.forgotParagraph{
+  width: 80%;
+}
+
+.centerItems{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.aboutRowContainer{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutPageContainer{
+  height: 80vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  background: #FFFAF0;
+  top: 15vh;
+  border-radius: 25px;
+  align-items: center;
+}
+
+.aboutLeftPanel{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutLeftCirclePanel1{
+  width: 100%;
+  height: 25%;
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.aboutPicture{
+  width: 22%;
+  border-radius: 100px;
+  height: 90%;
+}
+
+.aboutRightPanel{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.aboutRightTextContainer{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.aboutRightTitle{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 5px;
+}
+
+.aboutRightText{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  text-align: initial;
+  padding-top: 1rem;
+}
+
+.textBold{
+  font-weight: bold;
+}
+
+.font-inherit{
+  font-size: inherit;
+}
+
+.forgotCodeContainer{
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.forgotCodeRow{
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+}
+
+.codeButton{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  border-color: #00000045;
+}
+
+
+@media (min-width: 640px){
+  .homeBackground{
+    left: 0;
+    bottom: 0;
+    height: 94vh;
+    object-fit: cover;
+  }
+
+  .aboutRightText{
+    font-size: 1rem;
+  }
+}
+
+/* Mobile view media query */
+@media (max-width: 475px){
+ .aboutRowContainer{
+    flex-direction: column;
+  } 
+
+  .homeBackground{
+    height: 91.2vh;
+  }
+
+  .aboutRowContainer{
+    width: 95%;
+    height: 95%;
+  }
+
+  .aboutRightPanel{
+    align-items: center;
+    height: auto;
+  }
+  
+  .aboutRightText{
+    padding-top: 0rem;
+    font-size: 18px;
+  }
+
+  .aboutPageContainer{
+    height: 80vh;
+    width: 90%;
+  }
+}
+
+@media (min-width: 500px){
+  .aboutRightText{
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 580px){
+  .aboutRightText{
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 796px){
+  .aboutRightText{
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 475px) and (max-width: 918px){
+  .aboutPicture{
+    height: 50%;
+    width: 28%;
+  }
+}
+
+@media (min-width: 918px) and (max-width: 1024px){
+  .aboutPicture{
+    height: 60%;
+    width: 28%;
+  }
+}
+
+@media (min-width: 1286px){
+  .aboutRightText{
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1440px){
+  .aboutRightText{
+    font-size: 30px;
+  }
 }
