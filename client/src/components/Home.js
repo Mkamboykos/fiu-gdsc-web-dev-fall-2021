@@ -275,28 +275,32 @@ function Home() {
                   label='Peanuts'
                   value='Peanuts'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setPeanuts(!peanuts)}
+                  style={{ backgroundColor: `${peanuts && '#FCBF49'}` }}
+                  onClick={() => setPeanuts((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Shellfish'
                   value='Shellfish'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setShellfish(!shellfish)}
+                  style={{ backgroundColor: `${shellfish && '#FCBF49'}` }}
+                  onClick={() => setShellfish((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Nuts'
                   value='Nuts'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setNuts(!nuts)}
+                  style={{ backgroundColor: `${nuts && '#FCBF49'}` }}
+                  onClick={() => setNuts((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Wheat'
                   value='Wheat'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setWheat(!wheat)}
+                  style={{ backgroundColor: `${wheat && '#FCBF49'}` }}
+                  onClick={() => setWheat((state) => !state)}
                 />
               </div>
               <div className='widthstuff'>
@@ -305,28 +309,32 @@ function Home() {
                   label='Eggs'
                   value='Eggs'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setEggs(!eggs)}
+                  style={{ backgroundColor: `${eggs && '#FCBF49'}` }}
+                  onClick={() => setEggs((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Dairy'
                   value='Dairy'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setDairy(!dairy)}
+                  style={{ backgroundColor: `${dairy && '#FCBF49'}` }}
+                  onClick={() => setDairy((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Fish'
                   value='Fish'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setFish(!fish)}
+                  style={{ backgroundColor: `${fish && '#FCBF49'}` }}
+                  onClick={() => setFish((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Soy'
                   value='Soy'
                   className='signup3buttonRow signup3button'
-                  onClick={() => setSoy(!soy)}
+                  style={{ backgroundColor: `${soy && '#FCBF49'}` }}
+                  onClick={() => setSoy((state) => !state)}
                 />
               </div>
             </div>
@@ -337,28 +345,31 @@ function Home() {
                 label='Lactose Intolerant'
                 value='Lactose Intolerant'
                 className='signup3buttonCol signup3button'
-                onClick={() => setLactoseIntolerant(!lactoseIntolerant)}
+                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
+                onClick={() => setLactoseIntolerant((state) => !state)}
               />
               <input
                 type='button'
                 label='Vegetarian'
                 value='Vegetarian'
                 className='signup3buttonCol signup3button'
-                onClick={() => setVegetarian(!vegetarian)}
+                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
+                onClick={() => setVegetarian((state) => !state)}
               />
               <input
                 type='button'
                 label='Gluten Free'
                 value='Gluten Free'
                 className='signup3buttonCol signup3button'
-                onClick={() => setGlutenFree(!glutenFree)}
+                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
+                onClick={() => setGlutenFree((state) => !state)}
               />
               <input
                 type='button'
                 label='Vegan'
                 value='Vegan'
                 className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegan && 'yellow'}` }}
+                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
                 onClick={() => setVegan((state) => !state)}
               />
               <input
@@ -366,7 +377,8 @@ function Home() {
                 label='Diabetic'
                 value='Diabetic'
                 className='signup3buttonCol signup3button'
-                onClick={() => setDiabetic(!diabetic)}
+                style={{ backgroundColor: `${diabetic && '#FCBF49'}` }}
+                onClick={() => setDiabetic((state) => !state)}
               />
             </div>
           </div>
