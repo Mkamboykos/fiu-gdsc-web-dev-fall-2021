@@ -239,6 +239,8 @@ function Home() {
   const signUp3Submit = () => {
     console.log(peanuts);
 
+    // pass all the boolean variables to the array of data
+
     setShowSignUp4(true);
     setShowSignUp3(false);
   };
