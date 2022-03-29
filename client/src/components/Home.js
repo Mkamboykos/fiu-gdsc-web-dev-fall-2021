@@ -160,9 +160,14 @@ function Home() {
     );
   };
 
+  var dataObject = {test: 1};
+
   const signUp2Submit = async (data) => {
     if (data) {
+      dataObject.data = data;
+      delete dataObject.test
       console.log(data);
+      console.log(dataObject);
     }
 
     setShowSignUp3(true);
@@ -238,6 +243,22 @@ function Home() {
 
   const signUp3Submit = () => {
     console.log(peanuts);
+    console.log(shellfish);
+    console.log(nuts);
+    console.log(wheat);
+    console.log(eggs);
+    console.log(dairy);
+    console.log(fish);
+    console.log(soy);
+    console.log(lactoseIntolerant);
+    console.log(vegetarian);
+    console.log(glutenFree);
+    console.log(vegan);
+    console.log(diabetic);
+
+    dataObject["diataryRestrictions"][peanuts] = peanuts
+    console.log(dataObject)
+
 
     // pass all the boolean variables to the array of data
 
