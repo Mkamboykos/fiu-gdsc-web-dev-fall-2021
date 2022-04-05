@@ -28,6 +28,9 @@ function Home() {
   const [errMsgReset, setErrMsgReset] = useState('');
   const [errMsgSignUp1, setErrMsgSignUp1] = useState('');
   const [errMsgSignUp2, setErrMsgSignUp2] = useState('');
+
+
+  const [dataObject, setDataObject] = useState({data:{}, peanuts: ""});
   // eslint-disable-next-line no-unused-vars
   const {
     register,
@@ -160,13 +163,10 @@ function Home() {
     );
   };
 
-  var dataObject = {test: 1};
 
   const signUp2Submit = async (data) => {
     if (data) {
-      dataObject.data = data;
-      delete dataObject.test
-      console.log(data);
+      setDataObject({data: data})
       console.log(dataObject);
     }
 
@@ -256,7 +256,7 @@ function Home() {
     console.log(vegan);
     console.log(diabetic);
 
-    dataObject["diataryRestrictions"][peanuts] = peanuts
+    setDataObject({ ...dataObject, peanuts: peanuts});
     console.log(dataObject)
 
 
