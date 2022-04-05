@@ -30,7 +30,7 @@ function Home() {
   const [errMsgSignUp2, setErrMsgSignUp2] = useState('');
 
 
-  const [dataObject, setDataObject] = useState({data:{}, peanuts: ""});
+  const [dataObject, setDataObject] = useState({data:{}, peanuts: false});
   // eslint-disable-next-line no-unused-vars
   const {
     register,
@@ -427,7 +427,7 @@ function Home() {
               onClick={() => setShowSignUp4(false)}
             />
           </div>
-
+          {console.log(dataObject)}
           {/* Use the logic from LoginView to create the Sign up form here */}
 
           <button
