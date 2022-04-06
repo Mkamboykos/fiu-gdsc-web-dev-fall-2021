@@ -59,7 +59,6 @@ function Home() {
   const [peanuts, setPeanuts] = useState(false);
   const [shellfish, setShellfish] = useState(false);
   const [nuts, setNuts] = useState(false);
-
   const [wheat, setWheat] = useState(false);
   const [eggs, setEggs] = useState(false);
   const [dairy, setDairy] = useState(false);
@@ -274,7 +273,7 @@ function Home() {
       vegan: vegan, 
       diabetic: diabetic,
      });
-     
+
     console.log(dataObject)
 
 
