@@ -30,7 +30,23 @@ function Home() {
   const [errMsgSignUp2, setErrMsgSignUp2] = useState('');
 
 
-  const [dataObject, setDataObject] = useState({data:{}, peanuts: false});
+  const [dataObject, setDataObject] = useState({
+    data:{}, 
+    peanuts: false, 
+    shellfish: false, 
+    nuts: false, 
+    wheat: false, 
+    eggs: false, 
+    dairy: false, 
+    fish: false,
+    soy: false,
+    lactoseIntolerant: false,
+    vegetarian: false,
+    glutenFree: false,
+    vegan: false, 
+    diabetic: false
+  });
+  
   // eslint-disable-next-line no-unused-vars
   const {
     register,
@@ -242,21 +258,23 @@ function Home() {
   };
 
   const signUp3Submit = () => {
-    console.log(peanuts);
-    console.log(shellfish);
-    console.log(nuts);
-    console.log(wheat);
-    console.log(eggs);
-    console.log(dairy);
-    console.log(fish);
-    console.log(soy);
-    console.log(lactoseIntolerant);
-    console.log(vegetarian);
-    console.log(glutenFree);
-    console.log(vegan);
-    console.log(diabetic);
 
-    setDataObject({ ...dataObject, peanuts: peanuts});
+    setDataObject({ ...dataObject, 
+      peanuts: peanuts, 
+      shellfish: shellfish, 
+      nuts: nuts, 
+      wheat: wheat, 
+      eggs: eggs, 
+      dairy: dairy, 
+      fish: fish,
+      soy: soy,
+      lactoseIntolerant: lactoseIntolerant,
+      vegetarian: vegetarian,
+      glutenFree: glutenFree,
+      vegan: vegan, 
+      diabetic: diabetic,
+     });
+     
     console.log(dataObject)
 
 
