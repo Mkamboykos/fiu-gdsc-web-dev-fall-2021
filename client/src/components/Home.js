@@ -589,10 +589,11 @@ function Home() {
                 />
               </div>
             </div>
-            <button className='yellowButton' onClick={() => signUp4Submit()}>
+            
+          </div>
+          <button className='yellowButton' onClick={() => signUp4Submit()}>
             Continue
           </button>
-          </div>
         </div>
       </div>
     );
