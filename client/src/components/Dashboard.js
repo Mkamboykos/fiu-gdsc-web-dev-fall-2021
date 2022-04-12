@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {UserAuthenticator} from '../Helpers/UserAuthenticator'
 import logo from '../Images/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
-
+import Axios from 'axios';
 
 function Dashboard(){
 
@@ -16,6 +16,11 @@ function Dashboard(){
     e.preventDefault();
     
     setShowMenu((state) => !state)
+  }
+
+
+  const handleLogout = () =>{
+    Axios.post(`http://localhost:8000/Login/logout/${user.info.username}`)
   }
 
   return (
@@ -37,7 +42,7 @@ function Dashboard(){
                     <div className="profileMenu">
                       <button> Account </button>
                       <button> Settings </button>
-                      <button> Logout </button>
+                      <button onClick={() => handleLogout()}> Logout </button>
                     </div>
                   ) 
                   : (null)
