@@ -429,6 +429,15 @@ p::before {
 }
 
 
+
+/* -------- DASHBOARD ---------- */
+
+.profileMenu{
+  position: fixed;
+  display: grid;
+}
+
+
 @media (min-width: 640px){
   .homeBackground{
     left: 0;
