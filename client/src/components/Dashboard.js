@@ -1,5 +1,7 @@
 import React from 'react';
 import {UserAuthenticator} from '../Helpers/UserAuthenticator'
+import logo from '../Images/logo.svg';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Dashboard(){
 
@@ -11,13 +13,29 @@ function Dashboard(){
 
   return (
     <div>
-      {user.renderPage === true ? 
-          <div>
-            <h1>Dashboard</h1>
-          </div>
-      : ''}
+      {user.renderPage === true ? (
+        <div>
+          <nav>
+            <Link to={`/`}>
+              <img src={logo} alt="logo" className="logoHome" loading="lazy" />
+            </Link>
+            <div className="navButtons">
+              <div className="navButtonRight">
+                <button
+                  onClick={() => setShowLogin(true)}
+                  className="yellowButton navButtonRight"
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
-  )
+  );
 }
 
 export default Dashboard;

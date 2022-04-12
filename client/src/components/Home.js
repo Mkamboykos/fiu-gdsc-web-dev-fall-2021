@@ -45,6 +45,16 @@ function Home() {
     glutenFree: false,
     vegan: false, 
     diabetic: false,
+    spicy: false,
+    pastry: false,
+    vegetables: false,
+    citrus: false,
+    caffeine: false,
+    seafood: false,
+    friedfoods: false,
+    carbonated: false,
+    alcohol: false,
+    highsodium: false
   });
   
   // eslint-disable-next-line no-unused-vars
@@ -69,6 +79,16 @@ function Home() {
   const [glutenFree, setGlutenFree] = useState(false);
   const [vegan, setVegan] = useState(false);
   const [diabetic, setDiabetic] = useState(false);
+  const [spicy, setSpicy] = useState(false);
+  const [pastry, setPastry] = useState(false);
+  const [vegetables, setVegetables] = useState(false);
+  const [citrus, setCitrus] = useState(false);
+  const [caffeine, setCaffeine] = useState(false);
+  const [seafood, setSeafood] = useState(false);
+  const [friedfoods, setFriedfoods] = useState(false);
+  const [carbonated, setCarbonated] = useState(false);
+  const [alcohol, setAlcohol] = useState(false);
+  const [highsodium, setHighSodium] = useState(false);
 
   const signUp1Submit = async (data) => {
     if (data) {
@@ -438,14 +458,16 @@ function Home() {
   const signUp4Submit = () => {
 
     setDataObject({ ...dataObject, 
-      peanuts: peanuts, 
-      shellfish: shellfish, 
-      nuts: nuts, 
-      wheat: wheat, 
-      eggs: eggs, 
-      dairy: dairy, 
-      fish: fish,
-      soy: soy,
+      spicy: spicy,
+      pastry: pastry,
+      vegetables: vegetables,
+      citrus: citrus,
+      caffeine: caffeine,
+      seafood: seafood,
+      friedfoods: friedfoods,
+      carbonated: carbonated,
+      alcohol: alcohol,
+      highsodium: highsodium
      });
 
     console.log(dataObject)
@@ -485,79 +507,92 @@ function Home() {
               <div className='widthstuff'>
                 <input
                   type='button'
-                  label='Peanuts'
-                  value='Peanuts'
+                  label='Spicy'
+                  value='Spicy'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${peanuts && '#FCBF49'}` }}
-                  onClick={() => setPeanuts((state) => !state)}
+                  style={{ backgroundColor: `${spicy && '#FCBF49'}` }}
+                  onClick={() => setSpicy((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Shellfish'
-                  value='Shellfish'
+                  label='Pastry'
+                  value='Pastry'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${shellfish && '#FCBF49'}` }}
-                  onClick={() => setShellfish((state) => !state)}
+                  style={{ backgroundColor: `${pastry && '#FCBF49'}` }}
+                  onClick={() => setPastry((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Nuts'
-                  value='Nuts'
+                  label='Vegetables'
+                  value='Vegetables'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${nuts && '#FCBF49'}` }}
-                  onClick={() => setNuts((state) => !state)}
+                  style={{ backgroundColor: `${vegetables && '#FCBF49'}` }}
+                  onClick={() => setVegetables((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Wheat'
-                  value='Wheat'
+                  label='Citrus'
+                  value='Citrus'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${wheat && '#FCBF49'}` }}
-                  onClick={() => setWheat((state) => !state)}
+                  style={{ backgroundColor: `${citrus && '#FCBF49'}` }}
+                  onClick={() => setCitrus((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Caffeine'
+                  value='Caffeine'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${caffeine && '#FCBF49'}` }}
+                  onClick={() => setCaffeine((state) => !state)}
                 />
               </div>
               <div className='widthstuff'>
                 <input
                   type='button'
-                  label='Eggs'
-                  value='Eggs'
+                  label='Sea Food'
+                  value='Sea Food'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${eggs && '#FCBF49'}` }}
-                  onClick={() => setEggs((state) => !state)}
+                  style={{ backgroundColor: `${seafood && '#FCBF49'}` }}
+                  onClick={() => setSeafood((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Dairy'
-                  value='Dairy'
+                  label='Fried Foods'
+                  value='Fried Foods'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${dairy && '#FCBF49'}` }}
-                  onClick={() => setDairy((state) => !state)}
+                  style={{ backgroundColor: `${friedfoods && '#FCBF49'}` }}
+                  onClick={() => setFriedfoods((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Fish'
-                  value='Fish'
+                  label='Carbonated'
+                  value='Carbonated'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${fish && '#FCBF49'}` }}
-                  onClick={() => setFish((state) => !state)}
+                  style={{ backgroundColor: `${carbonated && '#FCBF49'}` }}
+                  onClick={() => setCarbonated((state) => !state)}
                 />
                 <input
                   type='button'
-                  label='Soy'
-                  value='Soy'
+                  label='Alcohol'
+                  value='Alcohol'
                   className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${soy && '#FCBF49'}` }}
-                  onClick={() => setSoy((state) => !state)}
+                  style={{ backgroundColor: `${alcohol && '#FCBF49'}` }}
+                  onClick={() => setAlcohol((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='High Sodium'
+                  value='High Sodium'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${highsodium && '#FCBF49'}` }}
+                  onClick={() => setHighSodium((state) => !state)}
                 />
               </div>
             </div>
-          </div>
-          <button
-            className='yellowButton'
-            onClick={() => signUp4Submit()}
-          >
-            Continuessss
+            <button className='yellowButton' onClick={() => signUp4Submit()}>
+            Continue
           </button>
+          </div>
         </div>
       </div>
     );
