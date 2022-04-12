@@ -1,43 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
-import homeBackground from '../Images/homeBackground.png'
-import logo from '../Images/logo.svg'
-import exitButton from '../Images/exitButton.svg'
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import homeBackground from '../Images/homeBackground.png';
+import logo from '../Images/logo.svg';
+import exitButton from '../Images/exitButton.svg';
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
-function Home(){
-
+function Home() {
   let navigate = useNavigate();
 
-  const [email, setEmail] = useState()
-  const [code, setCode] = useState()
-  const [showStart, setShowStart] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-  const [showForgot, setShowForgot] = useState(false)
-  const [showEnter, setShowEnter] = useState(false)
-  const [showSignUp2, setShowSignUp2] = useState(false)
-  const [showSignUp3, setShowSignUp3] = useState(false)
-  const [showSignUp4, setShowSignUp4] = useState(false)
-  const [showSignUp5, setShowSignUp5] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
-  const [errMsg, setErrMsg] = useState("")
-  const [errMsgEmail, setErrMsgEmail] = useState("")
-  const [errMsgCode, setErrMsgCode] = useState("")
-  const [errMsgReset, setErrMsgReset] = useState("")
-  const [errMsgSignUp1, setErrMsgSignUp1] = useState("")
-  const [errMsgSignUp2, setErrMsgSignUp2] = useState("")
+  const [email, setEmail] = useState();
+  const [code, setCode] = useState();
+  const [showStart, setShowStart] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
+  const [showEnter, setShowEnter] = useState(false);
+  const [showSignUp2, setShowSignUp2] = useState(false);
+  const [showSignUp3, setShowSignUp3] = useState(false);
+  const [showSignUp4, setShowSignUp4] = useState(false);
+  const [showSignUp5, setShowSignUp5] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+  const [errMsgEmail, setErrMsgEmail] = useState('');
+  const [errMsgCode, setErrMsgCode] = useState('');
+  const [errMsgReset, setErrMsgReset] = useState('');
+  const [errMsgSignUp1, setErrMsgSignUp1] = useState('');
+  const [errMsgSignUp2, setErrMsgSignUp2] = useState('');
+
+
+  const [dataObject, setDataObject] = useState({
+    data:{}, 
+    peanuts: false, 
+    shellfish: false, 
+    nuts: false, 
+    wheat: false, 
+    eggs: false, 
+    dairy: false, 
+    fish: false,
+    soy: false,
+    lactoseIntolerant: false,
+    vegetarian: false,
+    glutenFree: false,
+    vegan: false, 
+    diabetic: false,
+    spicy: false,
+    pastry: false,
+    vegetables: false,
+    citrus: false,
+    caffeine: false,
+    seafood: false,
+    friedfoods: false,
+    carbonated: false,
+    alcohol: false,
+    highsodium: false
+  });
+  
   // eslint-disable-next-line no-unused-vars
-  const {register, handleSubmit, watch, formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   //console.log(watch("Username")); // you can watch individual input by pass the name of the input
 
-
-   const [peanuts, setPeanuts] = useState(false);
+  const [peanuts, setPeanuts] = useState(false);
   const [shellfish, setShellfish] = useState(false);
   const [nuts, setNuts] = useState(false);
-
   const [wheat, setWheat] = useState(false);
   const [eggs, setEggs] = useState(false);
   const [dairy, setDairy] = useState(false);
@@ -48,315 +79,746 @@ function Home(){
   const [glutenFree, setGlutenFree] = useState(false);
   const [vegan, setVegan] = useState(false);
   const [diabetic, setDiabetic] = useState(false);
-
+  const [spicy, setSpicy] = useState(false);
+  const [pastry, setPastry] = useState(false);
+  const [vegetables, setVegetables] = useState(false);
+  const [citrus, setCitrus] = useState(false);
+  const [caffeine, setCaffeine] = useState(false);
+  const [seafood, setSeafood] = useState(false);
+  const [friedfoods, setFriedfoods] = useState(false);
+  const [carbonated, setCarbonated] = useState(false);
+  const [alcohol, setAlcohol] = useState(false);
+  const [highsodium, setHighSodium] = useState(false);
 
   const signUp1Submit = async (data) => {
-    if (data){
-      console.log(data)
+    if (data) {
+      console.log(data);
     }
-      setShowSignUp2(true)
-      setShowStart(false)
-    
-  }
+    setShowSignUp2(true);
+    setShowStart(false);
+  };
 
   // sign up pop-up view
-  const StartHereView = () =>{
-
+  const StartHereView = () => {
     // validation conditional message
-    if(errors?.FullName?.type === "required"){
-      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errors?.Email?.type === "required"){
-      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errors?.Username?.type === "required"){
-      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errMsgSignUp1 !== ""){
+    if (errors?.FullName?.type === 'required') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.Email?.type === 'required') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.Username?.type === 'required') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errMsgSignUp1 !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgSignUp1 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgSignUp1}</p>
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          {errMsgSignUp1}
+        </p>
+      );
     }
 
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowStart(false)}
+            />
           </div>
 
           <div className='loginTitleContainer'>
-            <h1><b>Sign Up</b></h1>
+            <h1>
+              <b>Sign Up</b>
+            </h1>
           </div>
-          <br/>
+          <br />
           <div className='forgotParagraph'>
-            <h5>
-              Let’s get to know you!
-            </h5>
+            <h5>Let’s get to know you!</h5>
           </div>
-          <br/>
+          <br />
           <div className='loginLabelsContainer'>
-              <form onSubmit={handleSubmit(signUp1Submit)}>
-                <div className='loginInputsContainer'>
-                  <input type="text" placeholder="Full Name" {...register("FullName", {required: true, min: 1, message: errMsgSignUp1})}/>
-                  <input type="text" placeholder="Email" {...register("Email", {required: true, min: 1, pattern: /^\S+@\S+$/i, message: errMsgSignUp1})}/>
-                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, message: errMsgSignUp1})}/>
-                  {validationMsgSignUp1}
-                  {/* See more examples at https://react-hook-form.com/ */}
-                </div>
-                <br/>
-                <div className='loginButtonsContainers'>
-                <button className="yellowButton" type='submit' >Continue</button>
-                </div>
-              </form>
-            </div>
+            <form onSubmit={handleSubmit(signUp1Submit)}>
+              <div className='loginInputsContainer'>
+                <input
+                  type='text'
+                  placeholder='Full Name'
+                  {...register('FullName', {
+                    required: true,
+                    min: 1,
+                    message: errMsgSignUp1,
+                  })}
+                />
+                <input
+                  type='text'
+                  placeholder='Email'
+                  {...register('Email', {
+                    required: true,
+                    min: 1,
+                    pattern: /^\S+@\S+$/i,
+                    message: errMsgSignUp1,
+                  })}
+                />
+                <input
+                  type='text'
+                  placeholder='Username'
+                  {...register('Username', {
+                    required: true,
+                    min: 1,
+                    message: errMsgSignUp1,
+                  })}
+                />
+                {validationMsgSignUp1}
+                {/* See more examples at https://react-hook-form.com/ */}
+              </div>
+              <br />
+              <div className='loginButtonsContainers'>
+                <button className='yellowButton' type='submit'>
+                  Continue
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
 
   const signUp2Submit = async (data) => {
-    if (data){
-      console.log(data)
+    if (data) {
+      setDataObject({data: data})
+      console.log(dataObject);
     }
 
-      setShowSignUp3(true)
-      setShowSignUp2(false)
-    
-  }
+    setShowSignUp3(true);
+    setShowSignUp2(false);
+  };
 
   // sign up 2 view
-  const SignUp2View = () =>{
-
+  const SignUp2View = () => {
     // validation conditional message
-    if(errors?.Gender?.type === "required"){
-      var validationMsgSignUp2 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>You must pick an option!</p>
-    }else if(errMsgSignUp2 !== ""){
+    if (errors?.Gender?.type === 'required') {
+      var validationMsgSignUp2 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          You must pick an option!
+        </p>
+      );
+    } else if (errMsgSignUp2 !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgSignUp2 = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgSignUp2}</p>
+      var validationMsgSignUp2 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          {errMsgSignUp2}
+        </p>
+      );
     }
 
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowStart(false) & setShowSignUp2(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowStart(false) & setShowSignUp2(false)}
+            />
           </div>
           <div className='loginTitleContainer'>
-            <h1><b>Sign Up</b></h1>
+            <h1>
+              <b>Sign Up</b>
+            </h1>
           </div>
-          <br/>
+          <br />
           <div className='forgotParagraph'>
-            <h5>
-              Let’s personalize your experience!
-            </h5>
+            <h5>Let’s personalize your experience!</h5>
           </div>
-          <br/>
+          <br />
           <div className='loginLabelsContainer'>
-              <form onSubmit={handleSubmit(signUp2Submit)}>
-                <div className='loginInputsContainer'>
-                  <input type="text" placeholder="Gender" {...register("Gender", {required: true, message: errMsgSignUp2})}/>
-                  {validationMsgSignUp2}
-                  {/* See more examples at https://react-hook-form.com/ */}
-                </div>
-                <br/>
-                <div className='loginButtonsContainers'>
-                <button className="yellowButton" type="submit">Continue</button>
-                </div>
-              </form>
-            </div>
+            <form onSubmit={handleSubmit(signUp2Submit)}>
+              <div className='loginInputsContainer'>
+                <input
+                  type='text'
+                  placeholder='Gender'
+                  {...register('Gender', {
+                    required: true,
+                    message: errMsgSignUp2,
+                  })}
+                />
+                {validationMsgSignUp2}
+                {/* See more examples at https://react-hook-form.com/ */}
+              </div>
+              <br />
+              <div className='loginButtonsContainers'>
+                <button className='yellowButton' type='submit'>
+                  Continue
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const signUp3Submit = () => {
-    console.log(peanuts)
 
-    setShowSignUp4(true)
-    setShowSignUp3(false)
+    setDataObject({ ...dataObject, 
+      peanuts: peanuts, 
+      shellfish: shellfish, 
+      nuts: nuts, 
+      wheat: wheat, 
+      eggs: eggs, 
+      dairy: dairy, 
+      fish: fish,
+      soy: soy,
+      lactoseIntolerant: lactoseIntolerant,
+      vegetarian: vegetarian,
+      glutenFree: glutenFree,
+      vegan: vegan, 
+      diabetic: diabetic,
+     });
 
-  }
+    console.log(dataObject)
+
+
+    // pass all the boolean variables to the array of data
+
+    setShowSignUp4(true);
+    setShowSignUp3(false);
+  };
 
   // sign up 3 view
-  const SignUp3View = () =>{
-
-
-
+  const SignUp3View = () => {
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp3(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowSignUp3(false)}
+            />
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
-          <h1><b>Sign Up</b></h1>
-          <br/>
-          <h6><i>Any allergies or dietary restrictions?</i></h6>
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+          <h6>
+            <i>Any allergies or dietary restrictions?</i>
+          </h6>
 
           <div className='signupFlex'>
-
             <div className='signupFlexRow1'>
               <div className='widthstuff'>
-                <input type="button" label="Peanuts" value="Peanuts" className='signup3buttonRow signup3button' onClick={() => setPeanuts(!peanuts)}/>
-                <input type="button" label="Shellfish" value="Shellfish" className='signup3buttonRow signup3button' onClick={() => setShellfish(!shellfish)}/>
-                <input type="button" label="Nuts" value="Nuts" className='signup3buttonRow signup3button' onClick={() => setNuts(!nuts)}/>
-                <input type="button" label="Wheat" value="Wheat" className='signup3buttonRow signup3button' onClick={() => setWheat(!wheat)}/>
-
+                <input
+                  type='button'
+                  label='Peanuts'
+                  value='Peanuts'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${peanuts && '#FCBF49'}` }}
+                  onClick={() => setPeanuts((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Shellfish'
+                  value='Shellfish'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${shellfish && '#FCBF49'}` }}
+                  onClick={() => setShellfish((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Nuts'
+                  value='Nuts'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${nuts && '#FCBF49'}` }}
+                  onClick={() => setNuts((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Wheat'
+                  value='Wheat'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${wheat && '#FCBF49'}` }}
+                  onClick={() => setWheat((state) => !state)}
+                />
               </div>
               <div className='widthstuff'>
-                <input type="button" label="Eggs" value="Eggs" className='signup3buttonRow signup3button' onClick={() => setEggs(!eggs)}/>
-                <input type="button" label="Dairy" value="Dairy" className='signup3buttonRow signup3button' onClick={() => setDairy(!dairy)}/>
-                <input type="button" label="Fish" value="Fish" className='signup3buttonRow signup3button' onClick={() => setFish(!fish)}/>
-                <input type="button" label="Soy" value="Soy" className='signup3buttonRow signup3button' onClick={() => setSoy(!soy)}/>
+                <input
+                  type='button'
+                  label='Eggs'
+                  value='Eggs'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${eggs && '#FCBF49'}` }}
+                  onClick={() => setEggs((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Dairy'
+                  value='Dairy'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${dairy && '#FCBF49'}` }}
+                  onClick={() => setDairy((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Fish'
+                  value='Fish'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${fish && '#FCBF49'}` }}
+                  onClick={() => setFish((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Soy'
+                  value='Soy'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${soy && '#FCBF49'}` }}
+                  onClick={() => setSoy((state) => !state)}
+                />
               </div>
             </div>
 
             <div>
-              <input type="button" label="Lactose Intolerant" value="Lactose Intolerant" className='signup3buttonCol signup3button' onClick={() => setLactoseIntolerant(!lactoseIntolerant)}/>
-              <input type="button" label="Vegetarian" value="Vegetarian" className='signup3buttonCol signup3button' onClick={() => setVegetarian(!vegetarian)}/>
-              <input type="button" label="Gluten Free" value="Gluten Free" className='signup3buttonCol signup3button' onClick={() => setGlutenFree(!glutenFree)}/>
-              <input type="button" label="Vegan" value="Vegan" className='signup3buttonCol signup3button' onClick={() => setVegan(!vegan)}/>
-              <input type="button" label="Diabetic" value="Diabetic" className='signup3buttonCol signup3button' onClick={() => setDiabetic(!diabetic)}/>
+              <input
+                type='button'
+                label='Lactose Intolerant'
+                value='Lactose Intolerant'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
+                onClick={() => setLactoseIntolerant((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegetarian'
+                value='Vegetarian'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
+                onClick={() => setVegetarian((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Gluten Free'
+                value='Gluten Free'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
+                onClick={() => setGlutenFree((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegan'
+                value='Vegan'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
+                onClick={() => setVegan((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Diabetic'
+                value='Diabetic'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${diabetic && '#FCBF49'}` }}
+                onClick={() => setDiabetic((state) => !state)}
+              />
             </div>
-            
           </div>
-          <button className="yellowButton"  onClick={() => signUp3Submit()}>Continue</button>
+          <button className='yellowButton' onClick={() => signUp3Submit()}>
+            Continue
+          </button>
         </div>
       </div>
-    )
-  }
+    );
+  };
+
+
+
+
+
+
+  const signUp4Submit = () => {
+
+    setDataObject({ ...dataObject, 
+      spicy: spicy,
+      pastry: pastry,
+      vegetables: vegetables,
+      citrus: citrus,
+      caffeine: caffeine,
+      seafood: seafood,
+      friedfoods: friedfoods,
+      carbonated: carbonated,
+      alcohol: alcohol,
+      highsodium: highsodium
+     });
+
+    console.log(dataObject)
+
+
+    // pass all the boolean variables to the array of data
+
+    setShowSignUp5(true)
+    setShowSignUp4(false)
+  };
 
   // sign up 4 view
-  const SignUp4View = () =>{
+  const SignUp4View = () => {
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp4(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowSignUp4(false)}
+            />
           </div>
-
           {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+          <h6>
+            <i>Any allergies or dietary restrictions?</i>
+          </h6>
 
-          <button className="yellowButton" onClick={() => setShowSignUp5(true) & setShowSignUp4(false)}>Continuessss</button>
+          <div className='signupFlex'>
+            <div className='signupFlexRow1'>
+              <div className='widthstuff'>
+                <input
+                  type='button'
+                  label='Spicy'
+                  value='Spicy'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${spicy && '#FCBF49'}` }}
+                  onClick={() => setSpicy((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Pastry'
+                  value='Pastry'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${pastry && '#FCBF49'}` }}
+                  onClick={() => setPastry((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Vegetables'
+                  value='Vegetables'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${vegetables && '#FCBF49'}` }}
+                  onClick={() => setVegetables((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Citrus'
+                  value='Citrus'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${citrus && '#FCBF49'}` }}
+                  onClick={() => setCitrus((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Caffeine'
+                  value='Caffeine'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${caffeine && '#FCBF49'}` }}
+                  onClick={() => setCaffeine((state) => !state)}
+                />
+              </div>
+              <div className='widthstuff'>
+                <input
+                  type='button'
+                  label='Sea Food'
+                  value='Sea Food'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${seafood && '#FCBF49'}` }}
+                  onClick={() => setSeafood((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Fried Foods'
+                  value='Fried Foods'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${friedfoods && '#FCBF49'}` }}
+                  onClick={() => setFriedfoods((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Carbonated'
+                  value='Carbonated'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${carbonated && '#FCBF49'}` }}
+                  onClick={() => setCarbonated((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Alcohol'
+                  value='Alcohol'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${alcohol && '#FCBF49'}` }}
+                  onClick={() => setAlcohol((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='High Sodium'
+                  value='High Sodium'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${highsodium && '#FCBF49'}` }}
+                  onClick={() => setHighSodium((state) => !state)}
+                />
+              </div>
+            </div>
+            <button className='yellowButton' onClick={() => signUp4Submit()}>
+            Continue
+          </button>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
+
+
+
+  const signUp5Submit = () => {
+
+    setDataObject({ ...dataObject, 
+      lactoseIntolerant: lactoseIntolerant,
+      vegetarian: vegetarian,
+      glutenFree: glutenFree,
+      vegan: vegan,
+     });
+
+    console.log(dataObject)
+
+
+    // pass all the boolean variables to the array of data
+    setShowSignUp5(false)
+  };
+
 
   // sign up 5 view
-  const SignUp5View = () =>{
+  const SignUp5View = () => {
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowSignUp5(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowSignUp5(false)}
+            />
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+          <h6>
+            <i>Any allergies or dietary restrictions?</i>
+          </h6>
 
-          <button className="yellowButton" onClick={() => setShowSignUp5(false)}>Submit</button>
+          <div className='signupFlex'>
+            <div>
+              <input
+                type='button'
+                label='Lactose Intolerant'
+                value='Lactose Intolerant'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
+                onClick={() => setLactoseIntolerant((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegetarian'
+                value='Vegetarian'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
+                onClick={() => setVegetarian((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Gluten Free'
+                value='Gluten Free'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
+                onClick={() => setGlutenFree((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegan'
+                value='Vegan'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
+                onClick={() => setVegan((state) => !state)}
+              />
+            </div>
+          </div>
+
+          <button
+            className='yellowButton'
+            onClick={() => signUp5Submit()}
+          >
+            Submit
+          </button>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   // used when forgot password email form gets submitted with Email data
   const forgotEmailSubmit = async (data) => {
-    if (data){
+    if (data) {
       await Axios.post('http://localhost:8000/forget/email', {
-            email: data.Email,
-      }).then(res => {
-        if (res.data.code){
-          setEmail(data.Email)
-          setCode(res.data.code)
-        }
-      }).catch(function (error) {
-        if (error.response) {
-          setErrMsgEmail(error.response.data.error)
-          // console.log(error.response.data.error);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
-        }
+        email: data.Email,
       })
+        .then((res) => {
+          if (res.data.code) {
+            setEmail(data.Email);
+            setCode(res.data.code);
+          }
+        })
+        .catch(function (error) {
+          if (error.response) {
+            setErrMsgEmail(error.response.data.error);
+            // console.log(error.response.data.error);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
+          }
+        });
     }
-  }
+  };
 
   const forgotContinueClick = () => {
-    if(code !== undefined){
-      setShowEnter(true)
-      setShowForgot(false)
-    }else{
-      return
+    if (code !== undefined) {
+      setShowEnter(true);
+      setShowForgot(false);
+    } else {
+      return;
     }
-    console.log(code)
-  }
+    console.log(code);
+  };
 
   // keeps on checking for code
   useEffect(() => {
-    forgotContinueClick()
+    forgotContinueClick();
   });
 
   // forgot password pop-up view
-  const ForgotPasswordView = () =>{
-
+  const ForgotPasswordView = () => {
     // validation conditional message
-    if(errors?.Email?.type === "required"){
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errMsgEmail !== ""){
+    if (errors?.Email?.type === 'required') {
+      var validationMsg = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errMsgEmail !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgEmail}</p>
+      var validationMsg = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          {errMsgEmail}
+        </p>
+      );
     }
 
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowForgot(false)}/> 
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowForgot(false)}
+            />
           </div>
-          <br/>
+          <br />
           <div className='loginTitleContainer'>
-            <h1><b>Forgot</b></h1>
-            <h1><b>Password?</b></h1>
+            <h1>
+              <b>Forgot</b>
+            </h1>
+            <h1>
+              <b>Password?</b>
+            </h1>
           </div>
-          <br/>
+          <br />
           <div className='forgotParagraph'>
             <h5>
-              Don’t worry! Just fill in your email and we’ll send you a link to reset your password.
+              Don’t worry! Just fill in your email and we’ll send you a link to
+              reset your password.
             </h5>
           </div>
-          <br/>
+          <br />
           <div className='loginLabelsContainer'>
-              <form onSubmit={handleSubmit(forgotEmailSubmit)}>
-                <div className='loginInputsContainer'>
-                  <input type="email" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i, message: errMsgEmail})}/>
-                  {validationMsg}    
-                  {/* See more examples at https://react-hook-form.com/ */}
-                </div>
-                <br/>
-                <div className='loginButtonsContainers'>
-                <button className="yellowButton" type='submit'>Continue</button>
-                </div>
-              </form>
-            </div>
+            <form onSubmit={handleSubmit(forgotEmailSubmit)}>
+              <div className='loginInputsContainer'>
+                <input
+                  type='email'
+                  placeholder='Email'
+                  {...register('Email', {
+                    required: true,
+                    pattern: /^\S+@\S+$/i,
+                    message: errMsgEmail,
+                  })}
+                />
+                {validationMsg}
+                {/* See more examples at https://react-hook-form.com/ */}
+              </div>
+              <br />
+              <div className='loginButtonsContainers'>
+                <button className='yellowButton' type='submit'>
+                  Continue
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const enterCodeSubmit = async (data) => {
-    if (data){
-      let combinedCode = parseInt(data.Code1 + data.Code2 + data.Code3 + data.Code4)
-      let codeProvided = code
+    if (data) {
+      let combinedCode = parseInt(
+        data.Code1 + data.Code2 + data.Code3 + data.Code4
+      );
+      let codeProvided = code;
 
       if (combinedCode === codeProvided) {
-        setCode(undefined)
-        setShowNewPassword(true)
-        setShowEnter(false)
-      }else{
-        setErrMsgCode("incorrect code")
+        setCode(undefined);
+        setShowNewPassword(true);
+        setShowEnter(false);
+      } else {
+        setErrMsgCode('incorrect code');
       }
-      console.log(combinedCode)
+      console.log(combinedCode);
     }
-  }
+  };
 
   const handleKeyPressCode = (event) => {
     const form = event.target.form;
@@ -364,201 +826,321 @@ function Home(){
     if (event.key.toLowerCase()) {
       form.elements[index + 1].focus();
     }
-  }
+  };
 
   // const handleAutoKeyPressCode = (event) => {
   //   const form = event.target.form;
   //   let index = [...form].indexOf(event.target);
   // }
-  
-  // enter code pop-up view
-  const EnterCodeView = () =>{
 
-     // validation conditional message
-     if(errors?.Code1?.type === "required"){
-      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errors?.Code2?.type === "required"){
+  // enter code pop-up view
+  const EnterCodeView = () => {
+    // validation conditional message
+    if (errors?.Code1?.type === 'required') {
+      var validationMsgCode = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.Code2?.type === 'required') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errors?.Code3?.type === "required"){
+      var validationMsgCode = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.Code3?.type === 'required') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }else if(errors?.Code4?.type === "required"){
+      var validationMsgCode = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.Code4?.type === 'required') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field Cannot be Empty!</p>
-    }
-    else if(errMsgCode !== ""){
+      var validationMsgCode = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errMsgCode !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgCode = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgCode}</p>
+      var validationMsgCode = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          {errMsgCode}
+        </p>
+      );
     }
 
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setCode(undefined) & setShowEnter(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setCode(undefined) & setShowEnter(false)}
+            />
           </div>
-          <br/>
+          <br />
           <div className='loginTitleContainer'>
-            <h1><b>Enter Code</b></h1>
+            <h1>
+              <b>Enter Code</b>
+            </h1>
           </div>
-          <br/>
+          <br />
           <div className='forgotParagraph'>
             <h5>
-              We’ve sent a four-digit code to the email provided. Please enter the code to reset your password.
+              We’ve sent a four-digit code to the email provided. Please enter
+              the code to reset your password.
             </h5>
           </div>
-          <br/>
-          <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
-              <form onSubmit={handleSubmit(enterCodeSubmit)}>
-                <div className='forgotCodeContainer'>
-                  <div className='forgotCodeRow'>
-                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code1", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code2", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxLength="1" onKeyUp={handleKeyPressCode} className="codeButton" placeholder="" {...register("Code3", {required: true, message: errMsgCode})}/>
-                    <input type="text" maxLength="1" className="codeButton" placeholder="" {...register("Code4", {required: true, message: errMsgCode})}/>                  
-                  </div>
-                  {validationMsgCode}    
-                  {/* See more examples at https://react-hook-form.com/ */}
+          <br />
+          <div
+            className='loginLabelsContainer'
+            style={{ flexDirection: 'column', width: '100%' }}
+          >
+            <form onSubmit={handleSubmit(enterCodeSubmit)}>
+              <div className='forgotCodeContainer'>
+                <div className='forgotCodeRow'>
+                  <input
+                    type='text'
+                    maxLength='1'
+                    onKeyUp={handleKeyPressCode}
+                    className='codeButton'
+                    placeholder=''
+                    {...register('Code1', {
+                      required: true,
+                      message: errMsgCode,
+                    })}
+                  />
+                  <input
+                    type='text'
+                    maxLength='1'
+                    onKeyUp={handleKeyPressCode}
+                    className='codeButton'
+                    placeholder=''
+                    {...register('Code2', {
+                      required: true,
+                      message: errMsgCode,
+                    })}
+                  />
+                  <input
+                    type='text'
+                    maxLength='1'
+                    onKeyUp={handleKeyPressCode}
+                    className='codeButton'
+                    placeholder=''
+                    {...register('Code3', {
+                      required: true,
+                      message: errMsgCode,
+                    })}
+                  />
+                  <input
+                    type='text'
+                    maxLength='1'
+                    className='codeButton'
+                    placeholder=''
+                    {...register('Code4', {
+                      required: true,
+                      message: errMsgCode,
+                    })}
+                  />
                 </div>
+                {validationMsgCode}
+                {/* See more examples at https://react-hook-form.com/ */}
+              </div>
 
-                <br/>
-                <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
-                  <button className="yellowButton">Continue</button>
-                </div>
-              </form>
-            </div>
+              <br />
+              <div
+                className='loginButtonsContainers'
+                style={{ paddingTop: '2rem' }}
+              >
+                <button className='yellowButton'>Continue</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    )
-  }
-
+    );
+  };
 
   const resetFormSubmit = async (data) => {
-    if (data){
+    if (data) {
       await Axios.put(`http://localhost:8000/forget/reset`, {
         email: email,
         resetPassword: data.PasswordReset,
         confirmPassword: data.PasswordConfirm,
-      }).then(res => {
-        if (res.data.code === 200){
-          setShowNewPassword(false)
-        }
-      }).catch(function (error) {
-        if (error.response) {
-          setErrMsgReset(error.response.data.error)
-          // console.log(error.response.data.error);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
-        }
       })
+        .then((res) => {
+          if (res.data.code === 200) {
+            setShowNewPassword(false);
+          }
+        })
+        .catch(function (error) {
+          if (error.response) {
+            setErrMsgReset(error.response.data.error);
+            // console.log(error.response.data.error);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
+          }
+        });
     }
-  }
+  };
 
   // new password pop-up view
-  const NewPasswordView = () =>{
-
-    if(errors?.PasswordReset?.type === "required" || errors?.PasswordConfirm?.type === "required"){
-      var validationMsgReset = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field(s) Cannot be Empty!</p>
-    }else if(errMsgReset !== ""){
+  const NewPasswordView = () => {
+    if (
+      errors?.PasswordReset?.type === 'required' ||
+      errors?.PasswordConfirm?.type === 'required'
+    ) {
+      var validationMsgReset = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field(s) Cannot be Empty!
+        </p>
+      );
+    } else if (errMsgReset !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsgReset = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsgReset}</p>
+      var validationMsgReset = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          {errMsgReset}
+        </p>
+      );
     }
 
     return (
       <div className='startHerePanel'>
         <div className='startHereContainer'>
           <div className='loginExitButtonContainer'>
-            <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowNewPassword(false)}/>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowNewPassword(false)}
+            />
           </div>
-          <br/>
+          <br />
           <div className='loginTitleContainer'>
-            <h1><b>New Password</b></h1>
+            <h1>
+              <b>New Password</b>
+            </h1>
           </div>
-          <br/>
+          <br />
           <div className='forgotParagraph'>
             <h5>
-              Enter your new password make sure to meet the password requirements.
+              Enter your new password make sure to meet the password
+              requirements.
             </h5>
           </div>
-          <br/>
-          <div className='loginLabelsContainer' style={{flexDirection: "column", width: "100%"}}>
-              <form >
-                <div className='loginInputsContainer'>
-                    <input type="text" placeholder="New Password" {...register("PasswordReset", {required: true, min: 1})}/>
-                    <br/>
-                    <input type="text" placeholder="Confirm Password" {...register("PasswordConfirm", {required: true, min: 1, message: errMsgReset})}/>                  
-                  </div>
-                  {validationMsgReset}    
-                <div className='loginButtonsContainers' style={{paddingTop: "2rem"}}>
-                  <button className="yellowButton" type='button' onClick={handleSubmit(resetFormSubmit)}>Submit</button>
-                </div>
-              </form>
-            </div>
-
+          <br />
+          <div
+            className='loginLabelsContainer'
+            style={{ flexDirection: 'column', width: '100%' }}
+          >
+            <form>
+              <div className='loginInputsContainer'>
+                <input
+                  type='text'
+                  placeholder='New Password'
+                  {...register('PasswordReset', { required: true, min: 1 })}
+                />
+                <br />
+                <input
+                  type='text'
+                  placeholder='Confirm Password'
+                  {...register('PasswordConfirm', {
+                    required: true,
+                    min: 1,
+                    message: errMsgReset,
+                  })}
+                />
+              </div>
+              {validationMsgReset}
+              <div
+                className='loginButtonsContainers'
+                style={{ paddingTop: '2rem' }}
+              >
+                <button
+                  className='yellowButton'
+                  type='button'
+                  onClick={handleSubmit(resetFormSubmit)}
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
-
         </div>
       </div>
-    )
-  }
-
-
+    );
+  };
 
   // refresh page
   const refreshPage = () => {
     window.location.reload(false);
-  }
+  };
 
   // used when login form gets submitted with Username and Password data
   const loginFormSubmit = async (data) => {
-    if (data){
+    if (data) {
       await Axios.post('http://localhost:8000/Login/User', {
-            username: data.Username,
-            password: data.Password,
-      }).then(res => {
-        if (res.data.auth === true){
-          authenticateUser()
-        }
-      }).catch(function (error) {
-        if (error.response) {
-          setErrMsg(error.response.data.error)
-          // console.log(error.response.data.error);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
-        }
+        username: data.Username,
+        password: data.Password,
       })
+        .then((res) => {
+          if (res.data.auth === true) {
+            authenticateUser();
+          }
+        })
+        .catch(function (error) {
+          if (error.response) {
+            setErrMsg(error.response.data.error);
+            // console.log(error.response.data.error);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
+          }
+        });
     }
-  }
-
-
+  };
 
   // authenticate the token provided when the login form gets submitted
-  const authenticateUser = () =>{
+  const authenticateUser = () => {
     Axios.get('http://localhost:8000/Login/User')
-    .then(res => {
-      if (res.data.LoggedIn === true){
-        let stringUser = res.data.username
-        redirectUser(stringUser)
-      }else if (res.data.message === "Tokens not present"){
-        refreshPage()
-      }
-    }).catch(error => {
-      console.log(error)
-    })
-  }
-
+      .then((res) => {
+        if (res.data.LoggedIn === true) {
+          let stringUser = res.data.username;
+          redirectUser(stringUser);
+        } else if (res.data.message === 'Tokens not present') {
+          refreshPage();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // login form pop-up view
-  const LoginView = (e) =>{
-
+  const LoginView = (e) => {
     // validation conditional message
-    if(errors?.Password?.type === "required" || errors?.Username?.type === "required"){
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>Field(s) Cannot be Empty!</p>
-    }else if(errMsg !== ""){
+    if (
+      errors?.Password?.type === 'required' ||
+      errors?.Username?.type === 'required'
+    ) {
+      var validationMsg = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field(s) Cannot be Empty!
+        </p>
+      );
+    } else if (errMsg !== '') {
       // eslint-disable-next-line no-redeclare
-      var validationMsg = <p style={{marginTop: "0.6rem", marginBottom: "-0.6rem"}}>{errMsg}</p>
+      var validationMsg = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>{errMsg}</p>
+      );
     }
 
     return (
@@ -566,91 +1148,140 @@ function Home(){
         <div className='loginContainer'>
           <div className='loginFlexContainer'>
             <div className='loginExitButtonContainer'>
-              <img src={exitButton} alt="exit button" loading="lazy" className="exitButton" onClick={() => setShowLogin(false)}/>
+              <img
+                src={exitButton}
+                alt='exit button'
+                loading='lazy'
+                className='exitButton'
+                onClick={() => setShowLogin(false)}
+              />
             </div>
             <div className='loginLogoContainer'>
-              <img src={logo} alt="logo" className='logoLogin' loading="lazy"/>
+              <img src={logo} alt='logo' className='logoLogin' loading='lazy' />
             </div>
-            <br/>
+            <br />
             <div className='loginTitleContainer'>
-              <h1><b>Welcome</b></h1>
+              <h1>
+                <b>Welcome</b>
+              </h1>
             </div>
-            <br/>
+            <br />
             <div className='loginLabelsContainer'>
               <form onSubmit={handleSubmit(loginFormSubmit)}>
                 <div className='loginInputsContainer'>
-                  <input type="text" placeholder="Username" {...register("Username", {required: true, min: 1, pattern: /^([a-zA-Z0-9\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9 _.-]+)$/})}/>
-                  {errors?.Username?.type === "pattern" && (<p>Alphabetical characters only</p>)}
-                  <br/>
-                  <input type="password" placeholder="Password" {...register("Password", {required: true, min: 1, message: errMsg})}/>
-                  {validationMsg}    
+                  <input
+                    type='text'
+                    placeholder='Username'
+                    {...register('Username', {
+                      required: true,
+                      min: 1,
+                      pattern:
+                        /^([a-zA-Z0-9\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9 _.-]+)$/,
+                    })}
+                  />
+                  {errors?.Username?.type === 'pattern' && (
+                    <p>Alphabetical characters only</p>
+                  )}
+                  <br />
+                  <input
+                    type='password'
+                    placeholder='Password'
+                    {...register('Password', {
+                      required: true,
+                      min: 1,
+                      message: errMsg,
+                    })}
+                  />
+                  {validationMsg}
                   {/* See more examples at https://react-hook-form.com/ */}
                 </div>
-                <br/>
+                <br />
                 <div className='loginButtonsContainers'>
-                  <button className="yellowButton loginButtons" onClick={() => setShowStart(true) & setShowLogin(false)}>SIGN UP</button>
-                  <button className="yellowButton loginButtons" type="submit">LOGIN</button> 
+                  <button
+                    className='yellowButton loginButtons'
+                    onClick={() => setShowStart(true) & setShowLogin(false)}
+                  >
+                    SIGN UP
+                  </button>
+                  <button className='yellowButton loginButtons' type='submit'>
+                    LOGIN
+                  </button>
                 </div>
               </form>
             </div>
-            <br/>
+            <br />
             <div>
-              <span onClick={() => setShowForgot(true) & setShowLogin(false)} style={{cursor: "pointer"}}>Forgot Password?</span>
+              <span
+                onClick={() => setShowForgot(true) & setShowLogin(false)}
+                style={{ cursor: 'pointer' }}
+              >
+                Forgot Password?
+              </span>
             </div>
           </div>
-          <hr/>
+          <hr />
           <div>
-            <button>
-              Google
-            </button>
+            <button>Google</button>
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
-
-  // redirect user to their dashboard 
-  const redirectUser = (user) =>{
-    if (user !== "") {
-        return navigate(`/Dashboard/${user}`);
+  // redirect user to their dashboard
+  const redirectUser = (user) => {
+    if (user !== '') {
+      return navigate(`/Dashboard/${user}`);
     }
-  }
-
+  };
 
   // everything starts here
   return (
     <div>
-    
-      {showStart ? <StartHereView/>: ""}
-      {showLogin ? <LoginView/> : ""}
-      {showForgot ? <ForgotPasswordView/> : ""}
-      {showEnter ? <EnterCodeView/> : ""}
-      {showNewPassword ? <NewPasswordView/> : ""}
-      {showSignUp2 ? <SignUp2View/> : ""}
-      {showSignUp3 ? <SignUp3View/> : ""}
-      {showSignUp4 ? <SignUp4View/> : ""}
-      {showSignUp5 ? <SignUp5View/> : ""}
+      {showStart ? <StartHereView /> : ''}
+      {showLogin ? <LoginView /> : ''}
+      {showForgot ? <ForgotPasswordView /> : ''}
+      {showEnter ? <EnterCodeView /> : ''}
+      {showNewPassword ? <NewPasswordView /> : ''}
+      {showSignUp2 ? <SignUp2View /> : ''}
+      {showSignUp3 ? <SignUp3View /> : ''}
+      {showSignUp4 ? <SignUp4View /> : ''}
+      {showSignUp5 ? <SignUp5View /> : ''}
 
       <nav>
         <Link to={`/`}>
-          <img src={logo} alt="logo" className='logoHome' loading="lazy"/>
+          <img src={logo} alt='logo' className='logoHome' loading='lazy' />
         </Link>
         <div className='navButtons'>
-          <Link to={`/About`} style={{textDecoration: "none"}}><button className="yellowButton">About</button></Link>
-          <div className="navButtonRight">
-            <button onClick={() => setShowLogin(true)} className="yellowButton navButtonRight">Login</button>
-          </div> 
+          <Link to={`/About`} style={{ textDecoration: 'none' }}>
+            <button className='yellowButton'>About</button>
+          </Link>
+          <div className='navButtonRight'>
+            <button
+              onClick={() => setShowLogin(true)}
+              className='yellowButton navButtonRight'
+            >
+              Login
+            </button>
+          </div>
         </div>
       </nav>
 
       <div className='startHereButtonPlacement'>
-        <button className="yellowButton" onClick={() => setShowStart(true)}> Start Here </button>
+        <button className='yellowButton' onClick={() => setShowStart(true)}>
+          {' '}
+          Start Here{' '}
+        </button>
       </div>
 
-      <img src={homeBackground} className='homeBackground' alt="" loading="lazy"/>
+      <img
+        src={homeBackground}
+        className='homeBackground'
+        alt=''
+        loading='lazy'
+      />
     </div>
-  )
+  );
 }
 
 export default Home;
