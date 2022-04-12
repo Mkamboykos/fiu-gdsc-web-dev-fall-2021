@@ -44,7 +44,7 @@ function Home() {
     vegetarian: false,
     glutenFree: false,
     vegan: false, 
-    diabetic: false
+    diabetic: false,
   });
   
   // eslint-disable-next-line no-unused-vars
@@ -563,6 +563,25 @@ function Home() {
     );
   };
 
+
+
+  const signUp5Submit = () => {
+
+    setDataObject({ ...dataObject, 
+      lactoseIntolerant: lactoseIntolerant,
+      vegetarian: vegetarian,
+      glutenFree: glutenFree,
+      vegan: vegan,
+     });
+
+    console.log(dataObject)
+
+
+    // pass all the boolean variables to the array of data
+    setShowSignUp5(false)
+  };
+
+
   // sign up 5 view
   const SignUp5View = () => {
     return (
@@ -579,10 +598,54 @@ function Home() {
           </div>
 
           {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+          <h6>
+            <i>Any allergies or dietary restrictions?</i>
+          </h6>
+
+          <div className='signupFlex'>
+            <div>
+              <input
+                type='button'
+                label='Lactose Intolerant'
+                value='Lactose Intolerant'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
+                onClick={() => setLactoseIntolerant((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegetarian'
+                value='Vegetarian'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
+                onClick={() => setVegetarian((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Gluten Free'
+                value='Gluten Free'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
+                onClick={() => setGlutenFree((state) => !state)}
+              />
+              <input
+                type='button'
+                label='Vegan'
+                value='Vegan'
+                className='signup3buttonCol signup3button'
+                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
+                onClick={() => setVegan((state) => !state)}
+              />
+            </div>
+          </div>
 
           <button
             className='yellowButton'
-            onClick={() => setShowSignUp5(false)}
+            onClick={() => signUp5Submit()}
           >
             Submit
           </button>
