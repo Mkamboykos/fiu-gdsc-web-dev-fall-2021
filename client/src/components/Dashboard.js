@@ -22,7 +22,6 @@ function Dashboard(){
             <div className="navButtons">
               <div className="navButtonRight">
                 <button
-                  onClick={() => setShowLogin(true)}
                   className="yellowButton navButtonRight"
                 >
                   Login
