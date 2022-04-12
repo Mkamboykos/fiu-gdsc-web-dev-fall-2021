@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {UserAuthenticator} from '../Helpers/UserAuthenticator'
 import logo from '../Images/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 function Dashboard(){
 
   const user = UserAuthenticator();
 
+  let navigate = useNavigate();
 
+  const [showMenu, setShowMenu] = useState(false);
 
-
+  const handleShowMenu = (e) => {
+    e.preventDefault();
+    
+    setShowMenu((state) => !state)
+  }
 
   return (
     <div>
@@ -21,11 +28,21 @@ function Dashboard(){
             </Link>
             <div className="navButtons">
               <div className="navButtonRight">
-                <button
-                  className="yellowButton navButtonRight"
-                >
+                <button className="yellowButton navButtonRight" onClick={(e) => handleShowMenu(e)}>
                   Login
                 </button>
+
+                { showMenu ? 
+                  (
+                    <div className="profileMenu">
+                      <button> Account </button>
+                      <button> Settings </button>
+                      <button> Logout </button>
+                    </div>
+                  ) 
+                  : (null)
+                }
+                
               </div>
             </div>
           </nav>
