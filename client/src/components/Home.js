@@ -54,7 +54,11 @@ function Home() {
     friedfoods: false,
     carbonated: false,
     alcohol: false,
-    highsodium: false
+    highsodium: false,
+    weightLoss: false,
+    maintainWeight: false,
+    massGaining: false,
+    Fasting: false, 
   });
   
   // eslint-disable-next-line no-unused-vars
@@ -89,6 +93,10 @@ function Home() {
   const [carbonated, setCarbonated] = useState(false);
   const [alcohol, setAlcohol] = useState(false);
   const [highsodium, setHighSodium] = useState(false);
+  const [weightLoss, setWeightLoss] = useState(false);
+  const [maintainWeight, setMaintainWeight] = useState(false);
+  const [massGaining, setMassGaining] = useState(false);
+  const [fasting, setFasting] = useState(false)
 
   const signUp1Submit = async (data) => {
     if (data) {
@@ -638,42 +646,42 @@ function Home() {
           </h1>
           <br />
           <h6>
-            <i>Any allergies or dietary restrictions?</i>
+            <i>What are your goals?</i>
           </h6>
 
           <div className='signupFlex'>
             <div>
               <input
                 type='button'
-                label='Lactose Intolerant'
-                value='Lactose Intolerant'
+                label='Weight Loss'
+                value='Weight Loss'
                 className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
-                onClick={() => setLactoseIntolerant((state) => !state)}
+                style={{ backgroundColor: `${weightLoss && '#FCBF49'}` }}
+                onClick={() => setWeightLoss((state) => !state)}
               />
               <input
                 type='button'
-                label='Vegetarian'
-                value='Vegetarian'
+                label='Maintain Weight'
+                value='Maintain Weight'
                 className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
-                onClick={() => setVegetarian((state) => !state)}
+                style={{ backgroundColor: `${maintainWeight && '#FCBF49'}` }}
+                onClick={() => setMaintainWeight((state) => !state)}
               />
               <input
                 type='button'
-                label='Gluten Free'
-                value='Gluten Free'
+                label='Mass Gaining'
+                value='Mass Gaining'
                 className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
-                onClick={() => setGlutenFree((state) => !state)}
+                style={{ backgroundColor: `${massGaining && '#FCBF49'}` }}
+                onClick={() => massGaining((state) => !state)}
               />
               <input
                 type='button'
-                label='Vegan'
-                value='Vegan'
+                label='Fasting'
+                value='Fasting'
                 className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
-                onClick={() => setVegan((state) => !state)}
+                style={{ backgroundColor: `${fasting && '#FCBF49'}` }}
+                onClick={() => setFasting((state) => !state)}
               />
             </div>
           </div>
