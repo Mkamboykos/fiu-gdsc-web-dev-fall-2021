@@ -74,4 +74,17 @@ router.post('/User', async (req, res) =>{
 
 });
 
+
+
+// logout and remove refresh token
+router.post('/logout/:username', (req, res) => {
+    try{
+        // clear the remembered cookie when logging out
+        // It gets redirected when setting username to undefined it sends it straight to do the login page
+        return res.clearCookie('refresh').json({username: undefined});
+    }catch(e){
+        console.log(e);
+    }
+});
+
 module.exports = router;
