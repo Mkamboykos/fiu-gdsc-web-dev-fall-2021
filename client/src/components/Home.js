@@ -430,6 +430,33 @@ function Home() {
     );
   };
 
+
+
+
+
+
+  const signUp4Submit = () => {
+
+    setDataObject({ ...dataObject, 
+      peanuts: peanuts, 
+      shellfish: shellfish, 
+      nuts: nuts, 
+      wheat: wheat, 
+      eggs: eggs, 
+      dairy: dairy, 
+      fish: fish,
+      soy: soy,
+     });
+
+    console.log(dataObject)
+
+
+    // pass all the boolean variables to the array of data
+
+    setShowSignUp5(true)
+    setShowSignUp4(false)
+  };
+
   // sign up 4 view
   const SignUp4View = () => {
     return (
@@ -444,12 +471,90 @@ function Home() {
               onClick={() => setShowSignUp4(false)}
             />
           </div>
-          {console.log(dataObject)}
           {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+          <h6>
+            <i>Any allergies or dietary restrictions?</i>
+          </h6>
 
+          <div className='signupFlex'>
+            <div className='signupFlexRow1'>
+              <div className='widthstuff'>
+                <input
+                  type='button'
+                  label='Peanuts'
+                  value='Peanuts'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${peanuts && '#FCBF49'}` }}
+                  onClick={() => setPeanuts((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Shellfish'
+                  value='Shellfish'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${shellfish && '#FCBF49'}` }}
+                  onClick={() => setShellfish((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Nuts'
+                  value='Nuts'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${nuts && '#FCBF49'}` }}
+                  onClick={() => setNuts((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Wheat'
+                  value='Wheat'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${wheat && '#FCBF49'}` }}
+                  onClick={() => setWheat((state) => !state)}
+                />
+              </div>
+              <div className='widthstuff'>
+                <input
+                  type='button'
+                  label='Eggs'
+                  value='Eggs'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${eggs && '#FCBF49'}` }}
+                  onClick={() => setEggs((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Dairy'
+                  value='Dairy'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${dairy && '#FCBF49'}` }}
+                  onClick={() => setDairy((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Fish'
+                  value='Fish'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${fish && '#FCBF49'}` }}
+                  onClick={() => setFish((state) => !state)}
+                />
+                <input
+                  type='button'
+                  label='Soy'
+                  value='Soy'
+                  className='signup3buttonRow signup3button'
+                  style={{ backgroundColor: `${soy && '#FCBF49'}` }}
+                  onClick={() => setSoy((state) => !state)}
+                />
+              </div>
+            </div>
+          </div>
           <button
             className='yellowButton'
-            onClick={() => setShowSignUp5(true) & setShowSignUp4(false)}
+            onClick={() => signUp4Submit()}
           >
             Continuessss
           </button>
