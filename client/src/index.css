@@ -8,6 +8,23 @@
 }
 
 /**********************************/
+
+.SignUpInput{
+  border-radius: 18px;
+  padding-left: 1rem;
+  height: 2.5rem;
+  border-color: #FCBF49;
+  border-width: initial;
+  border-left-style: outset;
+  border-top-style: outset;
+  border-bottom-style: inset;
+  border-right-style: inset;
+}
+
+.SignUpInput:focus{
+  border-color: #007bff;
+}
+
 .signupFlex {
   width: 95%;
   display:flex;
@@ -53,6 +70,35 @@
 .signup3button:focus{
   background-color: #FCBF49;
 }
+
+.forgotPassword{
+  font-weight: bold;
+  font-size: large;
+}
+
+.forgotPassword:hover{
+  font-weight: bold;
+  color: #fcbf49;
+}
+
+.googleButton{
+  width: 55%;
+  height: auto;
+  border-radius: 25px;
+  border-color: #ff3f3f;
+  border-style: solid;
+  border-width: 0.3rem;
+  font-size: x-large;
+  font-weight: 700;
+  background-color: #ff3f3f;
+  color: white;
+}
+
+.googleButton:hover{
+  border-color: red;
+  background-color: red;
+}
+
 /*********************************/
 
 *,::after,::before {
@@ -194,7 +240,7 @@ p::before {
   width: 36vh;
   height: auto;
   padding-top: 2rem;
-  padding-bottom:2rem;
+  padding-bottom:1rem;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;;
@@ -283,6 +329,10 @@ p::before {
   padding-top: 4px;
   padding-bottom: 5px;
   z-index: 0;
+}
+
+.yellowButton:hover{
+  background-color: #ffa800;
 }
 
 .navButtons{

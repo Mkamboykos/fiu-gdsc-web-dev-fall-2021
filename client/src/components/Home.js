@@ -21,6 +21,7 @@ function Home() {
   const [showSignUp3, setShowSignUp3] = useState(false);
   const [showSignUp4, setShowSignUp4] = useState(false);
   const [showSignUp5, setShowSignUp5] = useState(false);
+  const [showSignUp6, setShowSignUp6] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const [errMsgEmail, setErrMsgEmail] = useState('');
@@ -54,7 +55,11 @@ function Home() {
     friedfoods: false,
     carbonated: false,
     alcohol: false,
-    highsodium: false
+    highsodium: false,
+    weightLoss: false,
+    maintaingWeight: false,
+    massGaining: false,
+    fasting: false
   });
   
   // eslint-disable-next-line no-unused-vars
@@ -89,6 +94,10 @@ function Home() {
   const [carbonated, setCarbonated] = useState(false);
   const [alcohol, setAlcohol] = useState(false);
   const [highsodium, setHighSodium] = useState(false);
+  const [weightLoss, setWeightLoss] = useState(false);
+  const [maintaingWeight, setMaintaingWeight] = useState(false);
+  const [massGaining, setMassGaining] = useState(false);
+  const [fasting, setFasting] = useState(false);
 
   const signUp1Submit = async (data) => {
     if (data) {
@@ -107,13 +116,31 @@ function Home() {
           Field Cannot be Empty!
         </p>
       );
-    } else if (errors?.Email?.type === 'required') {
+    } else if (errors?.email?.type === 'required') {
       var validationMsgSignUp1 = (
         <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
           Field Cannot be Empty!
         </p>
       );
-    } else if (errors?.Username?.type === 'required') {
+    } else if (errors?.email?.type === 'pattern') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Enter a Valid Email!
+        </p>
+      );
+    } else if (errors?.username?.type === 'required') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.createPassword?.type === 'required') {
+      var validationMsgSignUp1 = (
+        <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
+          Field Cannot be Empty!
+        </p>
+      );
+    } else if (errors?.confirmPassword?.type === 'required') {
       var validationMsgSignUp1 = (
         <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
           Field Cannot be Empty!
@@ -154,34 +181,62 @@ function Home() {
           <div className='loginLabelsContainer'>
             <form onSubmit={handleSubmit(signUp1Submit)}>
               <div className='loginInputsContainer'>
-                <input
+                <input 
+                  className='SignUpInput'
                   type='text'
                   placeholder='Full Name'
-                  {...register('FullName', {
+                  {...register('fullName', {
                     required: true,
                     min: 1,
                     message: errMsgSignUp1,
                   })}
                 />
+                {<br/>}
                 <input
-                  type='text'
+                  className='SignUpInput'
+                  type='email'
                   placeholder='Email'
-                  {...register('Email', {
+                  {...register('email', {
                     required: true,
                     min: 1,
                     pattern: /^\S+@\S+$/i,
                     message: errMsgSignUp1,
                   })}
                 />
+                {<br/>}
                 <input
+                  className='SignUpInput'
                   type='text'
                   placeholder='Username'
-                  {...register('Username', {
+                  {...register('username', {
                     required: true,
                     min: 1,
                     message: errMsgSignUp1,
                   })}
                 />
+                {<br/>}
+                <input
+                  className='SignUpInput'
+                  type='password'
+                  placeholder='Create Password'
+                  {...register('createPassword', {
+                    required: true,
+                    min: 1,
+                    message: errMsgSignUp1,
+                  })}
+                />
+                {<br/>}
+                <input
+                  className='SignUpInput'
+                  type='password'
+                  placeholder='Confirm Password'
+                  {...register('confirmPassword', {
+                    required: true,
+                    min: 1,
+                    message: errMsgSignUp1,
+                  })}
+                />
+                {<br/>}
                 {validationMsgSignUp1}
                 {/* See more examples at https://react-hook-form.com/ */}
               </div>
@@ -202,7 +257,7 @@ function Home() {
   const signUp2Submit = async (data) => {
     if (data) {
       setDataObject({data: data})
-      console.log(dataObject);
+      console.log(data);
     }
 
     setShowSignUp3(true);
@@ -212,7 +267,7 @@ function Home() {
   // sign up 2 view
   const SignUp2View = () => {
     // validation conditional message
-    if (errors?.Gender?.type === 'required') {
+    if (errors?.gender?.type === 'required') {
       var validationMsgSignUp2 = (
         <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
           You must pick an option!
@@ -252,14 +307,138 @@ function Home() {
           <div className='loginLabelsContainer'>
             <form onSubmit={handleSubmit(signUp2Submit)}>
               <div className='loginInputsContainer'>
+                <select className='SignUpInput' {...register("gender", { required: true, message: errMsgSignUp2 })}>
+                  <option value="">Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                {<br/>}
                 <input
-                  type='text'
-                  placeholder='Gender'
-                  {...register('Gender', {
+                  className='SignUpInput'
+                  type='number'
+                  placeholder='Age'
+                  {...register('age', {
                     required: true,
                     message: errMsgSignUp2,
                   })}
                 />
+                {<br/>}
+                <select className='SignUpInput' {...register("height", { required: true, message: errMsgSignUp2 })}>
+                  <option value="">Height</option>
+                  <option value="4'11 ft / 1.50 m">4'11 ft / 1.50 m</option>
+                  <option value="5'0 ft / 1.52 m">5'0 ft / 1.52 m</option>
+                  <option value="5'1 ft / 1.55 m">5'1 ft / 1.55 m</option>
+                  <option value="5'2 ft / 1.57 m">5'2 ft / 1.57 m</option>
+                  <option value="5'3 ft / 1.60 m">5'3 ft / 1.60 m</option>
+                  <option value="5'4 ft / 1.62 m">5'4 ft / 1.62 m</option>
+                  <option value="5'5 ft / 1.65 m">5'5 ft / 1.65 m</option>
+                  <option value="5'6 ft / 1.68 m">5'6 ft / 1.68 m</option>
+                  <option value="5'7 ft / 1.70 m">5'7 ft / 1.70 m</option>
+                  <option value="5'8 ft / 1.73 m">5'8 ft / 1.73 m</option>
+                  <option value="5'9 ft / 1.75 m">5'9 ft / 1.75 m</option>
+                  <option value="5'10 ft / 1.78 m">5'10 ft / 1.78 m</option>
+                  <option value="5'11 ft / 1.80 m">5'11 ft / 1.80 m</option>
+                  <option value="6'0 ft / 1.83 m">6'0 ft / 1.83 m</option>
+                  <option value="6'1 ft / 1.85 m">6'1 ft / 1.85 m</option>
+                  <option value="6'2 ft / 1.88 m">6'2 ft / 1.88 m</option>
+                  <option value="6'3 ft / 1.91 m">6'3 ft / 1.91 m</option>
+                  <option value="6'4 ft / 1.93 m">6'4 ft / 1.93 m</option>
+                </select>
+                {<br/>}
+                <select className='SignUpInput' {...register("weight", { required: true, message: errMsgSignUp2 })}>
+                  <option value="">Weight</option>
+                  <option value="90 lb / 40.8 kg">90 lb / 40.8 kg</option>
+                  <option value="100 lb / 45.4 kg">100 lb / 45.4 kg</option>
+                  <option value="110 lb / 49.9 kg">110 lb / 49.9 kg</option>
+                  <option value="120 lb / 54.4 kg">120 lb / 54.4 kg</option>
+                  <option value="130 lb / 58.9 kg">130 lb / 58.9 kg</option>
+                  <option value="140 lb / 63.5 kg">140 lb / 63.5 kg</option>
+                  <option value="150 lb / 68.0 kg">150 lb / 68.0 kg</option>
+                  <option value="160 lb / 72.6 kg">160 lb / 72.6 kg</option>
+                  <option value="170 lb / 77.1 kg">170 lb / 77.1 kg</option>
+                  <option value="180 lb / 81.6 kg">180 lb / 81.6 kg</option>
+                  <option value="190 lb / 86.2 kg">190 lb / 86.2 kg</option>
+                  <option value="200 lb / 90.7 kg">200 lb / 90.7 kg</option>
+                  <option value="210 lb / 95.3 kg">210 lb / 95.3 kg</option>
+                  <option value="220 lb / 99.8 kg">220 lb / 99.8 kg</option>
+                  <option value="230 lb / 104.3 kg">230 lb / 104.3 kg</option>
+                  <option value="240 lb / 108.9 kg">240 lb / 108.9 kg</option>
+                  <option value="250 lb / 113.4 kg">250 lb / 113.4 kg</option>
+                  <option value="260 lb / 117.9 kg">260 lb / 117.9 kg</option>
+                </select>
+                {<br/>}
+                <select className='SignUpInput' {...register("activityLevel", { required: true, message: errMsgSignUp2 })}>
+                  <option value="">Activity Level</option>
+                  <option value="stationary">Stationary</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="active">Active</option>
+                </select>
+                {<br/>}
+                <select className='SignUpInput' {...register("state", { required: true, message: errMsgSignUp2 })}>
+                  <option value="">State Level</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AR</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MI</option>
+                  <option value="MT">MN</option>
+                  <option value="NE">MS</option>
+                  <option value="NV">NV</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                </select>
+                {<br/>}
+                <input
+                  className='SignUpInput'
+                  type='text'
+                  placeholder='City'
+                  {...register('city', {
+                    required: true,
+                    message: errMsgSignUp2,
+                  })}
+                />
+                {<br/>}
+
                 {validationMsgSignUp2}
                 {/* See more examples at https://react-hook-form.com/ */}
               </div>
@@ -327,39 +506,39 @@ function Home() {
             <i>Any allergies or dietary restrictions?</i>
           </h6>
 
-          <div className='signupFlex'>
+          <div className='signupFlex' style={{paddingTop: "1rem", paddingBottom: "1rem"}}>
             <div className='signupFlexRow1'>
               <div className='widthstuff'>
                 <input
                   type='button'
                   label='Peanuts'
                   value='Peanuts'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${peanuts && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${peanuts && '#FCBF49'}` }}
                   onClick={() => setPeanuts((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Shellfish'
                   value='Shellfish'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${shellfish && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${shellfish && '#FCBF49'}` }}
                   onClick={() => setShellfish((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Nuts'
                   value='Nuts'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${nuts && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${nuts && '#FCBF49'}` }}
                   onClick={() => setNuts((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Wheat'
                   value='Wheat'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${wheat && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${wheat && '#FCBF49'}` }}
                   onClick={() => setWheat((state) => !state)}
                 />
               </div>
@@ -368,32 +547,32 @@ function Home() {
                   type='button'
                   label='Eggs'
                   value='Eggs'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${eggs && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${eggs && '#FCBF49'}` }}
                   onClick={() => setEggs((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Dairy'
                   value='Dairy'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${dairy && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${dairy && '#FCBF49'}` }}
                   onClick={() => setDairy((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Fish'
                   value='Fish'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${fish && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${fish && '#FCBF49'}` }}
                   onClick={() => setFish((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Soy'
                   value='Soy'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${soy && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${soy && '#FCBF49'}` }}
                   onClick={() => setSoy((state) => !state)}
                 />
               </div>
@@ -404,40 +583,40 @@ function Home() {
                 type='button'
                 label='Lactose Intolerant'
                 value='Lactose Intolerant'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
                 onClick={() => setLactoseIntolerant((state) => !state)}
               />
               <input
                 type='button'
                 label='Vegetarian'
                 value='Vegetarian'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${vegetarian && '#FCBF49'}` }}
                 onClick={() => setVegetarian((state) => !state)}
               />
               <input
                 type='button'
                 label='Gluten Free'
                 value='Gluten Free'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${glutenFree && '#FCBF49'}` }}
                 onClick={() => setGlutenFree((state) => !state)}
               />
               <input
                 type='button'
                 label='Vegan'
                 value='Vegan'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${vegan && '#FCBF49'}` }}
                 onClick={() => setVegan((state) => !state)}
               />
               <input
                 type='button'
                 label='Diabetic'
                 value='Diabetic'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${diabetic && '#FCBF49'}` }}
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${diabetic && '#FCBF49'}` }}
                 onClick={() => setDiabetic((state) => !state)}
               />
             </div>
@@ -503,46 +682,48 @@ function Home() {
           </h6>
 
           <div className='signupFlex'>
+            {<br/>}
             <div className='signupFlexRow1'>
               <div className='widthstuff'>
+              
                 <input
                   type='button'
                   label='Spicy'
                   value='Spicy'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${spicy && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${spicy && '#FCBF49'}` }}
                   onClick={() => setSpicy((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Pastry'
                   value='Pastry'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${pastry && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${pastry && '#FCBF49'}` }}
                   onClick={() => setPastry((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Vegetables'
                   value='Vegetables'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${vegetables && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${vegetables && '#FCBF49'}` }}
                   onClick={() => setVegetables((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Citrus'
                   value='Citrus'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${citrus && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${citrus && '#FCBF49'}` }}
                   onClick={() => setCitrus((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Caffeine'
                   value='Caffeine'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${caffeine && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${caffeine && '#FCBF49'}` }}
                   onClick={() => setCaffeine((state) => !state)}
                 />
               </div>
@@ -551,44 +732,47 @@ function Home() {
                   type='button'
                   label='Sea Food'
                   value='Sea Food'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${seafood && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${seafood && '#FCBF49'}` }}
                   onClick={() => setSeafood((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Fried Foods'
                   value='Fried Foods'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${friedfoods && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${friedfoods && '#FCBF49'}` }}
                   onClick={() => setFriedfoods((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Carbonated'
                   value='Carbonated'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${carbonated && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${carbonated && '#FCBF49'}` }}
                   onClick={() => setCarbonated((state) => !state)}
                 />
                 <input
                   type='button'
                   label='Alcohol'
                   value='Alcohol'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${alcohol && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${alcohol && '#FCBF49'}` }}
                   onClick={() => setAlcohol((state) => !state)}
                 />
                 <input
                   type='button'
                   label='High Sodium'
                   value='High Sodium'
-                  className='signup3buttonRow signup3button'
-                  style={{ backgroundColor: `${highsodium && '#FCBF49'}` }}
+                  className='signup3buttonRow signup3button SignUpInput'
+                  style={{paddingLeft: 0, backgroundColor: `${highsodium && '#FCBF49'}` }}
                   onClick={() => setHighSodium((state) => !state)}
                 />
+                
               </div>
             </div>
+
+            {<br/>}
             <button className='yellowButton' onClick={() => signUp4Submit()}>
             Continue
           </button>
@@ -603,17 +787,16 @@ function Home() {
   const signUp5Submit = () => {
 
     setDataObject({ ...dataObject, 
-      lactoseIntolerant: lactoseIntolerant,
-      vegetarian: vegetarian,
-      glutenFree: glutenFree,
-      vegan: vegan,
+      weightLoss: weightLoss,
+      maintaingWeight: maintaingWeight,
+      massGaining: massGaining,
+      fasting: fasting,
      });
-
-    console.log(dataObject)
 
 
     // pass all the boolean variables to the array of data
     setShowSignUp5(false)
+    setShowSignUp6(true)
   };
 
 
@@ -643,44 +826,107 @@ function Home() {
 
           <div className='signupFlex'>
             <div>
+            {<br/>}
               <input
                 type='button'
-                label='Lactose Intolerant'
-                value='Lactose Intolerant'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${lactoseIntolerant && '#FCBF49'}` }}
-                onClick={() => setLactoseIntolerant((state) => !state)}
+                label='Weight Loss'
+                value='Weight Loss'
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${weightLoss && '#FCBF49'}` }}
+                onClick={() => setWeightLoss((state) => !state)}
               />
               <input
                 type='button'
-                label='Vegetarian'
-                value='Vegetarian'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegetarian && '#FCBF49'}` }}
-                onClick={() => setVegetarian((state) => !state)}
+                label='Maintain Weight'
+                value='Maintain Weight'
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${maintaingWeight && '#FCBF49'}` }}
+                onClick={() => setMaintaingWeight((state) => !state)}
               />
               <input
                 type='button'
-                label='Gluten Free'
-                value='Gluten Free'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${glutenFree && '#FCBF49'}` }}
-                onClick={() => setGlutenFree((state) => !state)}
+                label='Mass Gaining'
+                value='Mass Gaining'
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${massGaining && '#FCBF49'}` }}
+                onClick={() => setMassGaining((state) => !state)}
               />
               <input
                 type='button'
-                label='Vegan'
-                value='Vegan'
-                className='signup3buttonCol signup3button'
-                style={{ backgroundColor: `${vegan && '#FCBF49'}` }}
-                onClick={() => setVegan((state) => !state)}
+                label='Fasting'
+                value='Fasting'
+                className='signup3buttonCol signup3button SignUpInput'
+                style={{paddingLeft: 0, backgroundColor: `${fasting && '#FCBF49'}` }}
+                onClick={() => setFasting((state) => !state)}
               />
+              {<br/>}
             </div>
           </div>
 
           <button
             className='yellowButton'
             onClick={() => signUp5Submit()}
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+
+  // Signup 6 view
+  const signUp6Submit = async () => {
+
+    {console.log(dataObject)}
+
+     await Axios.post('http://localhost:8000/Register/basicInfo', {
+      dataObject: dataObject
+    })
+      .then((res) => {
+        if (res.data === "User Successfully Created") {
+          console.log("done")
+        }
+      })
+      .catch(function (error) {
+        if (error.response) {
+          // setErrMsg(error.response.data.error);
+          console.log(error.response.data.error);
+          // console.log(error.response.status);
+          // console.log(error.response.headers);
+        }
+      });
+
+
+    // pass all the boolean variables to the array of data
+    setShowSignUp6(false)
+  };
+
+
+  // sign up 6 view
+  const SignUp6View = () => {
+    return (
+      <div className='startHerePanel'>
+        <div className='startHereContainer'>
+          <div className='loginExitButtonContainer'>
+            <img
+              src={exitButton}
+              alt='exit button'
+              loading='lazy'
+              className='exitButton'
+              onClick={() => setShowSignUp5(false)}
+            />
+          </div>
+
+          {/* Use the logic from LoginView to create the Sign up form here */}
+          <h1>
+            <b>Sign Up</b>
+          </h1>
+          <br />
+
+          <button
+            className='yellowButton'
+            onClick={() => signUp6Submit()}
           >
             Submit
           </button>
@@ -1089,8 +1335,8 @@ function Home() {
   const loginFormSubmit = async (data) => {
     if (data) {
       await Axios.post('http://localhost:8000/Login/User', {
-        username: data.Username,
-        password: data.Password,
+        username: data.UsernameLogin,
+        password: data.PasswordLogin,
       })
         .then((res) => {
           if (res.data.auth === true) {
@@ -1128,8 +1374,8 @@ function Home() {
   const LoginView = (e) => {
     // validation conditional message
     if (
-      errors?.Password?.type === 'required' ||
-      errors?.Username?.type === 'required'
+      errors?.PasswordLogin?.type === 'required' ||
+      errors?.UsernameLogin?.type === 'required'
     ) {
       var validationMsg = (
         <p style={{ marginTop: '0.6rem', marginBottom: '-0.6rem' }}>
@@ -1170,9 +1416,10 @@ function Home() {
               <form onSubmit={handleSubmit(loginFormSubmit)}>
                 <div className='loginInputsContainer'>
                   <input
+                    className='SignUpInput'
                     type='text'
                     placeholder='Username'
-                    {...register('Username', {
+                    {...register('UsernameLogin', {
                       required: true,
                       min: 1,
                       pattern:
@@ -1184,9 +1431,10 @@ function Home() {
                   )}
                   <br />
                   <input
+                     className='SignUpInput'
                     type='password'
                     placeholder='Password'
-                    {...register('Password', {
+                    {...register('PasswordLogin', {
                       required: true,
                       min: 1,
                       message: errMsg,
@@ -1203,7 +1451,7 @@ function Home() {
                   >
                     SIGN UP
                   </button>
-                  <button className='yellowButton loginButtons' type='submit'>
+                  <button className='yellowButton loginButtons' type='submit' style={{width: "6.5rem"}}>
                     LOGIN
                   </button>
                 </div>
@@ -1212,6 +1460,7 @@ function Home() {
             <br />
             <div>
               <span
+                className="forgotPassword"
                 onClick={() => setShowForgot(true) & setShowLogin(false)}
                 style={{ cursor: 'pointer' }}
               >
@@ -1221,7 +1470,7 @@ function Home() {
           </div>
           <hr />
           <div>
-            <button>Google</button>
+            <button className='googleButton'>Google</button>
           </div>
         </div>
       </div>
@@ -1247,6 +1496,7 @@ function Home() {
       {showSignUp3 ? <SignUp3View /> : ''}
       {showSignUp4 ? <SignUp4View /> : ''}
       {showSignUp5 ? <SignUp5View /> : ''}
+      {showSignUp6 ? <SignUp6View /> : ''}
 
       <nav>
         <Link to={`/`}>
@@ -1268,7 +1518,7 @@ function Home() {
       </nav>
 
       <div className='startHereButtonPlacement'>
-        <button className='yellowButton' onClick={() => setShowStart(true)}>
+        <button className='yellowButton' onClick={() => setShowStart(true)} style={{backgroundColor: "#921c06"}}>
           {' '}
           Start Here{' '}
         </button>

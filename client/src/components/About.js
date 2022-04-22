@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import homeBackground from '../Images/homeBackground.png'
 import logo from '../Images/logo.svg'
 
 function About(){
 
+    const [description, setDescription] = useState("We are the Google Developer Student Club Web Development Team at Florida International University! Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application. College Budgeter is a passion project that is built for college students by college students.");
 
     const AboutContainer = () =>{
         return (
@@ -65,14 +66,7 @@ function About(){
                         </div>
                         <div className='aboutRightText'>
                             <h5 className='font-inherit'>
-                                We are the Google Developer Student Club Web Development Team at Florida International University!
-                                <br/>
-                                <br/>
-                                Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application.
-                                <br/>
-                                <br/>
-                                College Budgeter is a passion project that 
-                                is built for college students by college students. 
+                                {description} 
                             </h5>
                         </div>
                     </div>

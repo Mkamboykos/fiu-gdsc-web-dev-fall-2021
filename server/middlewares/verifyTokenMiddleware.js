@@ -13,7 +13,7 @@ function authenticateToken(req, res, next){
         if (authHeaders){
             // iterate through every cookie, find 'access' cookie
             for (let i=0; i < authHeaders.length; i++){  
-                console.log([...authHeaders][i])
+                //console.log([...authHeaders][i])
                 if (([...authHeaders][i].includes('access')) === true){
                     if (i !== authHeaders.length -1){
                         authHeaderAccessSlided = [...authHeaders][i].slice(7).slice(0, -1)
@@ -68,7 +68,7 @@ function authenticateToken(req, res, next){
                             if (err){
                                 res.json({message: "Invalid Access Token"});
                             }else if(authData){
-                                console.log("New Access Token Valid")
+                                //console.log("New Access Token Valid")
                                 req.user = authData
                                 next()
                             }
@@ -76,7 +76,7 @@ function authenticateToken(req, res, next){
                     }
                 })
             }else if (authData){
-                console.log("Access Token Valid ")
+                //console.log("Access Token Valid ")
                 // if access token is verified, pass the user information from the token to the req.user
                 req.user = authData
                 next()

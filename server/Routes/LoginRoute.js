@@ -56,15 +56,16 @@ router.post('/User', async (req, res) =>{
 	// Check if user exists in the database
 	const userExist = await User.findOne({username: username});
 
+    console.log(userExist)
 	if(!userExist){
 		res.status("422").json({error:'Wrong Username or Password combination!'});
 	}else{
 		// compare the password field being passed and the current password of userExist
-		await bcrypt.compare(password, userExist.password).then((match) =>{
+		await bcrypt.compare(password, userExist.personal.password).then((match) =>{
 			if(!match){
 				res.status(422).json({error:'Wrong Username or Password combination!'})
 			}else{
-				const user = {id: userExist._id, name: userExist.username};
+				const user = {id: userExist._id, name: userExist.personal.username};
 				tokensFunction(res, user);
 			}
 		}).catch(e =>{
