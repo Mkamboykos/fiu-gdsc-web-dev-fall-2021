@@ -4,11 +4,13 @@ import { useForm } from 'react-hook-form';
 import homeBackground from '../Images/homeBackground.png';
 import logo from '../Images/logo.svg';
 import exitButton from '../Images/exitButton.svg';
+import {UserAuthenticator} from '../Helpers/UserAuthenticator'
 import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
 function Home() {
+
   let navigate = useNavigate();
 
   const [email, setEmail] = useState();
@@ -1484,6 +1486,18 @@ function Home() {
     }
   };
 
+  // checks if the user is still logged in
+  const checkLoggedIn = async () => {
+    await Axios.get('http://localhost:8000/Login/User')
+     .then((res) => {
+       if (res.data.LoggedIn) {
+         redirectUser(res.data.username)
+       }else{
+         return
+       }
+    })
+  };
+
   // everything starts here
   return (
     <div>
@@ -1508,7 +1522,7 @@ function Home() {
           </Link>
           <div className='navButtonRight'>
             <button
-              onClick={() => setShowLogin(true)}
+              onClick={() => setShowLogin(true) & checkLoggedIn()}
               className='yellowButton navButtonRight'
             >
               Login
