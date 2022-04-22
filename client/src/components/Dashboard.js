@@ -42,9 +42,9 @@ function Dashboard(){
                 { showMenu ? 
                   (
                     <div className="profileMenu">
-                      <button> Account </button>
-                      <button> Settings </button>
-                      <button onClick={() => handleLogout()}> Logout </button>
+                      <button className='dashboardProfileButton' style={{borderTopLeftRadius: "10px", borderTopRightRadius: "10px"}}> Account </button>
+                      <button className='dashboardProfileButton'> Settings </button>
+                      <button className='dashboardProfileButton' style={{borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"}} onClick={() => handleLogout()}> Logout </button>
                     </div>
                   ) 
                   : (null)
