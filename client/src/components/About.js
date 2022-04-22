@@ -4,6 +4,7 @@ import homeBackground from '../Images/homeBackground.png'
 import logo from '../Images/logo.svg'
 import ManuelKamboykos from '../Images/ManuelKamboykos.jpg'
 import ManeyWu from '../Images/ManeyWu.png'
+import IanPalencia from '../Images/IanPalencia.jpeg'
 
 
 function About(){
@@ -48,6 +49,14 @@ function About(){
      Greatest thanks goes to my mentor Manuel Kamboykos, truly an inspiring person to learn from and an honor to work with.
     </div>
 
+    const IanTitle = <div>Ian Palencia</div>
+    const IanDescription = <div className='aboutDefaulDescription'>
+     Currently a junior at FIU, majoring in Computer Science.
+     <br/><br/>
+     I like turtles.
+     <br/><br/>
+    </div>
+
     const AboutContainer = () =>{
         return (
           <div className='aboutPageContainer'>
@@ -56,12 +65,14 @@ function About(){
                     <div className='aboutLeftCirclePanel1'>
                         <img src={ManuelKamboykos} className="aboutPicture" onClick={() => setTitle(ManuelTitle) & setDescription(ManuelDescription)}/>
                         <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(ManeyTitle) & setDescription(ManeyDescription)}/>
-                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(JohnnyTitle) & setDescription(JohnnyDescription)}/>
+                        <img src={IanPalencia} className="aboutPicture" onClick={() => setTitle(IanTitle) & setDescription(IanDescription)}/>
                     </div>
                     <div className='aboutLeftCirclePanel1'>
-                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(ManeyTitle) & setDescription(ManeyDescription)}/>
-                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(JohnnyTitle) & setDescription(JohnnyDescription)}/>
+                        <button className="aboutPicture">
                             
+                        </button>
+
+                        <img  className="aboutPicture" onClick={() => setTitle(JohnnyTitle) & setDescription(JohnnyDescription)}/>
                         
                         <button className="aboutPicture">
                             
