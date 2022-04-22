@@ -22,7 +22,7 @@
 }
 
 .SignUpInput:focus{
-  border-color: #007bff;
+  border-color: #fcbf49;
 }
 
 .signupFlex {
@@ -105,6 +105,43 @@
   background-color: red;
 }
 
+.profileButton{
+  display: flex;
+  border-radius: 25px;
+  background-color: #FCBF49;
+  border: none;
+  color: white;
+  font-size: xxx-large;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  z-index: 0;
+}
+
+.yellowBackground{
+  width: 100%;
+  height: 100%;
+  padding-top: 0.5rem;
+  background-color: #FCBF49;
+}
+
+.whiteBackground{
+  width: 100%;
+  height: 92vh;
+  background-color: white;
+}
+
+.profileMenu{
+  right: 1rem;    
+  padding-top: 0.5rem;
+}
+
+.navButtonRightProfile{
+  padding-left: 1rem;
+  padding-right: 1.5rem;
+}
 /*********************************/
 
 *,::after,::before {
@@ -565,6 +602,11 @@ p::before {
 
   .loginLabelsContainer{
     width: 95%;
+  }
+
+  .navButtonRight{
+    padding-left: 1rem;
+    padding-right: 1.5rem;
   }
 }
 

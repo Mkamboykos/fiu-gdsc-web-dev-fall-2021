@@ -3,6 +3,7 @@ import {UserAuthenticator} from '../Helpers/UserAuthenticator'
 import logo from '../Images/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import {IoPersonCircle} from 'react-icons/io5';
 
 function Dashboard(){
 
@@ -33,11 +34,11 @@ function Dashboard(){
               <img src={logo} alt="logo" className="logoHome" loading="lazy" />
             </Link>
             <div className="navButtons">
-              <div className="navButtonRight">
-                <button className="yellowButton navButtonRight" onClick={(e) => handleShowMenu(e)}>
-                  Login
+              <div className="navButtonRightProfile">
+                <button className="profileButton navButtonRight" onClick={(e) => handleShowMenu(e)}>
+                  <IoPersonCircle/>
                 </button>
-
+                
                 { showMenu ? 
                   (
                     <div className="profileMenu">
@@ -52,6 +53,10 @@ function Dashboard(){
               </div>
             </div>
           </nav>
+          <div className='yellowBackground'/>
+          <div className='whiteBackground'>
+
+          </div>
         </div>
       ) : (
         ""
