@@ -1532,7 +1532,7 @@ function Home() {
       </nav>
 
       <div className='startHereButtonPlacement'>
-        <button className='yellowButton' onClick={() => setShowStart(true)} style={{backgroundColor: "#921c06"}}>
+        <button className='yellowButton startHereHover' onClick={() => setShowStart(true)} style={{backgroundColor: "#921c06"}}>
           {' '}
           Start Here{' '}
         </button>
