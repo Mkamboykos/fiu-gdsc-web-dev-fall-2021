@@ -19,8 +19,10 @@ function Dashboard(){
   }
 
 
-  const handleLogout = () =>{
-    Axios.post(`http://localhost:8000/Login/logout/${user.info.username}`)
+  const handleLogout = async () =>{
+    await Axios.post(`http://localhost:8000/Login/logout/${user.info.username}`)
+    user.renderPage = false;
+    return navigate(`/`);
   }
 
   return (
