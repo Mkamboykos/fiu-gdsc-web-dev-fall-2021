@@ -9,7 +9,6 @@ import ManeyWu from '../Images/ManeyWu.png'
 function About(){
 
     const defaultTitle = <div>Who We Are</div>
-
     const defaultDescription = <div className='aboutDefaulDescription'>
         We are the Google Developer Student Club Web Development Team at Florida International University!
         <br/><br/>
@@ -22,17 +21,13 @@ function About(){
     const [description, setDescription] = useState(defaultDescription);
 
     const ManuelTitle = <div>Manuel Kamboykos</div>
-
     const ManuelDescription = <div>
-       My name is Manuel Kamboykos.
-       <br/><br/>
        I am a Senior at FIU graduating on Spring of 2022, and currently pursuing a Bachelor of Science in Computer Science.
        <br/><br/>
        Additionally, I am also a Full-Stack Web Developer, and I like to spend my off-time freelancing.
     </div>
 
     const ManeyTitle = <div>Maney Wu</div>
-
     const ManeyDescription = <div>
        Hi, my name is Maney Wu.
        <br/><br/>
@@ -43,7 +38,6 @@ function About(){
 
 
     const JohnnyTitle = <div>Johnny Llerena</div>
-
     const JohnnyDescription = <div className='aboutDefaulDescription'>
      Currently a senior at FIU, majoring in Computer Science.
      <br/><br/>
@@ -65,12 +59,10 @@ function About(){
                         <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(JohnnyTitle) & setDescription(JohnnyDescription)}/>
                     </div>
                     <div className='aboutLeftCirclePanel1'>
-                        <button className="aboutPicture">
-
-                        </button>
-                        <button className="aboutPicture">
+                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(ManeyTitle) & setDescription(ManeyDescription)}/>
+                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(JohnnyTitle) & setDescription(JohnnyDescription)}/>
                             
-                        </button>
+                        
                         <button className="aboutPicture">
                             
                         </button>
@@ -101,7 +93,7 @@ function About(){
                 <div className='aboutRightPanel'>
                     <div className='aboutRightTextContainer'>
                         <div className='aboutRightTitle'>
-                            <h1 className='textBold'>
+                            <h1 className='textBold' style={{}}>
                                 {title}
                             </h1>
                         </div>

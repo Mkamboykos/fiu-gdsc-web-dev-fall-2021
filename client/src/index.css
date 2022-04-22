@@ -516,7 +516,8 @@ p::before {
   } 
 
   .homeBackground{
-    height: 91.2vh;
+    height: 90.5vh;
+    overflow-y: hidden;
   }
 
   .aboutRowContainer{
@@ -539,7 +540,7 @@ p::before {
     width: 90%;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    top: 12vh;
+    top: 11vh;
   }
 
   .aboutDefaulDescription{
@@ -548,6 +549,22 @@ p::before {
 
   .aboutLeftCirclePanel1{
     height: 10vh;
+  }
+
+  .logoHome{
+    display: flex;
+  }
+
+  .aboutRightTitle{
+    padding-top: 12px;
+  }
+
+  .googleButton{
+    width: 50%;
+  }
+
+  .loginLabelsContainer{
+    width: 95%;
   }
 }
 
