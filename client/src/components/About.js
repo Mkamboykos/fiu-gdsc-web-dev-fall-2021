@@ -2,11 +2,32 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import homeBackground from '../Images/homeBackground.png'
 import logo from '../Images/logo.svg'
+import ManeyWu from '../Images/ManeyWu.png'
 
 function About(){
 
-    const [description, setDescription] = useState("We are the Google Developer Student Club Web Development Team at Florida International University! Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application. College Budgeter is a passion project that is built for college students by college students.");
+    const defaultTitle = <div>Who We Are</div>
 
+    const defaultDescription = <div>
+        We are the Google Developer Student Club Web Development Team at Florida International University!
+        <br/><br/>
+        Together we are a group of individuals that are passionate about web technologies and decided to experiment with a real world application.
+        <br/><br/>
+        College Budgeter is a passion project that is built for college students by college students.
+    </div>
+
+    const [title, setTitle] = useState(defaultTitle);
+    const [description, setDescription] = useState(defaultDescription);
+
+    const ManeyTitle = <div>Maney Wu</div>
+
+    const ManeyDescription = <div>
+       Hi, my name is Maney Wu.
+       <br/><br/>
+       I’m Currently a Junior at FIU, majoring in Computer Science.
+       <br/><br/>
+       My hobbies are gardening and watching anime. I also like looking at frogs 🐸
+    </div>
     const AboutContainer = () =>{
         return (
           <div className='aboutPageContainer'>
@@ -16,9 +37,9 @@ function About(){
                         <button className="aboutPicture">
 
                         </button>
-                        <button className="aboutPicture">
-                            
-                        </button>
+                        
+                        <img src={ManeyWu} className="aboutPicture" onClick={() => setTitle(ManeyTitle) & setDescription(ManeyDescription)}/>
+                        
                         <button className="aboutPicture">
                             
                         </button>
@@ -61,7 +82,7 @@ function About(){
                     <div className='aboutRightTextContainer'>
                         <div className='aboutRightTitle'>
                             <h1 className='textBold'>
-                                Who We Are
+                                {title}
                             </h1>
                         </div>
                         <div className='aboutRightText'>

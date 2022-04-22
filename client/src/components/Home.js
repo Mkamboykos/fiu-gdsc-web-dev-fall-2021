@@ -1469,7 +1469,7 @@ function Home() {
             </div>
           </div>
           <hr />
-          <div>
+          <div className='googleContainer'>
             <button className='googleButton'>Google</button>
           </div>
         </div>
